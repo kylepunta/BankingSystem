@@ -1,0 +1,33 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+h3 {
+    margin: 0px;
+}
+
+.hidden {
+    display: none!important;
+}
+
+.sidenav {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid salmon;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.dropdown{
+    border: 2px solid rebeccapurple;
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
