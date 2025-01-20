@@ -18,6 +18,12 @@
 - guarantor's name (if applicable)
 - deleted flag
 
+## Staff
+
+- PK STAFF ID
+- staff password
+- staff name
+
 ## Deposit account
 
 - PK ACCOUNT ID
@@ -85,32 +91,59 @@
 
 - PK TRANSACTION ID
 - FK ACCOUNT ID
-- date
-- transaction type
+- date of transaction
+- transaction type (withdrawal, lodgement, interest earned)
 - transaction amount
-- balance
+- opening balance
+- closing balance
+-
 
 ## Loan account history
 
 - PK TRANSACTION ID
-  FK ACCOUNT ID
+- FK ACCOUNT ID
 - date
-- transaction type
+- transaction type (withdrawal, payment)
 - repayment amount
 - balance
 
 ## Current account history
 
 - PK TRANSACTION ID
-  FK ACCOUNT ID
+- FK ACCOUNT ID
 - date
-- transaction type
+- transaction type (withdrawal, deposit)
 - amount
 - balance
 
 Make project extendable (have tables with 1 row) (join accounts, potential for multiple customers but for now only one)
 Deleted flag (dont delete any rows, mark them as deleted instead)
 Deleted date column (delete every row older than x years)
+
+Error checking required for all fields\
+Each form has to have an "Exit" or "Escape" if user changes his/her mind (i.e only update db on submit)\
+-> confirmation screen after submit button pressed\
+A help menu should be included with each form\
+Start Up\
+A welcome message, three attempts for password\
+Show change password option on correct password entered on start up\
+If yes chosen go to change password form, if not the simply go to main menu\
+
+Transactions assume customer entered already exists\
+Customer can have more than one account type\
+Customer selection done by either typing in name, account number, or selected from a list (dropdown with text input)\
+Customer details presented, then enter lodgement amount and confirm\
+Are you sure displayed\
+Possible option to make _more_ transactions in the same session while customer name is still entered\
+
+Withdrawals either from deposit _or_ current account
+Check if balance is greater than the withdrawal amount requested
+(Don't forget overdraft limit)
+Printing possible for transaction
+
+Add new customer\
+Display the unique customer number when created
+Delete customer allows you to browse through for the customer
 
 ```
 ATTENTION CITIZEN! 市民请注意!
