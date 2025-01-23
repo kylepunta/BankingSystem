@@ -1,5 +1,5 @@
 :root {
-    --sidebar-bg-color: #5A4077;
+    --sidebar-bg-color: #78569F;
 }
 
 * {
@@ -11,9 +11,18 @@
     font-weight: 400;
 }
 
+.sidenav * {
+    font-family: 'poppins';
+}
+
 html, body {
     height: 100%;
     margin: 0;
+}
+
+body {
+    display: grid;
+    grid-template-columns: auto 4fr;
 }
 
 .hidden {
@@ -21,24 +30,57 @@ html, body {
 }
 
 .sidenav {
-    width: fit-content;
+    width: 330px;
     height: 100%;
     display: flex;
     flex-direction: column;
     background-color: var(--sidebar-bg-color);
     color: white;
-    padding: 20px;
+    font-family: 'poppins';
 }
 
 .sidenav ul {
     list-style: none;
+    padding: 0px 20px 0px 20px;
 }
 
 .sidenav h2 {
     font-size: 32px;
     text-align: center;
     font-weight: 700;
-    padding-bottom: 20px;
+    padding: 30px 0px 10px 0px;
+}
+
+.sidenav button {
+    background-color: var(--sidebar-bg-color);
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.sidenav button > div{
+    font-weight: bold;
+}
+
+.sidenav li {
+    padding-top: 20px;
+    display: flex;
+}
+
+.sidenav .dropdown > ul{
+    padding-left: 15px;
+}
+
+.sidenav > ul > li > a {
+    font-weight: bold;
+}
+
+li.dropdown {
+    flex-direction: column;
 }
 
 a:visited {
@@ -47,11 +89,4 @@ a:visited {
 
 a {
     text-decoration: none;
-}
-
-.sidenav button {
-    background-color: var(--sidebar-bg-color);
-    border: none;
-    color: #fff;
-    font-weight: bold;
 }

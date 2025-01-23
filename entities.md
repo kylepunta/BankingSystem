@@ -23,15 +23,13 @@
 - PK STAFF ID
 - staff password
 - staff name
+- role (manager, teller, etc.)
 
 ## Deposit account
 
 - PK ACCOUNT ID
 - account number (generated unique random number)
 - FK customer no
-- address
-- eircode
-- date of birth
 - balance
 - deleted flag
 
@@ -40,10 +38,9 @@
 - PK ACCOUNT ID
 - account number
 - FK customer no
-- address
-- date of birth
 - balance
 - loan amount
+- loan start date
 - loan term
 - loan monthly repayments
 - deleted flag
@@ -53,9 +50,6 @@
 - PK ACCOUNT ID
 - account number
 - FK customer no
-- address
-- eircode
-- date of birth
 - balance
 - overdraft limit
 - deleted flag
@@ -94,9 +88,7 @@
 - date of transaction
 - transaction type (withdrawal, lodgement, interest earned)
 - transaction amount
-- opening balance
-- closing balance
--
+- balance (after transaction)
 
 ## Loan account history
 
@@ -105,7 +97,7 @@
 - date
 - transaction type (withdrawal, payment)
 - repayment amount
-- balance
+- balance (after transaction)
 
 ## Current account history
 
@@ -114,7 +106,7 @@
 - date
 - transaction type (withdrawal, deposit)
 - amount
-- balance
+- balance (after transaction)
 
 Make project extendable (have tables with 1 row) (join accounts, potential for multiple customers but for now only one)
 Deleted flag (dont delete any rows, mark them as deleted instead)
@@ -198,7 +190,28 @@ Same as open other accounts
 Enter the overdraft limit
 Option to perform a transaction
 
+Close current account
+Same as close other accounts
+Check if the account is a credit or debit balance
 
+Amend/View current account
+Same as amending other accounts
+last 10 transactions
+
+Management menu
+Access by manager password (staff table)
+
+Charge interest on overdrawn C account
+Either manually or automatically proceed
+Account chosen from list of overdrawn accounts
+OR should be able to automatically charge interest to all by pressing a button
+Interest calculated based off rate table
+- balance updated
+- recorded as transaction
+
+Calc (short for calculate) interest on deposit accounts
+Either manual or auto
+Amount credited to account
 ```
 ATTENTION CITIZEN! 市民请注意!
 
