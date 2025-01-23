@@ -136,14 +136,46 @@ Customer details presented, then enter lodgement amount and confirm\
 Are you sure displayed\
 Possible option to make _more_ transactions in the same session while customer name is still entered\
 
-Withdrawals either from deposit _or_ current account
-Check if balance is greater than the withdrawal amount requested
-(Don't forget overdraft limit)
-Printing possible for transaction
+Withdrawals either from deposit _or_ current account\
+Check if balance is greater than the withdrawal amount requested\
+(Don't forget overdraft limit)\
+Printing possible for transaction\
 
 Add new customer\
-Display the unique customer number when created
-Delete customer allows you to browse through for the customer
+Display the unique customer number when created\
+Delete customer allows you to browse through for the customer\
+Customers should be <strong>flagged</strong> for deletion
+#### Customer account cannot be deleted if they have an account
+Double check to make sure a customer isnt accidently deleted (Are you sure Y/N)
+Amend customer straight forward
+Have a confirmation screen
+
+Account maintenance menu
+Deposit Account
+Assume customer exists
+If customer doesnt exist, add a create new customer option and then bring back to new deposit account menu
+Select customer either through number or dropdown of names
+- display details
+Create unique acc number when details of customer are confirmed 
+A first transaction should be requested to deposit an opening balance
+
+Close deposit account
+Selected using either customer number or name
+Display details
+Balance of account must be 0, first balance needs to be withdrawn
+Account flagged for closure
+Add a double check
+
+View deposit account
+Selected like any account
+Display details
+Display last 10 transactions
+Option to browse through other customers
+
+Loan Account Menu
+Open Loan Account
+Assume customer already exists
+If not, same procedure as deposit account
 
 ```
 ATTENTION CITIZEN! 市民请注意!
