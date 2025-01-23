@@ -28,37 +28,37 @@
 
 - PK ACCOUNT ID
 - account number (generated unique random number)
-- customer name
+- FK customer no
 - address
 - eircode
 - date of birth
-- customer no
 - balance
+- deleted flag
 
 ## Loan account
 
 - PK ACCOUNT ID
 - account number
-- customer name
+- FK customer no
 - address
 - date of birth
-- customer no
 - balance
 - loan amount
 - loan term
 - loan monthly repayments
+- deleted flag
 
 ## Current account
 
 - PK ACCOUNT ID
 - account number
-- customer name
+- FK customer no
 - address
 - eircode
 - date of birth
-- customer no
 - balance
 - overdraft limit
+- deleted flag
 
 ## Loan rate table
 
@@ -74,15 +74,15 @@
 
 - current rate
 
-## Quote deposit rate table
+## Quote deposit rate (report)
 
 - current deposit rate for loans (XX.XX%)
 
-## Quote loan rate table
+## Quote loan rate (report)
 
 - current interest rate for loans (XX.XX%)
 
-## Quote current account rate table
+## Quote current account rate (report)
 
 - interest on credit balances (XX.XX%)
 - interest on overdrawn balances (XX.XX%)
@@ -176,6 +176,28 @@ Loan Account Menu
 Open Loan Account
 Assume customer already exists
 If not, same procedure as deposit account
+User enters amount requested for loan, term, and monthly repayments are then calculated
+- Referring to Loan rate table
+User requests first transaction ie a withdrawal
+Confirm details
+Record end details of the transaction
+
+Close loan account
+Same as close deposit account
+Only if nothing left on the loan
+
+Amend/View loan account
+Same as deposit account
+Not all fields amendable
+- Only change term and amount of loan
+Double check 
+
+Current Account Menu
+Open current account
+Same as open other accounts
+Enter the overdraft limit
+Option to perform a transaction
+
 
 ```
 ATTENTION CITIZEN! 市民请注意!
