@@ -30,6 +30,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--sidebar-bg-color);
+    padding-bottom: 20px;
 }
 
 .sidenav ul {
@@ -81,13 +82,12 @@ main {
 
 .dropdown ul.hidden {
     overflow: hidden;
-    max-height: 0;
-    transition: all 1s ease-in-out;
+    /* max-height: 0; */
+    transition: max-height 0.5s ease-in-out;
     transition-behavior: allow-discrete;
 }
 
-.dropdown ul {
-    max-height: 900px;
-    transition: all 1s ease-in-out;
+.dropdown ul{
+    transition: max-height 0.5s ease-in-out;
     transition-behavior: allow-discrete;
 }
