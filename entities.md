@@ -139,63 +139,64 @@ Delete customer allows you to browse through for the customer\
 Customers should be <strong>flagged</strong> for deletion
 #### Customer account cannot be deleted if they have an account
 Double check to make sure a customer isnt accidently deleted (Are you sure Y/N)
-Amend customer straight forward
+
+Amend customer straight forward\
 Have a confirmation screen
 
-Account maintenance menu
-Deposit Account
-Assume customer exists
-If customer doesnt exist, add a create new customer option and then bring back to new deposit account menu
-Select customer either through number or dropdown of names
-- display details
-Create unique acc number when details of customer are confirmed 
-A first transaction should be requested to deposit an opening balance
+Account maintenance menu\
+Deposit Account\
+Assume customer exists\
+If customer doesnt exist, add a create new customer option and then bring back to new deposit account menu\
+Select customer either through number or dropdown of names\
+- display details\
+Create unique acc number when details of customer are confirmed \
+A first transaction should be requested to deposit an opening balance\
 
-Close deposit account
-Selected using either customer number or name
-Display details
-Balance of account must be 0, first balance needs to be withdrawn
-Account flagged for closure
+Close deposit account\
+Selected using either customer number or name\
+Display details\
+Balance of account must be 0, first balance needs to be withdrawn\
+Account flagged for closure\
 Add a double check
 
-View deposit account
-Selected like any account
-Display details
-Display last 10 transactions
+View deposit account\
+Selected like any account\
+Display details\
+Display last 10 transactions\
 Option to browse through other customers
 
-Loan Account Menu
-Open Loan Account
-Assume customer already exists
-If not, same procedure as deposit account
+Loan Account Menu\
+Open Loan Account\
+Assume customer already exists\
+If not, same procedure as deposit account\
 User enters amount requested for loan, term, and monthly repayments are then calculated
-- Referring to Loan rate table
-User requests first transaction ie a withdrawal
-Confirm details
+- Referring to Loan rate table\
+User requests first transaction ie a withdrawal\
+Confirm details\
 Record end details of the transaction
 
-Close loan account
-Same as close deposit account
+Close loan account\
+Same as close deposit account\
 Only if nothing left on the loan
 
-Amend/View loan account
-Same as deposit account
+Amend/View loan account\
+Same as deposit account\
 Not all fields amendable
-- Only change term and amount of loan
+- Only change term and amount of loan\
 Double check 
 
-Current Account Menu
-Open current account
-Same as open other accounts
-Enter the overdraft limit
+Current Account Menu\
+Open current account\
+Same as open other accounts\
+Enter the overdraft limit\
 Option to perform a transaction
 
-Close current account
-Same as close other accounts
+Close current account\
+Same as close other accounts\
 Check if the account is a credit or debit balance
 
-Amend/View current account
-Same as amending other accounts
+Amend/View current account\
+Same as amending other accounts\
 last 10 transactions
 
 Management Menu
@@ -297,12 +298,34 @@ Show date, type, amount of transaction, current balance
 Option to print
 
 Current account history
-List all 
+List all past transactions
+Show date, type, amount of each transaction, current balance (DR if negative) 
+Option to print
 
+Customer Report
+Display all customer and their details
+Name, Address, Current account no, current balance
+displayed in alphabetical order by surname by default
+- either by account number
+- descending order of account balance
+    -> largest outstanding balance first
+User can scroll through all customers
+Account Information button available
+- first a customer is selected
+- pressing the button causes a new window to appear showing the account details of all the loan and deposit accounts belonging to the customer
 
+Current account interest report
+Manager password required possibly
+allows manager to see out amount of interest charged on overdrawn accounts 
+between two dates
+Validate the date selected is not after todays date
 
-
-
+Account report
+The user selected a customer from a list
+All accounts listed for this customer
+User can select an account by clicking it
+Choose a start/end date for all transactions between the two dates
+If no date entered show the past 6 months
 
 
 
