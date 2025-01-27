@@ -11,7 +11,7 @@ dropdowns.forEach((dropdown) => {
         event.stopPropagation();
 
         // Toggle the 'hidden' class for all child elements of the clicked dropdown
-        const children = dropdown.querySelectorAll(":scope > *:not(button)"); // Select all child elements except <h3>
+        const children = dropdown.querySelectorAll(":scope > *:not(button)"); // Select all child elements except <button>
         children.forEach((child) => {
             child.classList.toggle("hidden");
         });
