@@ -90,3 +90,15 @@ a:visited {
 a {
     text-decoration: none;
 }
+
+.arrow {
+    transform: rotate(180deg);
+}
+
+.material-symbols-outlined {
+    transition-duration: 0.5s;
+}
+
+main {
+    margin-left: 30px;
+}

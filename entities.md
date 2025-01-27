@@ -198,8 +198,18 @@ Amend/View current account
 Same as amending other accounts
 last 10 transactions
 
-Management menu
+Management Menu
+```
+
+Charge Interest on Overdrawn Current Accounts 
+Calculate Interest on Deposit Accounts 
+Calculate Interest on Current Accounts
+Change rate of interest for deposit accounts 
+Change rate of interest for loan accounts 
+Change rate of interest for current accounts
+
 Access by manager password (staff table)
+```
 
 Charge interest on overdrawn C account
 Either manually or automatically proceed
@@ -211,7 +221,92 @@ Interest calculated based off rate table
 
 Calc (short for calculate) interest on deposit accounts
 Either manual or auto
+Calculated based in current rate
 Amount credited to account
+Update balance
+
+Calc interest on current accounts
+Manual or auto
+Calculated based off current rate
+Update balance as transaction
+
+Change rate of interest deposit Acc
+Prompt to change new deposit rate
+- also used to initialse rate
+- reqs table
+
+Change rate of interest for loan accounts 
+Prompt to change new interest rate
+- also used to initialse rate
+- reqs table
+
+Change interest rate for current accounts
+Prompt for new interest rates, for credit and debit balances
+Also used to initialise the current account
+Stored in a table (Which one?????????????????????????????????????????)
+
+Quotes Menu
+```
+Quote Loan Repayments 
+Quote Deposit rate 
+Quote Loan rate
+Quote Current Account rate
+```
+
+Quote loan repayment
+Prompt for amount being borrowed and the term
+Then access where interest rate is stored
+Output rate to the form
+Amount interest charged and monthly payments calculated and displayed
+Option to change interest rate
+- recalculate interest charged and payments
+Table with interest rates should not be changed
+term not less than a month
+Principal amount must be > 0
+
+Quote deposit rate
+A seperate table to store interest rates
+
+Quote Loan Rate
+separate table to store interest rates
+
+Quote current account rate
+
+Reports menu
+```
+Deposit Account History 
+Loan Account History 
+Current Account History 
+Customer Report
+Current Account Interest Report 
+Account Report
+
+```
+
+Deposit account history
+List all transactions that took place with an account
+Show date, type, amount of each transactions, current balance
+Option to print report
+First select customer then account, allows scrolling if needed
+Allow user to select between two dates eg April 2024 - June 2024 (optional maybe)
+
+Loan account History
+Show history of selected account
+List all transactions
+Show date, type, amount of transaction, current balance
+Option to print
+
+Current account history
+List all 
+
+
+
+
+
+
+
+
+
 ```
 ATTENTION CITIZEN! 市民请注意!
 

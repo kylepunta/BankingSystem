@@ -1,0 +1,104 @@
+:root {
+    --sidebar-bg-color: #78569F;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.sidenav * {
+    font-family: 'poppins';
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: grid;
+    grid-template-columns: auto 4fr;
+}
+
+.hidden {
+    display: none!important;
+}
+
+.sidenav {
+    width: 330px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--sidebar-bg-color);
+    color: white;
+    font-family: 'poppins';
+}
+
+.sidenav ul {
+    list-style: none;
+    padding: 0px 20px 0px 20px;
+}
+
+.sidenav h2 {
+    font-size: 32px;
+    text-align: center;
+    font-weight: 700;
+    padding: 30px 0px 10px 0px;
+}
+
+.sidenav button {
+    background-color: var(--sidebar-bg-color);
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.sidenav button > div{
+    font-weight: bold;
+}
+
+.sidenav li {
+    padding-top: 20px;
+    display: flex;
+}
+
+.sidenav .dropdown > ul{
+    padding-left: 15px;
+}
+
+.sidenav > ul > li > a {
+    font-weight: bold;
+}
+
+li.dropdown {
+    flex-direction: column;
+}
+
+a:visited {
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+.arrow {
+    transform: rotate(180deg);
+}
+
+.material-symbols-outlined {
+    transition-duration: 0.5s;
+}
+
+main {
+    margin-left: 30px;
+}

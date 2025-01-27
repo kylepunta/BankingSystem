@@ -15,5 +15,7 @@ dropdowns.forEach((dropdown) => {
         children.forEach((child) => {
             child.classList.toggle("hidden");
         });
+        const button = dropdown.querySelector(".material-symbols-outlined");
+        button.classList.toggle("arrow");
     });
 });
