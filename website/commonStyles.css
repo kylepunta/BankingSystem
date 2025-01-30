@@ -76,6 +76,10 @@ li.dropdown {
     transition-duration: 0.5s;
 }
 
+.material-symbols-outlined:hover {
+    cursor: pointer;
+}
+
 main {
     margin-left: 25px;
 }
