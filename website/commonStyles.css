@@ -80,10 +80,6 @@ li.dropdown {
     cursor: pointer;
 }
 
-main {
-    margin-left: 25px;
-}
-
 .dropdown ul.hidden {
     overflow: hidden;
     /* max-height: 0; */
@@ -94,4 +90,61 @@ main {
 .dropdown ul{
     transition: max-height 0.5s ease-in-out;
     transition-behavior: allow-discrete;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    background-color: rgb(0, 247, 255);
+    display: grid;
+    grid-template-rows: auto repeat(4, 1fr) auto;
+    gap: 10px;
+    min-width: 400px;
+    padding: 10px;
+    border: 2px solid blue;
+    border-radius: 4px;
+}
+
+.inputbox {
+    display: flex;
+    padding: 5px 10px;
+}
+
+.inputbox > label {
+    font-size: 1.4em;
+}
+
+.inputbox > input {
+    flex-grow: 1;
+    margin-left: 20px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 0px 10px;
+    outline: none;
+}
+
+.inputbox > input:focus {
+    outline: solid black 1px;
+} 
+
+form > h2 {
+    font-size: 1.6em;
+    text-align: center;
+    margin: 10px 0px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+}
+
+.buttons > input {
+    padding: 4px 40px;
+    border: 1px solid gray;
+    border-radius: 4px;
 }
