@@ -80,6 +80,10 @@ li.dropdown {
     cursor: pointer;
 }
 
+a.active {
+    background-color: red;
+}
+
 .dropdown ul.hidden {
     overflow: hidden;
     /* max-height: 0; */
