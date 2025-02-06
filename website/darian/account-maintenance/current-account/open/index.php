@@ -17,12 +17,59 @@
 <body>
     <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html'); ?>
     <main>
-        <h1>Open Current Account</h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad quia obcaecati dolore nulla distinctio rem dolores fugit quisquam in temporibus, est expedita id, assumenda harum provident corporis pariatur, unde nobis.</p>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat reiciendis quis, ipsa earum ex veniam nulla unde aliquid labore dignissimos eveniet itaque molestias, numquam voluptates consectetur? Quasi modi officiis at!</p>
         <form>
-            <label>Test name</label>
-            <input type="text" />
+            <!-- the heading of the form -->
+            <h2>Open Current Account</h2>
+
+            <!-- a div which groups the input box and it's label -->
+            <div class="inputbox">
+                <label for="cid">Customer number:</label>
+                <!-- the cid input box -->
+                <input type="text" name="cid" id="cid" placeholder="01234567" required>
+            </div>
+
+            <!-- a div which groups the input box and it's label -->
+            <div class="inputbox">
+                <label for="name">Customer Name:</label>
+                <!-- the name input box -->
+                <input type="text" name="name" id="name" placeholder="Customer Name" disabled>
+            </div>
+
+            <!-- a div which groups the input box and it's label -->
+            <div class="inputbox">
+                <label for="address">Address:</label>
+                <!-- the address input box -->
+                <input type="text" name="address" id="address" placeholder="Address" disabled>
+            </div>
+
+            <!-- a div which groups the input box and it's label -->
+            <div class="inputbox">
+                <label for="eircode">Eircode:</label>
+                <!-- the eircode input box -->
+                <input type="text" name="eircode" id="eircode" placeholder="Eircode" disabled>
+            </div>
+
+            <!-- a div which groups the calendar and it's label -->
+            <div class="inputbox">
+                <label for="dob">Date of Birth:</label>
+                <!-- the dob calendar -->
+                <input type="date" name="dob" id="dob" disabled>
+            </div>
+
+            <!-- a div which groups the input box and it's label -->
+            <div class="inputbox">
+                <label for="overdraftlimit">Overdraft limit:</label>
+                <!-- the overdraftlimit input box -->
+                <input type="number" name="overdraftlimit" id="overdraftlimit" placeholder="5000" required>
+            </div>
+
+            <!-- a div which groups the buttons -->
+            <div class="myButton">
+                <!-- the submit button -->
+                <input type="submit" value="Send Form" name="submit">
+                <!-- the reset button -->
+                <input type="reset" value="Clear Form" name="reset">
+            </div>
         </form>
     </main>
 </body>
