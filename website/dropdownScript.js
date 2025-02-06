@@ -58,3 +58,31 @@ dropdowns.forEach((dropdown) => {
         button.classList.toggle("arrow");
     });
 });
+
+window.onload = () => {
+    const sidenav = document.querySelector(".sidenav");
+    const anchors = sidenav.querySelectorAll("a");
+    // loops through every anchor on the sidenav
+    anchors.forEach((anchor) => {
+        // checks if the href of the anchor is the same as the current page
+        if ((window.location.href === anchor.href)) {
+            // adds the active class
+            anchor.classList.add("active");
+
+            // continues to expand the dropdown for it
+            const dropdown = anchor.parentElement.parentElement.parentElement;
+            // checks if it is a dropdown
+            if (dropdown.classList.contains("dropdown")) {
+                // continues to expand the double dropdown for it
+                const doubleDropdown = dropdown.parentElement.parentElement;
+                // checks if it is a double dropdown
+                if (doubleDropdown.classList.contains("dropdown")) {
+                    // expand the double dropdown
+                    doubleDropdown.click();
+                }
+                // expand the dropdown
+                dropdown.click();
+            }
+        }
+    })
+}

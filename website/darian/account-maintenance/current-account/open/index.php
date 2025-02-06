@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/commonStyles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=keyboard_arrow_down" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./open.css">
+    <script src="./open.js"></script>
+</head>
+
+<body>
+    <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html'); ?>
+    <main>
+        <form>
+            <!-- the heading of the form -->
+            <h2>Open Current Account</h2>
+
+            <!-- a div which groups the input box and it's label -->
+            <div class="inputbox">
+                <label for="cid">Customer number:</label>
+                <!-- the cid input box -->
+                <input type="text" name="cid" id="cid" placeholder="01234567" required>
+            </div>
+
+            <!-- a div which groups the input box and it's label -->
+            <div class="inputbox">
+                <label for="name">Customer Name:</label>
+                <!-- the name input box -->
+                <input type="text" name="name" id="name" placeholder="Customer Name" disabled>
+            </div>
+
+            <!-- a div which groups the input box and it's label -->
+            <div class="inputbox">
+                <label for="address">Address:</label>
+                <!-- the address input box -->
+                <input type="text" name="address" id="address" placeholder="Address" disabled>
+            </div>
+
+            <!-- a div which groups the input box and it's label -->
+            <div class="inputbox">
+                <label for="eircode">Eircode:</label>
+                <!-- the eircode input box -->
+                <input type="text" name="eircode" id="eircode" placeholder="Eircode" disabled>
+            </div>
+
+            <!-- a div which groups the calendar and it's label -->
+            <div class="inputbox">
+                <label for="dob">Date of Birth:</label>
+                <!-- the dob calendar -->
+                <input type="date" name="dob" id="dob" disabled>
+            </div>
+
+            <!-- a div which groups the input box and it's label -->
+            <div class="inputbox">
+                <label for="overdraftlimit">Overdraft limit:</label>
+                <!-- the overdraftlimit input box -->
+                <input type="number" name="overdraftlimit" id="overdraftlimit" placeholder="5000" required>
+            </div>
+
+            <!-- a div which groups the buttons -->
+            <div class="myButton">
+                <!-- the submit button -->
+                <input type="submit" value="Send Form" name="submit">
+                <!-- the reset button -->
+                <input type="reset" value="Clear Form" name="reset">
+            </div>
+        </form>
+    </main>
+</body>
+
+</html>

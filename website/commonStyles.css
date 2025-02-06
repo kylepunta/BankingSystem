@@ -55,6 +55,11 @@ body {
     font-weight: bold;
 }
 
+.sidenav button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
 .sidenav li {
     padding-top: 20px;
     display: flex;
@@ -80,6 +85,14 @@ li.dropdown {
     cursor: pointer;
 }
 
+a.active {
+    color: #250066
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
 .dropdown ul.hidden {
     overflow: hidden;
     /* max-height: 0; */
@@ -98,7 +111,7 @@ main {
     align-items: center;
 }
 
-form {
+/* form {
     background-color: rgb(0, 247, 255);
     display: grid;
     grid-template-rows: auto repeat(4, 1fr) auto;
@@ -107,7 +120,7 @@ form {
     padding: 10px;
     border: 2px solid blue;
     border-radius: 4px;
-}
+} */
 
 .inputbox {
     display: flex;
