@@ -23,6 +23,9 @@
 
                 ?>
             </p>
+            <div class="form-buttons">
+                <input type="submit" value="Confirm Selection" id="confirm-button">
+            </div>
         </form>
     </main>
 </body>
