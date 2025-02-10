@@ -25,14 +25,16 @@
             <div class="inputbox">
                 <label for="cid">Customer number:</label>
                 <!-- the cid input box -->
-                <input type="text" name="cid" id="cid" placeholder="01234567" required>
+                <input type="number" name="cid" id="cid" placeholder="01234567" onchange="inputCustomer(this)" required>
             </div>
 
             <!-- a div which groups the input box and it's label -->
             <div class="inputbox">
                 <label for="name">Customer Name:</label>
-                <!-- the name input box -->
-                <input type="text" name="name" id="name" placeholder="Customer Name" disabled>
+                <!-- the name select box -->
+                <select id="name" onchange="populate(this)" required>
+                    <?php require('./listbox.php'); ?>
+                </select>
             </div>
 
             <!-- a div which groups the input box and it's label -->

@@ -17,7 +17,7 @@
     •	customer number
  -->
 <body>
-    <?php require('../sideMenu.html'); ?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html'); ?>
     <main>
         
         <!-- create form with action displayview1 and method post -->
@@ -63,6 +63,26 @@
             <input type="text" name="phone" id="phone" placeholder="phone" disabled
                 value="<?php if (ISSET($_SESSION['phone']) ) echo $_SESSION['phone']?>" />
         </p>
+
+        <!-- box for loan amount. -->
+       <p><label for="loanAmount">Enter the loan amount </label>
+            <input type="text" name="loanAmount" id="loanAmount" placeholder="loanAmount" autocomplete=off required
+                value="<?php if (ISSET($_SESSION['loanAmount']) ) echo $_SESSION['loanAmount']?>" /> 
+        </p>
+
+        <!-- box for loan term. -->
+       <p><label for="term">Enter the term of the loan</label>
+            <input type="text" name="term" id="term" placeholder="term" autocomplete=off required
+                value="<?php if (ISSET($_SESSION['term']) ) echo $_SESSION['term']?>" /> 
+        </p>
+
+        <!-- box for calculated monthly repayments -->
+        <!-- the text changes depending on the value of the session var 'dob' -->
+        <p><label for="repayments">Monthly repayments</label>
+            <input type="text" name="repayments" id="repayments" placeholder="repayments" disabled
+                value="<?php if (ISSET($_SESSION['repayments']) ) echo $_SESSION['repayments']?>" />
+        </p>
+
         <br> <br>
         <!-- submit button -->
         <input type="submit" value="Submit" />
