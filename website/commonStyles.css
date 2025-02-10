@@ -131,7 +131,7 @@ main {
     font-size: 1.4em;
 }
 
-.inputbox > input {
+.inputbox > input, select {
     flex-grow: 1;
     margin-left: 20px;
     border: 1px solid gray;
@@ -140,7 +140,7 @@ main {
     outline: none;
 }
 
-.inputbox > input:focus {
+.inputbox > input:focus, select:focus {
     outline: solid black 1px;
 } 
 
