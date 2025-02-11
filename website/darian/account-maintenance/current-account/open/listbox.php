@@ -16,7 +16,7 @@ while ($row = mysqli_fetch_array($result)) {
     $addr = $row["address"];
     $eircode = $row["eircode"];
     $dob = $row["dateOfBirth"];
-    $allText = "$id,$fname,$lname,$addr,$eircode,$dob";
+    $allText = "$id,$addr,$eircode,$dob";
     echo "<option value='$allText'>$name</option>";
 }
 

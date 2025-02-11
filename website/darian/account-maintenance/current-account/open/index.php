@@ -17,7 +17,7 @@
 <body>
     <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html'); ?>
     <main>
-        <form>
+        <form action="open.php" onsubmit="return confirmSubmit()" method="post">
             <!-- the heading of the form -->
             <h2>Open Current Account</h2>
 
@@ -33,6 +33,7 @@
                 <label for="name">Customer Name:</label>
                 <!-- the name select box -->
                 <select id="name" onchange="populate(this)" required>
+                    <option></option>
                     <?php require('./listbox.php'); ?>
                 </select>
             </div>

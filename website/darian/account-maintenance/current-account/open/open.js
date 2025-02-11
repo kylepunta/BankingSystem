@@ -16,30 +16,48 @@ function inputCustomer(input) {
   if (i < select.options.length) {
     // updates the select
     select.selectedIndex = i;
-    // updates the customer details in the form
-    populate(select);
   } else {
     // no matching select option found
-    input.value = "-1"
-    // TODO unset customer details in the form
+    input.value = "";
+    // updates the select to default
+    select.selectedIndex = 0;
   }
+  // updates the customer details in the form
+  populate(select);
 }
 
 // function that handles displaying the customer details in the form
 function populate(select) {
+  // get and store the form displays
+  const cid = document.getElementById("cid");
+  const addr = document.getElementById("address");
+  const eircode = document.getElementById("eircode");
+  const dob = document.getElementById("dob");
+
+  // checks that the default (none) customer is selected
+  if (select.selectedIndex == 0) {
+    // clears the customer details in the form
+    cid.value = "";
+    addr.value = "";
+    eircode.value = "";
+    dob.value = "";
+    return;
+  }
+
   // stores the currently selected customer details
   const result = select.options[select.selectedIndex].value;
   // splits the customer details into an array
   const details = result.split(",");
   // takes the customer details out of the array
-  const id = details[0];
-  const addr = details[3];
-  const eircode = details[4];
-  const dob = details[5];
-
   // updates the customer details in the form
-  document.getElementById("cid").value = id
-  document.getElementById("address").value = addr
-  document.getElementById("eircode").value = eircode
-  document.getElementById("dob").value = dob
+  cid.value = details[0];
+  addr.value = details[1];
+  eircode.value = details[2];
+  dob.value = details[3];
+}
+
+// function that checks the user wants to submit the form
+function confirmSubmit() {
+  // displays a confirmation box to the user, the form will be submitted if they press OK
+  return confirm("Are you sure you want to open this current account?")
 }
