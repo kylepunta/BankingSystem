@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 <?php session_start(); ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,7 +24,7 @@
                 <input type="submit" value="Check customer details">
             </div>
         </form>
-        <form action="addCustomer.php" onsubmit="<script>return confirm("Are you sure you want to open a new account?"")</script>">
+        <form action="addCustomer.php" onsubmit="return false;">
             <div class="inputbox">
                 <label for="name">Customer name:</label>
                 <input type="text" name="name" id="name" disabled value="<?php if (ISSET($_SESSION['name'])) echo $_SESSION['name'] ?>"/>
