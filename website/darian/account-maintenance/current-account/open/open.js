@@ -1,3 +1,9 @@
+/*
+Student Name 	: Darian Byrne
+Student Id Number: C00296036
+Date 			: 13/02/2025
+Open Current Account */
+
 // function that handles the customerNo from the inputbox
 function inputCustomer(input) {
   // gets the customerNo from the input
