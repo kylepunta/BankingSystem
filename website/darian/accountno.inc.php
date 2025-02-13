@@ -3,7 +3,7 @@
 Student Name 	: Darian Byrne
 Student Id Number: C00296036
 Date 			: 13/02/2025
-Project */
+Open Current Account */
 function generateAccountNo($con)
 {
     // loops until continueLoop is false (a safe account number was generated)

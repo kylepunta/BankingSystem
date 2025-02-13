@@ -4,7 +4,8 @@ Student Name 	: Darian Byrne
 Student Id Number: C00296036
 Date 			: 13/02/2025
 Open Current Account */
-
+// start a session
+session_start();
 // TODO could this entire thing just self submit into index.php?
 include $_SERVER["DOCUMENT_ROOT"] . '/db.inc.php';
 include $_SERVER["DOCUMENT_ROOT"] . '/darian/accountno.inc.php';
@@ -46,6 +47,11 @@ if (mysqli_num_rows($result) == 1) {
         // exits the script
         die("An error in the SQL Query3: " . mysqli_error($con));
     }
+
+    // sets the message to show to the user
+    $_SESSION["message"] = "Current account opened with account number: " . $accountNo;
+    // sends the user back to the form
+    header("Location: ./");
 }
 
 // closes the connection

@@ -3,6 +3,7 @@ Student Name 	: Darian Byrne
 Student Id Number: C00296036
 Date 			: 13/02/2025
 Open Current Account -->
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,6 +80,13 @@ Open Current Account -->
                 <input type="reset" value="Clear Form" name="reset">
             </div>
         </form>
+        <!-- paragraph that will be used to display a message to the user after submitting the form -->
+        <p class="display">
+            <?php
+            // checks if there is a message and displays it
+            if (isset($_SESSION["message"])) echo $_SESSION["message"];
+            // clears the message afterward
+            unset($_SESSION["message"]); ?></p>
     </main>
 </body>
 
