@@ -3,7 +3,7 @@ function populate() {
     var sel = document.getElementById("listbox");
     var result;
     result = sel.options[sel.selectedIndex].value;
-    var personDetails = result.split(',');
+    var personDetails = result.split('¬'); // ¬ has to be used as addresses may contain a , inside them breaking the string
 	document.getElementById("number").value = personDetails[0];
     document.getElementById("name").value = personDetails[1];
     document.getElementById("address").value = personDetails[2];
