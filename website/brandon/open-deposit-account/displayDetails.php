@@ -1,19 +1,20 @@
 <?php 
-    session_start();
+	session_start();
     require '../../db.inc.php';
+    date_default_timezone_set("UTC");
 
-	$sql = "SELECT * FROM Customer WHERE customerNo = '".$_POST['custNo'] . "'";
+	$sql = "SELECT * FROM Customer WHERE customerNo='".$_POST['number'] . "'";
 
     if (!$result = mysqli_query($con, $sql)) {
         die('Error in querying the database ' . mysqli_error($con));
     }
 
     $rowcount = mysqli_affected_rows($con);
-
-    $_SESSION['custNo'] = $_POST['custNo'];
+    
+	$_SESSION['number'] = $_POST['number'];
 
     if ($rowcount == 1) {
-        $row = mysqli_fetch_array($result);
+        $row = mysqli_fetch_array($result);		
         $_SESSION['name'] = $row['firstName'] . " " . $row['surName'];
         $_SESSION['address'] = $row['address'];
         $_SESSION['eircode'] = $row['eircode'];

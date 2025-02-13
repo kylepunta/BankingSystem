@@ -176,3 +176,7 @@ form > h2 {
     border: 1px solid gray;
     border-radius: 4px;
 }
+
+input:read-only {
+    background-color: rgb(221, 221, 221);
+}
