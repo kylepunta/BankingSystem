@@ -53,7 +53,7 @@ function populate(select) {
   // stores the currently selected customer details
   const result = select.options[select.selectedIndex].value;
   // splits the customer details into an array
-  const details = result.split(",");
+  const details = result.split(" §"); // details split by § as it shouldn't appear in a persons address (unlike commas)
   // takes the customer details out of the array
   // updates the customer details in the form
   cid.value = details[0];

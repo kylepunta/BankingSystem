@@ -22,7 +22,7 @@ while ($row = mysqli_fetch_array($result)) {
     $addr = $row["address"];
     $eircode = $row["eircode"];
     $dob = $row["dateOfBirth"];
-    $allText = "$id,$addr,$eircode,$dob";
+    $allText = "$id §$addr §$eircode §$dob"; // details split by § as it shouldn't appear in a persons address (unlike commas)
     echo "<option value='$allText'>$name</option>";
 }
 
