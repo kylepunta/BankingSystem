@@ -75,9 +75,9 @@ Open Current Account -->
             <!-- a div which groups the buttons -->
             <div class="myButton">
                 <!-- the submit button -->
-                <input type="submit" value="Send Form" name="submit">
+                <input class="button" type="submit" value="Send Form" name="submit">
                 <!-- the reset button -->
-                <input type="reset" value="Clear Form" name="reset">
+                <input class="button" type="reset" value="Clear Form" name="reset">
             </div>
         </form>
         <!-- paragraph that will be used to display a message to the user after submitting the form -->

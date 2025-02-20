@@ -4,6 +4,29 @@ Student Id Number: C00296036
 Date 			: 13/02/2025
 Open Current Account */
 
-h1 {
-  color: blue;
+form {
+  background-color: rgb(233, 194, 255);
+  border-radius: 16px;
+  border: solid #78569F 2px;
+  padding: 16px;
+}
+
+.inputbox > input, select, .button {
+  border: solid #78569F 2px;
+  border-radius: 8px;
+  padding: 0 8px;
+}
+
+.button {
+  padding: 16px;
+  border-bottom-width: 4px;
+}
+
+.button:hover {
+  background-color: #78569F;
+  color: white;
+}
+
+.button:focus {
+
 }
