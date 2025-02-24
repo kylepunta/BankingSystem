@@ -18,17 +18,17 @@ dropdowns.forEach((dropdown) => {
 
         let totalHeight = 0;
         li.forEach((l) => {
-            totalHeight = totalHeight + parseFloat(getComputedStyle(l).paddingTop) + (parseFloat(getComputedStyle(l).fontSize)*1.6);
+            totalHeight = totalHeight + parseFloat(getComputedStyle(l).paddingTop) + (parseFloat(getComputedStyle(l).fontSize) * 1.6);
         });
 
         const mgm = dropdown.querySelector(".management");
         if (mgm != null) {
-            totalHeight = totalHeight*1.6;
+            totalHeight = totalHeight * 1.6;
         }
 
         const dd = dropdown.querySelector(".double");
         if (dd != null) {
-            totalHeight = totalHeight/3*leveltwos;
+            totalHeight = totalHeight / 3 * leveltwos;
         }
 
         const l2 = dropdown.querySelector(".leveltwo");
@@ -39,15 +39,15 @@ dropdowns.forEach((dropdown) => {
             } else {
                 leveltwos--;
             }
-            parent.style.maxHeight = doubleSize*leveltwos+'px';
+            parent.style.maxHeight = doubleSize * leveltwos + 'px';
         }
 
         const ul = dropdown.querySelector("ul");
         if (!expanded) {
-            ul.style.maxHeight = totalHeight+'px';
+            ul.style.maxHeight = totalHeight + 'px';
             ul.addEventListener("transitionend", () => {
                 ul.classList.toggle("hidden");
-            }, {once: true});
+            }, { once: true });
         } else {
             ul.style.maxHeight = '0px';
             ul.classList.toggle("hidden");
@@ -59,7 +59,7 @@ dropdowns.forEach((dropdown) => {
     });
 });
 
-window.onload = () => {
+window.addEventListener("load", () => {
     const sidenav = document.querySelector(".sidenav");
     const anchors = sidenav.querySelectorAll("a");
     // loops through every anchor on the sidenav
@@ -85,4 +85,4 @@ window.onload = () => {
             }
         }
     })
-}
+});
