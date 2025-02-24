@@ -8,15 +8,15 @@ Open Current Account */
 session_start();
 // TODO could this entire thing just self submit into index.php?
 include $_SERVER["DOCUMENT_ROOT"] . '/db.inc.php';
-include $_SERVER["DOCUMENT_ROOT"] . '/darian/accountno.inc.php';
+// include $_SERVER["DOCUMENT_ROOT"] . '/darian/accountno.inc.php';
 date_default_timezone_set("UTC");
 
-// generates the accountNo
-$accountNo = generateAccountNo($con);
+// gets the accountNo
+$accountNo = $_SESSION["accountno"];
 
 // creates the new current account
-$sql1 = "INSERT INTO `Current Account` (accountNumber, overdraftLimit)
-VALUES ($accountNo,$_POST[overdraftlimit])";
+$sql1 = "INSERT INTO `Current Account` (accountNumber, balance, overdraftLimit)
+VALUES ($accountNo,$_POST[initbal],$_POST[overdraftlimit])";
 
 // checks that the sql query was successful
 if (!mysqli_query($con, $sql1)) {
