@@ -3,7 +3,7 @@ function populate() {
     var sel = document.getElementById("listbox");
     var result;
     result = sel.options[sel.selectedIndex].value;
-    var personDetails = result.split('¬'); // ¬ has to be used as addresses may contain a , inside them breaking the string
+    var personDetails = result.split(' ¬'); // ¬ has to be used as addresses may contain a , inside them breaking the string
 	document.getElementById("number").value = personDetails[0];
     document.getElementById("name").value = personDetails[1];
     document.getElementById("address").value = personDetails[2];
@@ -20,13 +20,12 @@ function confirmSubmit() {
     if (!name || !address || !eircode || !dob) {
         return false; 
     } else {
-        return confirm("Are you sure you want to use this account?")
+        return true;
     }
 }
 
 function toggleInputs() {
     const accNo = document.getElementById("accNo").value;
-
     if (accNo) {
         document.getElementById("balance").disabled = false;
 		document.getElementById("listbox").disabled = true;
@@ -34,7 +33,8 @@ function toggleInputs() {
 		document.getElementById("confirmCustomerButton").disabled = true;
 		document.getElementById("number").disabled = true;
 		document.getElementById("submitCustomer").disabled = false;
-    } 
+		populate();
+	}
 }
 
 function finalCheck() {

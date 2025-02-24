@@ -14,7 +14,7 @@
     <script src="./script.js"></script>
 </head>
 <body onload="toggleInputs()">
-    <?php require('../../sideMenu.html'); ?>
+	<?php require('../../sideMenu.html'); ?>
     <main>
         <h1>Open a deposit account</h1>
         <form action="displayDetails.php" method="post">
@@ -72,6 +72,5 @@
         }
     ?>
     </main>
-	<script src="/dropdownScript.js"></script>
 </body>
 </html>

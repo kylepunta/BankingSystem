@@ -21,7 +21,7 @@
         $eircode = $row['eircode'];
         $dob = date_create($row['dateOfBirth']);
         $dob = date_format($dob,"Y-m-d");
-        $allText = "$customerNo ¬$fullName ¬$address ¬$eircode ¬$dob";
+        $allText = "$customerNo ¬$fullName ¬$address ¬$eircode ¬$dob"; // ¬ has to be used as addresses may contain a , inside them breaking the string
 		
 		// Check if the current customer should be selected
     	$selected = ($customerNo == $selectedCustomer) ? "selected" : "";
