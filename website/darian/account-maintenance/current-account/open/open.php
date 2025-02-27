@@ -36,16 +36,31 @@ if (!$result) {
 }
 if (mysqli_num_rows($result) == 1) {
     $row = mysqli_fetch_array($result);
+    // stores the retrieved account id
+    $accountId = $row["accountId"];
 
     // links the current account to the customer
     $sql3 = "INSERT INTO `Customer/CurrentAccount` (customerNo, accountId)
-    VALUES ($_POST[cid],$row[accountId])";
+    VALUES ($_POST[cid],$accountId)";
 
     // checks that the sql query was successful
     if (!mysqli_query($con, $sql3)) {
         // displays the error that caused the query to fail
         // exits the script
         die("An error in the SQL Query3: " . mysqli_error($con));
+    }
+
+    // gets the current date
+    $now = date("Y-m-d");
+    // makes the initial transaction
+    $sql4 = "INSERT INTO `Current Account History` (accountId, date, transactionType, amount, balance)
+VALUES ('$accountId','$now','Lodgement','$_POST[initbal]','$_POST[initbal]');";
+
+    // checks that the sql query was successful
+    if (!mysqli_query($con, $sql4)) {
+        // displays the error that caused the query to fail
+        // exits the script
+        die("An error in the SQL Query4: " . mysqli_error($con));
     }
 
     // sets the message to show to the user

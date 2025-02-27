@@ -40,14 +40,14 @@ Open Current Account -->
             <div class="inputbox">
                 <label for="cid">Customer number:</label>
                 <!-- the cid input box -->
-                <input type="number" name="cid" id="cid" placeholder="01234567" onchange="inputCustomer(this); showAccountNo();" required>
+                <input type="number" name="cid" id="cid" placeholder="01234567" onchange="inputCustomer(this)" min="0" required>
             </div>
 
             <!-- a div which groups the input box and it's label -->
             <div class="inputbox">
                 <label for="name">Customer Name:</label>
                 <!-- the name select box -->
-                <select id="name" onchange="populate(this); showAccountNo();" required>
+                <select id="name" onchange="populate(this)" required>
                     <option></option>
                     <?php require('./listbox.php'); ?>
                 </select>
@@ -102,14 +102,15 @@ Open Current Account -->
                 <!-- the reset button -->
                 <input class="button" type="reset" value="Cancel" name="reset">
             </div>
+
+            <!-- paragraph that will be used to display a message to the user after submitting the form -->
+            <p class="display">
+                <?php
+                // checks if there is a message and displays it
+                if (isset($_SESSION["message"])) echo $_SESSION["message"];
+                // clears the message afterward
+                unset($_SESSION["message"]); ?></p>
         </form>
-        <!-- paragraph that will be used to display a message to the user after submitting the form -->
-        <p class="display">
-            <?php
-            // checks if there is a message and displays it
-            if (isset($_SESSION["message"])) echo $_SESSION["message"];
-            // clears the message afterward
-            unset($_SESSION["message"]); ?></p>
     </main>
 </body>
 
