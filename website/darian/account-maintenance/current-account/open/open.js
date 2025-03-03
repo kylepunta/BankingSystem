@@ -60,6 +60,7 @@ function populate(select) {
   const details = result.split(" §"); // details split by § as it shouldn't appear in a persons address (unlike commas)
   // takes the customer details out of the array
   // updates the customer details in the form
+  cid.setCustomValidity("");
   cid.value = details[0];
   addr.value = details[1];
   eircode.value = details[2];

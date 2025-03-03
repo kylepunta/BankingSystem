@@ -40,7 +40,7 @@ Open Current Account -->
             <div class="inputbox">
                 <label for="cid">Customer number:</label>
                 <!-- the cid input box -->
-                <input type="number" name="cid" id="cid" placeholder="01234567" onchange="inputCustomer(this)" min="0" required>
+                <input type="number" name="cid" id="cid" placeholder="Customer number" onchange="inputCustomer(this)" min="0" step="1" required>
             </div>
 
             <!-- a div which groups the input box and it's label -->
@@ -85,14 +85,14 @@ Open Current Account -->
             <div class="inputbox">
                 <label for="overdraftlimit">Overdraft limit:</label>
                 <!-- the overdraftlimit input box -->
-                <input type="number" name="overdraftlimit" id="overdraftlimit" placeholder="5000" required>
+                <input type="number" name="overdraftlimit" id="overdraftlimit" placeholder="Overdraft limit" title="0 for no limit" min="0" step="0.01" required>
             </div>
 
             <!-- a div which groups the input box and it's label -->
             <div class="inputbox">
                 <label for="initbal">Initial Deposit:</label>
                 <!-- the initbal input box -->
-                <input type="number" name="initbal" id="initbal" value="0" placeholder="Initial Deposit" required>
+                <input type="number" name="initbal" id="initbal" value="0" placeholder="Initial Deposit" title="0 for no first deposit" min="0" step="0.01" required>
             </div>
 
             <!-- a div which groups the buttons -->
