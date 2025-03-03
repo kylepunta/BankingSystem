@@ -128,7 +128,7 @@ h1 {
     margin: 20px 0;
 }
 
-form {
+form:not(.close-window) {
     margin-left: auto;
     margin-right: auto;
     min-width: 600px;

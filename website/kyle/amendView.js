@@ -74,6 +74,16 @@ function confirmDetails() {
     }
 }
 
+function showConfirmation() {
+    const main = document.querySelector("main");
+    const confirmationDialog = document.createElement("dialog");
+    const confirmation = document.createElement("h2");
+    confirmation.textContent = "The selected customer has been successfully amended";
+
+    confirmationDialog.appendChild(confirmation);
+    main.appendChild(confirmationDialog);
+}
+
 select.addEventListener("click", populateFields);
 
 customerIDInput.addEventListener("input", selectCustomerByID);
