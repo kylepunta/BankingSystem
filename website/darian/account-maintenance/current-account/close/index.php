@@ -23,13 +23,34 @@ Close Current Account -->
 <body>
     <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
     require($_SERVER["DOCUMENT_ROOT"] . '/darian/accountno.inc.php');
-    $_SESSION["accountno"] = generateAccountNo(); ?>
+    include $_SERVER["DOCUMENT_ROOT"] . '/db.inc.php';
+
+    // TODO move into function
+    // TODO maybe needs customerId too
+    $sql = "SELECT accountId, accountNumber, balance, overdraftLimit FROM `Current Account` WHERE deletedFlag = 0";
+
+    // checks that the sql query was successful
+    if (!$result = mysqli_query($con, $sql)) {
+        // displays the error that caused the query to fail
+        // exits the script
+        die("An error in the SQL Query1: " . mysqli_error($con));
+    }
+
+    while($row = mysqli_fetch_array($result)) {
+        $accounts[] = $row;
+    }
+
+    $_SESSION["accounts"] = $accounts;
+     ?>
+
     <script>
         // this code is a bit weird, I found it to be the best way to send server side php data to the client side javascript
-        // it generates a unique account number when the page loads
-        // it then stores the account number in a global variable
+        // it encodes the PHP array into a JSON format,
+        // then the JS parses the JSON format into a JS array
+        // the JS array is then stored in a global variable
         // this global variable is then referenced when the user selects a customer
-        var accountno = '<?php echo $_SESSION["accountno"]; ?>';
+        let php = '<?php echo json_encode($_SESSION["accounts"]); ?>';
+        var accounts = JSON.parse(php);
     </script>
     <main>
         <form action="close.php" onsubmit="return confirmSubmit()" method="post">
@@ -40,7 +61,7 @@ Close Current Account -->
             <div class="inputbox">
                 <label for="cid">Customer number:</label>
                 <!-- the cid input box -->
-                <input type="number" name="cid" id="cid" placeholder="01234567" onchange="inputCustomer(this)" min="0" step="1" required>
+                <input type="number" name="cid" id="cid" placeholder="Customer number" onchange="inputCustomerCid(this)" value="<?php if (isset($_SESSION["cid"])) echo $_SESSION["cid"] ?>" min="0" step="1" required>
             </div>
 
             <!-- a div which groups the input box and it's label -->
@@ -78,21 +99,22 @@ Close Current Account -->
             <div class="inputbox">
                 <label for="accountno">Account number:</label>
                 <!-- the accountno input box -->
-                <input type="text" name="accountno" id="accountno" placeholder="Account number" disabled>
+                 <!-- TODO worry about validating account number belongs to selected customer -->
+                <input type="number" name="accountno" id="accountno" onchange="inputAccount(this)" placeholder="Account number">
+            </div>
+
+            <!-- a div which groups the input box and it's label -->
+            <div class="inputbox">
+                <label for="accountbal">Account balance:</label>
+                <!-- the accountbal input box -->
+                <input type="text" name="accountbal" id="accountbal" placeholder="Account balance" disabled>
             </div>
 
             <!-- a div which groups the input box and it's label -->
             <div class="inputbox">
                 <label for="overdraftlimit">Overdraft limit:</label>
                 <!-- the overdraftlimit input box -->
-                <input type="number" name="overdraftlimit" id="overdraftlimit" placeholder="Overdraft limit" title="0 for no limit" min="0" step="0.01" required>
-            </div>
-
-            <!-- a div which groups the input box and it's label -->
-            <div class="inputbox">
-                <label for="initbal">Initial Deposit:</label>
-                <!-- the initbal input box -->
-                <input type="number" name="initbal" id="initbal" value="0" placeholder="Initial Deposit" title="0 for no first deposit" min="0" step="0.01" required>
+                <input type="text" name="overdraftlimit" id="overdraftlimit" placeholder="Overdraft limit" disabled>
             </div>
 
             <!-- a div which groups the buttons -->

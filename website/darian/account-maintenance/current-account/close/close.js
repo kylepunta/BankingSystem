@@ -5,7 +5,7 @@ Date 			: 03/03/2025
 Close Current Account */
 
 // function that handles the customerNo from the inputbox
-function inputCustomer(input) {
+function inputCustomerCid(input) {
   // gets the customerNo from the input
   const id = input.value;
   // gets the select element
@@ -88,4 +88,8 @@ function showAccountNo(show) {
     // hides the accountno in the form
     accno.value = "";
   }
+}
+
+function inputAccount(elem) {
+  elem.value = accounts[0][1];
 }
