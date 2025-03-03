@@ -4,8 +4,9 @@ Student Name 	: Darian Byrne
 Student Id Number: C00296036
 Date 			: 13/02/2025
 Open Current Account */
-function generateAccountNo($con)
+function generateAccountNo()
 {
+    include $_SERVER["DOCUMENT_ROOT"] . '/db.inc.php';
     // loops until continueLoop is false (a safe account number was generated)
     $continueLoop = true;
     while ($continueLoop) {
@@ -36,6 +37,9 @@ function generateAccountNo($con)
             $continueLoop = false;
         }
     }
+
+    // closes the connection
+    mysqli_close($con);
 
     // sends the accountNo
     return $accountNo;

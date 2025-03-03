@@ -3,14 +3,16 @@
     require '../../db.inc.php'; // database connection
     date_default_timezone_set('UTC');
 
-    // set and execute query
-    $sql = "SELECT * FROM Customer WHERE DeletedFlag=0";
+    $sql = "SELECT firstName, surName, address, eircode, dateOfBirth, Customer.customerNo, accountNumber, balance 
+    FROM (Customer INNER JOIN `Customer/Deposit Account` ON Customer.customerNo = `Customer/Deposit Account`.`customerNo`) 
+    INNER JOIN `Deposit Account` ON `Customer/Deposit Account`.`accountID` = `Deposit Account`.`accountID` 
+    WHERE Customer.deletedFlag=0 AND `Deposit Account`.`deletedFlag`=0;";
 
     if (!$result = mysqli_query($con, $sql)) {
         die ('Error in querying the database ' . mysqli_error($con));
     }
 
-	$selectedCustomer = $_SESSION['number'] ?? ''; // Retrieve stored number or empty string
+	$selectedCustomer = $_SESSION['closecustNumber'] ?? ''; // Retrieve stored number or empty string
     echo "<select name='listbox' id='listbox' onclick='populate()'>";
 
     // load in values from database and into the select dropdown
@@ -21,12 +23,14 @@
         $eircode = $row['eircode'];
         $dob = date_create($row['dateOfBirth']);
         $dob = date_format($dob,"Y-m-d");
-        $allText = "$customerNo ¬$fullName ¬$address ¬$eircode ¬$dob"; // ¬ has to be used as addresses may contain a , inside them breaking the string
+        $accountNumber = $row['accountNumber'];
+        $balance = $row['balance'];
+        $allText = "$customerNo ¬$fullName ¬$address ¬$eircode ¬$dob ¬$accountNumber ¬$balance"; // ¬ has to be used as addresses may contain a , inside them breaking the string
 		
 		// Check if the current customer should be selected
     	$selected = ($customerNo == $selectedCustomer) ? "selected" : "";
 		
-        echo "<option value='$allText' $selected>$fullName</option>";
+        echo "<option value='$allText' $selected>$fullName: $accountNumber</option>";
     }
     echo "</select>";
     mysqli_close($con);

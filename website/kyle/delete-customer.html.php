@@ -18,10 +18,37 @@
         <form action="" method="post" id="delete-customer-form">
             <p>
                 <label for="select-customer">Select a customer</label>
-                <select name="customer-dropdown" id="select-customer">Select Customer</select>
-                <?php
+                <select name="customer-dropdown" id="select-customer">
+                    <?php
+                    include "../db.inc.php";
 
-                ?>
+                    if (!$con) {
+                        die("Database connection failed" . mysqli_connect_error());
+                    }
+
+                    $sql = "SELECT customerNo, firstName, surName FROM Customer";
+                    $result = mysqli_query($con, $sql);
+                    if (!$result) {
+                        die("Error in querying the database" . mysqli_error($con));
+                    }
+
+                    if (mysqli_num_rows($result) === 0) {
+                        die("No customers found in the Customer table");
+                    }
+
+                    echo "Connected to database.";
+                    echo "<br>Query executed successfully.";
+
+                    while ($row = mysqli_fetch_array($result)) {
+                        $customerID = $row['customerNo'];
+                        $firstName = $row['firstName'];
+                        $surname = $row['surName'];
+                        echo "<option value='{$customerID}'>{$firstName}{$surName}</option>";
+                    }
+
+                    mysqli_close($con);
+                    ?>
+                </select>
             </p>
             <div class="form-buttons">
                 <input type="submit" value="Confirm Selection" id="confirm-button">

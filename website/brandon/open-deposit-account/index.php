@@ -14,10 +14,10 @@
     <script src="./script.js"></script>
 </head>
 <body onload="toggleInputs()">
-    <?php require('../../sideMenu.html'); ?>
+	<?php require('../../sideMenu.html'); ?>
     <main>
         <h1>Open a deposit account</h1>
-        <form action="displayDetails.php" method="post">
+        <form action="processForm.php" method="post" onsubmit="return confirmSubmit()">
             <div class="inputbox">
                 <label>Choose a customer:</label>
                 <?php require('./dropdownBox.php') ?>
@@ -27,10 +27,8 @@
                 <input type="text" name="number" id="number" required pattern="[0-9]+" title="Must enter a whole number" value="<?php if (ISSET($_SESSION['number'])) echo $_SESSION['number'] ?>"/>
             </div>
             <div class="buttons">
-                <input type="submit" value="Check customer details" id="chooseCustomerButton">
+                <input type="submit" value="Check customer details" id="chooseCustomerButton" name="checkDetails">
             </div>
-        </form>
-        <form action="confirmCustomer.php" onsubmit="return confirmSubmit()">
             <div class="inputbox">
                 <label for="name">Customer name:</label>
                 <input type="text" name="name" id="name" readonly required value="<?php if (ISSET($_SESSION['name'])) echo $_SESSION['name'] ?>" title="Please choose a customer by name or id above"/>
@@ -48,7 +46,7 @@
                 <input type="date" name="dob" id="dob" readonly required value="<?php if (ISSET($_SESSION['dob'])) echo $_SESSION['dob'] ?>"/>
             </div>
             <div class="buttons">
-                <input type="submit" value="Confirm details" id="confirmCustomerButton">
+                <input type="submit" value="Confirm details" id="confirmCustomerButton" name="confirmDetails">
             </div>
         </form>
         <form action="addCustomer.php" method="post" onsubmit="return finalCheck()">
@@ -69,9 +67,7 @@
             echo '<p style="color: red; text-align: center; font-size: 20">
             No record found for a person with id: ' . $_SESSION['number'] . '<br>Please try again!</p>';
             unset($_SESSION['number']); 
-        }
-    ?>
+        }?>
     </main>
-	<script src="/dropdownScript.js"></script>
 </body>
 </html>

@@ -21,7 +21,16 @@ Open Current Account -->
 </head>
 
 <body>
-    <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html'); ?>
+    <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
+    require($_SERVER["DOCUMENT_ROOT"] . '/darian/accountno.inc.php');
+    $_SESSION["accountno"] = generateAccountNo(); ?>
+    <script>
+        // this code is a bit weird, I found it to be the best way to send server side php data to the client side javascript
+        // it generates a unique account number when the page loads
+        // it then stores the account number in a global variable
+        // this global variable is then referenced when the user selects a customer
+        var accountno = '<?php echo $_SESSION["accountno"]; ?>';
+    </script>
     <main>
         <form action="open.php" onsubmit="return confirmSubmit()" method="post">
             <!-- the heading of the form -->
@@ -31,7 +40,7 @@ Open Current Account -->
             <div class="inputbox">
                 <label for="cid">Customer number:</label>
                 <!-- the cid input box -->
-                <input type="number" name="cid" id="cid" placeholder="01234567" onchange="inputCustomer(this)" required>
+                <input type="number" name="cid" id="cid" placeholder="01234567" onchange="inputCustomer(this)" min="0" required>
             </div>
 
             <!-- a div which groups the input box and it's label -->
@@ -67,26 +76,41 @@ Open Current Account -->
 
             <!-- a div which groups the input box and it's label -->
             <div class="inputbox">
+                <label for="accountno">Account number:</label>
+                <!-- the accountno input box -->
+                <input type="text" name="accountno" id="accountno" placeholder="Account number" disabled>
+            </div>
+
+            <!-- a div which groups the input box and it's label -->
+            <div class="inputbox">
                 <label for="overdraftlimit">Overdraft limit:</label>
                 <!-- the overdraftlimit input box -->
                 <input type="number" name="overdraftlimit" id="overdraftlimit" placeholder="5000" required>
             </div>
 
+            <!-- a div which groups the input box and it's label -->
+            <div class="inputbox">
+                <label for="initbal">Initial Deposit:</label>
+                <!-- the initbal input box -->
+                <input type="number" name="initbal" id="initbal" value="0" placeholder="Initial Deposit" required>
+            </div>
+
             <!-- a div which groups the buttons -->
             <div class="myButton">
                 <!-- the submit button -->
-                <input class="button" type="submit" value="Send Form" name="submit">
+                <input class="button" type="submit" value="Open current account" name="submit">
                 <!-- the reset button -->
-                <input class="button" type="reset" value="Clear Form" name="reset">
+                <input class="button" type="reset" value="Cancel" name="reset">
             </div>
+
+            <!-- paragraph that will be used to display a message to the user after submitting the form -->
+            <p class="display">
+                <?php
+                // checks if there is a message and displays it
+                if (isset($_SESSION["message"])) echo $_SESSION["message"];
+                // clears the message afterward
+                unset($_SESSION["message"]); ?></p>
         </form>
-        <!-- paragraph that will be used to display a message to the user after submitting the form -->
-        <p class="display">
-            <?php
-            // checks if there is a message and displays it
-            if (isset($_SESSION["message"])) echo $_SESSION["message"];
-            // clears the message afterward
-            unset($_SESSION["message"]); ?></p>
     </main>
 </body>
 
