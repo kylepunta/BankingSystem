@@ -40,7 +40,7 @@ Open Current Account -->
             <div class="inputbox">
                 <label for="cid">Customer number:</label>
                 <!-- the cid input box -->
-                <input type="number" name="cid" id="cid" placeholder="01234567" onchange="inputCustomer(this)" min="0" step="1" required>
+                <input type="number" name="cid" id="cid" placeholder="Customer number" onchange="inputCustomer(this)" min="0" step="1" required>
             </div>
 
             <!-- a div which groups the input box and it's label -->
