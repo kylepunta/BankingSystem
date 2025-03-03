@@ -26,8 +26,9 @@ Close Current Account -->
     include $_SERVER["DOCUMENT_ROOT"] . '/db.inc.php';
 
     // TODO move into function
-    // TODO maybe needs customerId too
-    $sql = "SELECT accountId, accountNumber, balance, overdraftLimit FROM `Current Account` WHERE deletedFlag = 0";
+    $sql = "SELECT customerNo, `Current Account`.accountId, accountNumber, balance, overdraftLimit FROM `Current Account`
+    INNER JOIN `Customer/CurrentAccount` ON `Current Account`.accountId = `Customer/CurrentAccount`.accountId
+    WHERE deletedFlag = 0";
 
     // checks that the sql query was successful
     if (!$result = mysqli_query($con, $sql)) {
@@ -36,12 +37,12 @@ Close Current Account -->
         die("An error in the SQL Query1: " . mysqli_error($con));
     }
 
-    while($row = mysqli_fetch_array($result)) {
+    while ($row = mysqli_fetch_array($result)) {
         $accounts[] = $row;
     }
 
     $_SESSION["accounts"] = $accounts;
-     ?>
+    ?>
 
     <script>
         // this code is a bit weird, I found it to be the best way to send server side php data to the client side javascript
@@ -99,8 +100,9 @@ Close Current Account -->
             <div class="inputbox">
                 <label for="accountno">Account number:</label>
                 <!-- the accountno input box -->
-                 <!-- TODO worry about validating account number belongs to selected customer -->
-                <input type="number" name="accountno" id="accountno" onchange="inputAccount(this)" placeholder="Account number">
+                <input type="number" name="accountno" id="accountno" list="accounts" onchange="inputAccount(this)" placeholder="Account number">
+                <!-- this datalist is used to help prompt the user with a list of accounts that the customer has -->
+                <datalist id="accounts"><!-- filled by JS function --></datalist>
             </div>
 
             <!-- a div which groups the input box and it's label -->
@@ -121,6 +123,7 @@ Close Current Account -->
             <div class="myButton">
                 <!-- the submit button -->
                 <input class="button" type="submit" value="Close current account" name="submit">
+                <!-- TODO cancel button doesn't clear the options in the accounts datalist -->
                 <!-- the reset button -->
                 <input class="button" type="reset" value="Cancel" name="reset">
             </div>
