@@ -19,7 +19,7 @@
         <h1>Close a deposit account</h1>
         <form action="processForm.php" method="post" onsubmit="return false">
             <div class="inputbox">
-                <label>Choose a customer:</label>
+                <label>Choose an account:</label>
                 <?php require('./dropdownBox.php') ?>
             </div>  
             <div class="inputbox">
