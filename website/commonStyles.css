@@ -95,7 +95,6 @@ a:hover {
 
 .dropdown ul.hidden {
     overflow: hidden;
-    /* max-height: 0; */
     transition: max-height 0.5s ease-in-out;
     transition-behavior: allow-discrete;
 }
@@ -104,23 +103,6 @@ a:hover {
     transition: max-height 0.5s ease-in-out;
     transition-behavior: allow-discrete;
 }
-
-/* main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-
-/* form {
-    background-color: rgb(0, 247, 255);
-    display: grid;
-    grid-template-rows: auto repeat(4, 1fr) auto;
-    gap: 10px;
-    min-width: 400px;
-    padding: 10px;
-    border: 2px solid blue;
-    border-radius: 4px;
-} */
 
 h1 {
     text-align: center;
@@ -175,8 +157,4 @@ form > h2 {
     padding: 4px 40px;
     border: 1px solid gray;
     border-radius: 4px;
-}
-
-input:read-only {
-    background-color: rgb(221, 221, 221);
 }
