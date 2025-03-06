@@ -10,22 +10,27 @@ function populate() {
     document.getElementById("dob").value = personDetails[4];
 	document.getElementById("accNumber").value = personDetails[5];
     document.getElementById("balance").value = personDetails[6];
+
+    const value = parseFloat(document.getElementById("balance").value);
+
+    if (value === 0) {
+        document.getElementById("message").innerHTML = "";
+        document.getElementById("deleteCustomer").disabled = false;
+    } else {
+        document.getElementById("message").innerHTML = "Account cannot be closed as its balance is not 0!<br>Please withdraw any remaining funds and try again."
+        document.getElementById("deleteCustomer").disabled = true;
+    }
 }
-const balanceInput = document.getElementById('balance');
-const message = document.querySelector('.message');
 
-// Function to update the message with the current balance
-function updateMessage() {
-	const balance = balanceInput.value; // Get the current value of the balance
-	message.textContent = `The current balance is: ${balance}`; // Update the message
+function submitForm() {
+    populate();
+    document.getElementById('customerDetailsForm').submit();
 }
 
-// Initially set the message when the page loads
-window.onload = updateMessage;
-
-// Add an event listener to update the message whenever the balance changes
-balanceInput.addEventListener('input', updateMessage);
-
-function finalCheck() {
-	return confirm("Are you sure you want to create a new deposit account?");
+function submitCheck() {
+    if (document.activeElement.value === "Close account") {
+		return confirm("Are you sure you want to close this account?");
+	} else {
+	    return true;
+    }
 }

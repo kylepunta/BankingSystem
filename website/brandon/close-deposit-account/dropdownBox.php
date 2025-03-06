@@ -13,7 +13,8 @@
     }
 
 	$selectedCustomer = $_SESSION['closecustNumber'] ?? ''; // Retrieve stored number or empty string
-    echo "<select name='listbox' id='listbox' onclick='populate()'>";
+    $selectedAccount = $_SESSION['closeaccNumber'] ?? '';
+    echo "<select name='listbox' id='listbox' onchange='submitForm()'>";
 
     // load in values from database and into the select dropdown
     while ($row = mysqli_fetch_array($result)) {
@@ -28,7 +29,7 @@
         $allText = "$customerNo ¬$fullName ¬$address ¬$eircode ¬$dob ¬$accountNumber ¬$balance"; // ¬ has to be used as addresses may contain a , inside them breaking the string
 		
 		// Check if the current customer should be selected
-    	$selected = ($customerNo == $selectedCustomer) ? "selected" : "";
+    	$selected = (($customerNo == $selectedCustomer) && ($accountNumber == $selectedAccount)) ? "selected" : "";
 		
         echo "<option value='$allText' $selected>$fullName: $accountNumber</option>";
     }

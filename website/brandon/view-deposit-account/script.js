@@ -13,5 +13,6 @@ function populate() {
 }
 
 function submitForm() {
+    populate();
     document.getElementById('customerDetailsForm').submit();
 }

@@ -14,8 +14,6 @@
 
 	$rowcount = mysqli_affected_rows($con);
 
-	$_SESSION['number'] = $_POST['number'];
-
 	if ($rowcount == 1) {
 		$row = mysqli_fetch_array($result);
 		$_SESSION['closecustNumber'] = $row['customerNo'];
@@ -28,15 +26,30 @@
         $_SESSION['closeaccNumber'] = $row['accountNumber'];
         $_SESSION['closebalance'] = $row['balance'];
 	} else if ($rowcount == 0) {
-		unset ($_SESSION['closecustNumber']);
+		$_SESSION['closecustNumber'] = $_POST['custNumber']; // for error message purposes
+		$_SESSION['closeaccNumber'] = $_POST['accNumber']; 
 		unset ($_SESSION['closename']);
 		unset ($_SESSION['closeaddress']);
 		unset ($_SESSION['closeeircode']);
 		unset ($_SESSION['closedob']);
-		unset ($_SESSION['closeaccNumber']);
 		unset ($_SESSION['closebalance']);
+		mysqli_close($con);
+		header('Location: ./');
 	} 
-
-	mysqli_close($con);
-	header('Location: ./');
+	if (isset($_POST['deleteCustomer'])) {
+		$sql = "UPDATE `Deposit Account` SET deletedFlag=1 WHERE accountNumber='$_POST[accNumber]'";
+		if (!$result = mysqli_query($con, $sql)) {
+			die('Error in querying the database ' . mysqli_error($con));
+		}
+		mysqli_close($con);
+		echo "Deposit account closed successfully!";
+		?>
+		<form action="./">
+    		<input type="submit" value="Return to previous page"/>
+		</form>
+		<?php
+	} else {
+		mysqli_close($con);
+		header('Location: ./');
+	}
 ?>

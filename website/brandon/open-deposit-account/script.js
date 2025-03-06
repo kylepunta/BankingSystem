@@ -11,9 +11,6 @@ function populate() {
 }
 
 function confirmSubmit() {
-	const actionButton = document.activeElement; // Get the clicked button (submit)
-    const action = actionButton.value; // Get the value of the clicked button
-	
 	if (document.activeElement.value === "Confirm details") {
 		const name = document.getElementById("name").value;
 		const address = document.getElementById("address").value;

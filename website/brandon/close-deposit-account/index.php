@@ -10,14 +10,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="../brandonStyles.css">
     <script src="./script.js"></script>
 </head>
-<body>
+<body onload="populate()">
 	<?php require('../../sideMenu.html'); ?>
     <main>
-        <h1>Close a deposit account</h1>
-        <form action="processForm.php" method="post" onsubmit="return false">
+        <form action="processForm.php" method="post" id="customerDetailsForm" onsubmit="return submitCheck()">
+            <h1>Close a deposit account</h1>
             <div class="inputbox">
                 <label>Choose an account:</label>
                 <?php require('./dropdownBox.php') ?>
@@ -35,7 +35,7 @@
             </div>
             <div class="inputbox">
                 <label for="name">Customer name:</label>
-                <input type="text" name="name" id="name" readonly required value="<?php if (ISSET($_SESSION['closename'])) echo $_SESSION['closename'] ?>" title="Please choose a customer by name or id above"/>
+                <input type="text" name="name" id="name" readonly required value="<?php if (ISSET($_SESSION['closename'])) echo $_SESSION['closename'] ?>"/>
             </div>
             <div class="inputbox">
                 <label for="address">Address:</label>
@@ -53,21 +53,17 @@
                 <label for="balance">Balance:</label>
                 <input type="text" name="balance" id="balance" readonly required value="<?php if (ISSET($_SESSION['closebalance'])) echo $_SESSION['closebalance'] ?>"/>
             </div>
-            <div><p id="message"></p></div>
+            <p id="message"></p>
             <div class="buttons">
-                <input type="submit" value="Close account" id="closeAccountButton" name="closeAccount">
+                <input type="submit" value="Close account" id="deleteCustomer" name="deleteCustomer" disabled>
             </div>
         </form>
-
-
-
-        
-        <?php 
-        if (!ISSET($_SESSION['closename']) and ISSET($_SESSION['closecustNumber'])) {
-            echo '<p style="color: red; text-align: center; font-size: 20">
-            No record found for a person with id: ' . $_SESSION['number'] . '<br>Please try again!</p>';
-            unset($_SESSION['number']); 
-        }?>
+		<?php 
+            if (!ISSET($_SESSION['closename']) and ISSET($_SESSION['closecustNumber'])) {
+                echo '<p style="color: red; text-align: center; font-size: 20">No account found with customer no: '. $_SESSION['closecustNumber'] .' and account no: '. $_SESSION['closeaccNumber'] .'!<br>Please try again!</p>';
+                session_destroy();
+            }
+        ?>
     </main>
 </body>
 </html>

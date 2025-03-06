@@ -10,14 +10,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="../brandonStyles.css">
     <script src="./script.js"></script>
 </head>
 <body onload="toggleInputs()">
 	<?php require('../../sideMenu.html'); ?>
     <main>
-        <h1>Open a deposit account</h1>
-        <form action="processForm.php" method="post" onsubmit="return confirmSubmit()">
+        <form action="processForm.php" method="post" onsubmit="return confirmSubmit()" class="upperForm">  
+            <h1>Open a deposit account</h1>
             <div class="inputbox">
                 <label>Choose a customer:</label>
                 <?php require('./dropdownBox.php') ?>
@@ -49,7 +49,7 @@
                 <input type="submit" value="Confirm details" id="confirmCustomerButton" name="confirmDetails">
             </div>
         </form>
-        <form action="addCustomer.php" method="post" onsubmit="return finalCheck()">
+        <form action="addCustomer.php" method="post" onsubmit="return finalCheck()" class="lowerForm">
             <div class="inputbox">
                 <label for="accNo">Generated account no:</label>
                 <input type="text" name="accNo" id="accNo" readonly required value="<?php if (ISSET($_SESSION['accNo'])) echo $_SESSION['accNo'] ?>" title="Please confirm customer details to generate an account no"/>
@@ -64,9 +64,8 @@
         </form>
         <?php 
         if (!ISSET($_SESSION['name']) and ISSET($_SESSION['number'])) {
-            echo '<p style="color: red; text-align: center; font-size: 20">
-            No record found for a person with id: ' . $_SESSION['number'] . '<br>Please try again!</p>';
-            unset($_SESSION['number']); 
+            echo '<p style="color: red; text-align: center; font-size: 20">No record found for a person with id: ' . $_SESSION['number'] . '<br>Please try again!</p>';
+            session_destroy();
         }?>
     </main>
 </body>

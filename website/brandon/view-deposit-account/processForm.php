@@ -14,8 +14,6 @@
 
 	$rowcount = mysqli_affected_rows($con);
 
-	$_SESSION['number'] = $_POST['number'];
-
 	if ($rowcount == 1) {
 		$row = mysqli_fetch_array($result);
 		$_SESSION['viewcustNumber'] = $row['customerNo'];
@@ -28,12 +26,12 @@
         $_SESSION['viewaccNumber'] = $row['accountNumber'];
         $_SESSION['viewbalance'] = $row['balance'];
 	} else if ($rowcount == 0) {
-		unset ($_SESSION['viewcustNumber']);
+		$_SESSION['viewcustNumber'] = $_POST['custNumber']; // for error message purposes
+		$_SESSION['viewaccNumber'] = $_POST['accNumber']; 
 		unset ($_SESSION['viewname']);
 		unset ($_SESSION['viewaddress']);
 		unset ($_SESSION['vieweircode']);
 		unset ($_SESSION['viewdob']);
-		unset ($_SESSION['viewaccNumber']);
 		unset ($_SESSION['viewbalance']);
 	} 
 
