@@ -61,8 +61,8 @@
 		<?php 
             if (!ISSET($_SESSION['closename']) and ISSET($_SESSION['closecustNumber'])) {
                 echo '<p style="color: red; text-align: center; font-size: 20">No account found with customer no: '. $_SESSION['closecustNumber'] .' and account no: '. $_SESSION['closeaccNumber'] .'!<br>Please try again!</p>';
-                session_destroy();
             }
+            session_destroy();
         ?>
     </main>
 </body>
