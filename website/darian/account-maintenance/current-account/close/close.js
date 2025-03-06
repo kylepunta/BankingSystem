@@ -82,7 +82,7 @@ function confirmSubmit() {
   // TODO is popup or setCustomValidity better?
   const value = document.getElementById("accountbal").value;
   // parses the value from the input display
-  const bal = parseInt(value.split("€")[1]);
+  const bal = parseFloat(value.split("€")[1]);
   // checks that the account balance is 0
   if (bal != 0) {
     // alerts the user if the account balance isn't 0
