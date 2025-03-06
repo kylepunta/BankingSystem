@@ -137,16 +137,18 @@ function inputAccount(input) {
     // store the balance of the account
     let balance = accounts[i][3];
 
-    // TODO do I understand credit and debit correctly? credit is less than 0, debit is greater than
     // check if the account is in credit or debit
-    if (balance < 0) {
+    if (balance == 0) {
+      // update the form display with the balance value
+      bal.value = "€" + balance;
+    } else if (balance < 0) {
       // remove the negative sign
       balance *= -1;
       // update the form display with the balance value
-      bal.value = "Credit €" + balance;
+      bal.value = "Debit €" + balance;
     } else {
       // update the form display with the balance value
-      bal.value = "Debit €" + balance;
+      bal.value = "Credit €" + balance;
     }
     // update the form display with the overdraft value
     odlimit.value = accounts[i][4];

@@ -22,7 +22,6 @@ Close Current Account -->
 
 <body>
     <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
-    require($_SERVER["DOCUMENT_ROOT"] . '/darian/accountno.inc.php');
     include $_SERVER["DOCUMENT_ROOT"] . '/db.inc.php';
 
     // TODO move into function
