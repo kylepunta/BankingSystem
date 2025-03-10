@@ -58,7 +58,6 @@
         <div class="result-container">
             <?php
             include "../db.inc.php";
-            echo "$_POST[customerdropdown]";
             $query = "UPDATE Customer SET deletedFlag=1 WHERE customerNo='$_POST[customerDropdown]'";
             $result = mysqli_query($con, $query);
 

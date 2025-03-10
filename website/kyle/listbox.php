@@ -6,7 +6,7 @@ if (!$con) {
     die("Database connection failed" . mysqli_connect_error());
 }
 
-$sql = "SELECT * FROM Customer";
+$sql = "SELECT * FROM Customer WHERE deletedFlag=0";
 $result = mysqli_query($con, $sql);
 
 if (!$result) {
