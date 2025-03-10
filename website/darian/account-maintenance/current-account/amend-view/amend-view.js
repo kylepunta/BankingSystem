@@ -222,7 +222,7 @@ function updateTransactions() {
       // checks that the customer is the selected customer
       if (accountNo == accno.value) {
         // appends the account as an option
-        rows += "<tr><th>" + transaction[1] + "</th><th>" + transaction[2] + "</th><th>" + transaction[3] + "</th><th>" + transaction[4] + "</th></tr>";
+        rows += "<tr><td>" + transaction[1] + "</td><td>" + transaction[2] + "</td><td>" + transaction[3] + "</td><td>" + transaction[4] + "</td></tr>";
         i++;
       }
     }
