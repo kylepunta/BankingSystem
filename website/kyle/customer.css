@@ -17,6 +17,10 @@
     min-width: 80%;
 }
 
+#add-customer-form {
+    gap: 0.4rem!important;
+}
+
 label {
     font-family: lato;
     font-size: 1.4rem;

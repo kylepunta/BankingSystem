@@ -6,8 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank</title>
-    <link rel="stylesheet" href="openLoan.css">
-    <link rel="stylesheet" href="open.css">
+    <link rel="stylesheet" href="/commonStyles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=keyboard_arrow_down" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -129,7 +128,6 @@
     </script>
     <main>
         
-    <div class="theForm">
         <!-- create form with action displayview1 and method post -->
     <form id="checkCustomer" action="displayView.php" method="post">
 
@@ -139,11 +137,11 @@
              •	date of birth
              •	customer number
         -->
-        <h1>Open Loan Account</h1>
+        <h1>Close Loan Account</h1>
         <!-- input for customer ID -->
         <div class="inputbox">
-            <label for="custID">Enter the customer ID </label> 
-            <input type="number" name="custID" id="custID" placeholder="custID" autocomplete=off required class="myInputs"
+            <label for="custID">Enter the customer ID </label>
+            <input type="number" name="custID" id="custID" placeholder="custID" autocomplete=off required 
             value="<?php if (ISSET($_SESSION['customerID']) ) echo $_SESSION['customerID']?>"/>    <!-- if the session var 'personid' is set echo that person id -->
         </div>
 
@@ -156,12 +154,12 @@
         <!-- the text changes depending on the value of the session var 'firstname' -->
         <div class="inputbox">
             <label for="custName">Customer name </label>
-            <select name='listbox' id ='listbox' onclick ="return populate()" class="myInputs"
-            value="<?php if (ISSET($_SESSION['name']) ) echo $_SESSION['name']?>"> 
+            <select name='listbox' id ='listbox' onclick ="return populate()" 
+            value="<?php if (ISSET($_SESSION['name']) ) echo $_SESSION['name']?>">
                 <?php include "listbox.php" ?>
             </select>
         </div>
-        <div class="button">
+        <div class="buttons">
             <!-- submit button -->
             <input type="submit" value="Confirm customer" form="checkCustomer"/>
         </div>
@@ -169,7 +167,7 @@
         <!-- the text changes depending on the value of the session var 'lastname' -->
         <div class="inputbox">
             <label for="address">Address</label>
-            <input type="text" name="address" id="address" placeholder="address" disabled class="myInputs"
+            <input type="text" name="address" id="address" placeholder="address" disabled 
             value="<?php if (ISSET($_SESSION['address']) ) echo $_SESSION['address']?>"/>
         </div>
 
@@ -177,7 +175,7 @@
         <!-- the text changes depending on the value of the session var 'lastname' -->
         <div class="inputbox">
             <label for="eircode">Eircode</label>
-            <input type="text" name="eircode" id="eircode" placeholder="eircode" disabled class="myInputs"
+            <input type="text" name="eircode" id="eircode" placeholder="eircode" disabled 
                 value="<?php if (ISSET($_SESSION['eircode']) ) echo $_SESSION['eircode']?>" />
             </div>
 
@@ -185,7 +183,7 @@
         <!-- the text changes depending on the value of the session var 'dob' -->
         <div class="inputbox">
             <label for="dob">Date Of Birth</label>
-            <input type="date" name="dob" id="dob" placeholder="Date of Birth" disabled class="myInputs"
+            <input type="date" name="dob" id="dob" placeholder="Date of Birth" disabled 
             value="<?php if (ISSET($_SESSION['dob']) ) echo $_SESSION['dob']?>"/>
         </div>
 
@@ -193,7 +191,7 @@
         <!-- the text changes depending on the value of the session var 'dob' -->
         <div class="inputbox">
             <label for="phone">Phone number</label>
-            <input type="text" name="phone" id="phone" placeholder="phone" disabled class="myInputs"
+            <input type="text" name="phone" id="phone" placeholder="phone" disabled
             value="<?php if (ISSET($_SESSION['phone']) ) echo $_SESSION['phone']?>"/>
         </div>
 
@@ -201,7 +199,7 @@
         <!-- the text changes depending on the value of the session var 'dob' -->
         <div class="inputbox">
             <label for="accountNumber">Account Number</label>
-            <input type="text" name="accountNumber" id="accountNumber" disabled class="myInputs"
+            <input type="text" name="accountNumber" id="accountNumber" disabled 
             value="<?php if (ISSET($_SESSION['accountNumber']) ) echo $_SESSION['accountNumber']?>"/>
         </div>
 
@@ -209,7 +207,7 @@
        <div class="inputbox">
         <label for="loanAmount">Enter the loan amount </label>
             <input type="number" name="loanAmount" id="loanAmount" placeholder="loanAmount" autocomplete=off required form="calcpay"
-            form="mainForm" class="myInputs"
+            form="mainForm" 
             value="<?php if (ISSET($_SESSION['amount']) ) echo $_SESSION['amount']?>"/> 
         </div>
 
@@ -219,7 +217,7 @@
        <div class="inputbox">
         <label for="term">Enter the term of the loan</label>
             <input type="number" name="term" id="term" placeholder="term" autocomplete=off required form="calcpay"
-            form="mainForm" onclick="clearRepayments()" class="myInputs"
+            form="mainForm" onclick="clearRepayments()"
             value="<?php if (ISSET($_SESSION['term']) ) echo $_SESSION['term']?>"/> 
         </div>
 
@@ -228,23 +226,22 @@
         <div class="inputbox">
             <label for="repayments">Monthly repayments</label>
             <input type="text" name="repayments" id="repayments" onblur="" placeholder="repayments" disabled
-            onclick="clearRepayments()" class="myInputs"
+            onclick="clearRepayments()"
             value="<?php if (ISSET($_SESSION['repayAmount']) ) echo $_SESSION['repayAmount']?>"
             />
         </div>
         <!-- submit button -->
-         <div class="button">
+         <div class="buttons">
         <input type="submit" value="Calculate Repayments" form="calcpay" />
         </div>
+        <br> <br>
         <!-- submit button -->
-         <div class="button">
+         <div class="buttons">
         <input type="submit" value="Open Loan Account" />
     </div>
         <p>
     </form>
     <form id="calcpay" action="calcRate.php" method="post">
-    </form>
-    </div>
     <!-- php section -->
     <?php
         // if firstname and personid are unset after the query was made print the error message
