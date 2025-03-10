@@ -161,6 +161,7 @@ function inputAccount(input) {
     bal.value = "";
     odlimit.value = "";
   }
+  updateTransactions();
 }
 
 function inputOverdraftLimit(input) {
@@ -203,6 +204,31 @@ function updateAccountOptions() {
 
   // updates the options in the form
   datalist.innerHTML = options;
+}
+
+function updateTransactions() {
+  const accno = document.getElementById("accountno");
+  const table = document.getElementById("transactions");
+
+  // string that will be used to store the transactions
+  let rows = "<tr><th>Date</th><th>Type</th><th>Amount</th><th>Balance</th></tr>";
+
+  let i = 0;
+  transactions.forEach(transaction => {
+    if (i < 10) {
+      // stores the accountNo of the current account
+      const accountNo = transaction[0];
+
+      // checks that the customer is the selected customer
+      if (accountNo == accno.value) {
+        // appends the account as an option
+        rows += "<tr><th>" + transaction[1] + "</th><th>" + transaction[2] + "</th><th>" + transaction[3] + "</th><th>" + transaction[4] + "</th></tr>";
+        i++;
+      }
+    }
+  });
+
+  table.innerHTML = rows;
 }
 
 // function that toggles between amend/view

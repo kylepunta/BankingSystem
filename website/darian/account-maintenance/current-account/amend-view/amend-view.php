@@ -4,6 +4,7 @@ Student Name 	: Darian Byrne
 Student Id Number: C00296036
 Date 			: 06/03/2025
 Amend/View Current Account */
+// TODO server side validation
 // start a session
 session_start();
 // TODO could this entire thing just self submit into index.php?

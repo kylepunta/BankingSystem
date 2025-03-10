@@ -41,6 +41,25 @@ Amend/View Current Account -->
     }
 
     $_SESSION["accounts"] = $accounts;
+
+    // TODO move into function
+    $sql = "SELECT accountNumber, date, transactionType, amount, `Current Account History`.balance
+    FROM `Current Account History`
+    INNER JOIN `Current Account` ON `Current Account History`.accountId = `Current Account`.accountId
+    ORDER BY `Current Account History`.accountId, date DESC, transactionId DESC";
+
+    // checks that the sql query was successful
+    if (!$result = mysqli_query($con, $sql)) {
+        // displays the error that caused the query to fail
+        // exits the script
+        die("An error in the SQL Query1: " . mysqli_error($con));
+    }
+
+    while ($row = mysqli_fetch_array($result)) {
+        $transactions[] = $row;
+    }
+
+    $_SESSION["transactions"] = $transactions;
     ?>
 
     <script>
@@ -51,6 +70,8 @@ Amend/View Current Account -->
         // this global variable is then referenced when the user selects a customer
         let php = '<?php echo json_encode($_SESSION["accounts"]); ?>';
         var accounts = JSON.parse(php);
+        php = '<?php echo json_encode($_SESSION["transactions"]); ?>';
+        var transactions = JSON.parse(php);
     </script>
     <main>
         <form action="amend-view.php" onsubmit="return confirmSubmit()" method="post">
@@ -137,6 +158,12 @@ Amend/View Current Account -->
                 // clears the message afterward
                 unset($_SESSION["message"]); ?></p>
         </form>
+
+        <!-- the heading of the table -->
+        <h2>Last 10 transactions</h2>
+        <!-- table of last 10 transactions -->
+        <table id="transactions">
+        </table>
     </main>
 </body>
 
