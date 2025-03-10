@@ -80,7 +80,7 @@
                     echo "<table><thead><tr><th>Date</th><th>Transaction Type</th><th>Transaction Amount</th><th>Balance</th></tr></thead><tbody>";
                     while ($row = mysqli_fetch_array($result)) {
                         $date = date_create($row['date']);
-                        $date = date_format($date,"Y-m-d");
+                        $date = date_format($date,"d-m-Y");
                         echo "<tr><td>".$date."</td><td>".$row['transactionType']."</td><td>".$row['transactionAmount']."</td><td>".$row['balance']."</td></tr>";
                     }
                     echo "</tbody></table>";
