@@ -19,7 +19,7 @@
 <body>
     <?php require('../sideMenu.html'); ?>
     <main>
-        <form action="./add-customer.php" method="post" id="add-customer-form">
+        <form action="" method="post" id="add-customer-form">
             <p>
                 <label for="firstName">First Name</label>
                 <input type="text" id="firstName" name="firstName" required>
@@ -65,8 +65,44 @@
                 <input id="reset" type="reset" value="Clear">
             </div>
         </form>
+        <div class="result-container">
+            <?php
+            include "../db.inc.php";
+            $dbDate = date("Y-m-d", strtotime($_POST['dateOfBirth']));
+
+            $query = "INSERT INTO `Customer` 
+            (`firstName`, `surName`, `address`, `eircode`, `dateOfBirth`, `telephoneNo`, `occupation`, `salary`, 
+            `emailAddress`, `guarantorName`) 
+            VALUES ('$_POST[firstName]', '$_POST[lastName]', '$_POST[address]', '$_POST[eircode]', '$dbDate', 
+            '$_POST[phoneNumber]', '$_POST[occupation]', '$_POST[salary]', '$_POST[email]', '$_POST[guarantorName]')";
+
+            $result = mysqli_query($con, $query);
+
+            if (!$result) {
+                die("Error querying the database" . mysqli_error($con));
+                echo "<h2>No record was added to the database</h2>";
+            }
+
+            echo "<h2>1 record added to the database</h2>";
+
+            mysqli_close($con);
+            ?>
+            <form action="./add-customer.html.php" method="post" class="close-window">
+                <button type="submit" id="return-button">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <title>window-close</title>
+                            <path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" />
+                        </svg>
+                    </div>
+                </button>
+            </form>
+        </div>
     </main>
-    <script src="./addCustomer.js"></script>
+    <script>
+        document.querySelector("nav").classList.add("disabled");
+        document.querySelector("#add-customer-form").classList.add("disabled");
+    </script>
 </body>
 
 </html>

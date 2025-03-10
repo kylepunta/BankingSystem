@@ -16,7 +16,7 @@
 <body>
     <?php require('../sideMenu.html'); ?>
     <main>
-        <form action="./delete-customer.php" method="post" id="delete-customer-form">
+        <form action="./delete-customer.html.php" method="post" id="delete-customer-form">
             <p>
                 <label for="select-customer">Select a customer</label>
                 <select name="customerDropdown" id="select-customer">
@@ -37,6 +37,9 @@
                         die("No customers found in the Customer table");
                     }
 
+                    echo "Connected to database.";
+                    echo "<br>Query executed successfully.";
+
                     while ($row = mysqli_fetch_array($result)) {
                         $customerID = $row['customerNo'];
                         $firstName = $row['firstName'];
@@ -52,8 +55,39 @@
                 <input type="submit" value="Confirm Selection" id="confirm-button">
             </div>
         </form>
+        <div class="result-container">
+            <?php
+            include "../db.inc.php";
+            echo "$_POST[customerdropdown]";
+            $query = "UPDATE Customer SET deletedFlag=1 WHERE customerNo='$_POST[customerDropdown]'";
+            $result = mysqli_query($con, $query);
+
+            if (!$result) {
+                die("Error querying the database" . mysqli_error($con));
+                echo "<h2>No records were deleted from the database</h2>";
+            }
+
+            echo "<h2>1 record deleted from the database</h2>";
+
+
+            mysqli_close($con);
+            ?>
+            <form action="./delete-customer.html.php" method="post" class="close-window">
+                <button type="submit" id="return-button">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <title>window-close</title>
+                            <path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" />
+                        </svg>
+                    </div>
+                </button>
+            </form>
+        </div>
     </main>
-    <script src="./deleteCustomer.js"></script>
+    <script>
+        document.querySelector("nav").classList.add("disabled");
+        document.querySelector("#delete-customer-form").classList.add("disabled");
+    </script>
 </body>
 
 </html>
