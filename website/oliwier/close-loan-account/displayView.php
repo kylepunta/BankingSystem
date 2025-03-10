@@ -10,8 +10,10 @@ session_start();
 include 'db.inc.php';      // include DB access file
 
 // prepare sql statement
-$sql = "SELECT customerNo, firstName, surName, address, eircode, dateOfBirth, telephoneNo 
-        FROM Customer WHERE deletedFlag = '0' AND customerNo = ". $_POST['custID'];
+$sql = "SELECT Customer.customerNo, firstName, surName, address, eircode, dateOfBirth, telephoneNo, 
+        `Loan Account`.`accountNumber`, `Loan Account`.accountID, `Loan Account`.balance FROM (`Customer` INNER JOIN `Customer/LoanAccount` 
+        ON Customer.customerNo = `Customer/LoanAccount`.`customerNo`) INNER JOIN `Loan Account` ON `Loan Account`.`accountID` = 
+        `Customer/LoanAccount`.`accountID` WHERE Customer.customerNo = ". $_POST['custID'] . " AND `Loan Account`.`accountNumber` = " . $_POST['closeAccountNumber'] . ";";
 
 // check if any errors occurred in the query
 if (!$result = mysqli_query($con,$sql)) {
@@ -23,6 +25,9 @@ $rowcount = mysqli_affected_rows($con);
 
 // set session 'personid' as personid from the Post
 $_SESSION['customerID']=$_POST['custID'];
+
+// set session 'personid' as personid from the Post
+$_SESSION['closeAccountNumber']=$_POST['closeAccountNumber'];
 
 // if theres one rowcount then a record has been found
 if ($rowcount == 1) {
@@ -36,7 +41,10 @@ if ($rowcount == 1) {
     $_SESSION['eircode']=$row['eircode']; 
     $_SESSION['dob']=$row['dateOfBirth'];
     $_SESSION['phone']=$row['telephoneNo'];
-
+    $_SESSION['closeAccountNumber']=$row['accountNumber'];
+    $_SESSION['balance']=$row['balance'];
+    $_SESSION['accountConfirmed'] = true;
+    
 }
 else if ($rowcount == 0) {  // if no record found unset all session variables
     unset ($_SESSION['name']); 
@@ -45,40 +53,12 @@ else if ($rowcount == 0) {  // if no record found unset all session variables
     unset ($_SESSION['eircode']);
     unset ($_SESSION['dob']);
     unset ($_SESSION['phone']);
+    unset ($_SESSION['balance']);
+    unset ($_SESSION['accountConfirmed']);
 
 }
 
-$run = true;
-$keepRunning = true;
-while ($run) {
 
-    $random = rand(10000000,99999999);
-
-    $sql = "SELECT accountNumber FROM `Deposit Account` UNION 
-            SELECT accountNumber FROM `Loan Account` UNION 
-            SELECT accountNumber FROM `Current Account`";
-
-    // check if any errors occurred in the query
-    if (!$result = mysqli_query($con,$sql)) {
-        die ('Error in querying the database' . mysqli_error($con));
-    }
-
-    while ($row = mysqli_fetch_array($result)) {
-
-        if ($random == $row['accountNumber']) {
-            $keepRunning = true;
-        }
-        else {
-            $keepRunning = false;
-        }
-    }
-
-    if ($keepRunning == false) {
-        $run = false;
-        $_SESSION['accountNumber'] = $random;
-    }
-
-}
 // close connection
 mysqli_close($con);
 //Go back to the calling form with the values that we need to display in session variables, if a record was found 
