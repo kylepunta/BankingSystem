@@ -1,0 +1,84 @@
+/* 
+Student Name 	: Oliwier Jakubiec
+Student Id Number: C00296807
+Date 			: 03/03/2025
+Open Current Account */
+
+.theForm {
+  /* adds space above the form */
+  margin-top: 6em;
+  /* sets a light purple background colour */
+  background-color: rgb(245 227 255);
+  /* thin purple border */
+  border: solid #78569F 2px;
+  /* rounded borders */
+  border-radius: 16px;
+  /* space around the form's elements */
+  margin-top: 50px;
+  padding: 16px;
+  max-width: 50%;
+  min-width: fit-content;
+  margin: 50px auto;
+}
+
+/* styles the inputs */
+.inputbox > input, select {
+  /* I'm using !important because the nav menu conflicts with my styles */
+  /* thin purple border */
+  border: solid #78569F 2px !important;
+  /* slight rounded border */
+  border-radius: 8px !important;
+  /* horizontal padding */
+  padding: 0 8px !important;
+}
+
+input#submit:disabled {
+  background-color: #d9cfd7;
+  color: #7c7c7c;
+  border-color: #c5c5c5;
+  cursor: default;
+}
+input#toggle:disabled {
+  background-color: #d9cfd7;
+  color: #7c7c7c;
+  border-color: #c5c5c5;
+  cursor: default;
+}
+
+.button > input {
+  /* padding: 4px 40px; */
+  /* border: 1px solid gray; */
+  /* border-radius: 4px; */
+  padding: 0.3rem 3rem;
+  font-size: 1.2rem;
+  height: auto;
+  display: block;
+  border-radius: 5px;
+  background-color: #f8fdff;
+  color: black;
+  border: solid #78569f 2px;
+  cursor: pointer;
+  transition-timing-function: ease-out;
+  transition: 0.6s;
+  margin: 10px;
+}
+
+.button > input:hover {
+  color: white;
+  background-color: #78569F;
+}
+
+input:read-only, input:read-only:focus {
+  /* background-color: rgb(230, 230, 230); */
+  outline: none;
+}
+
+.myInputs {
+  flex-grow: 1;
+  margin-left: 20px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 0px 10px;
+  outline: none;
+  min-height: 2.2rem;
+}
