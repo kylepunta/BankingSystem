@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./commonStyles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=keyboard_arrow_down" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>SETU Bank</title>
+    <link rel="stylesheet" href="mainMenu.css">
+    <?php require('head.html') ?>
 </head>
-
 <body>
     <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html'); ?>
+    <script src="/dropdownScript.js"></script>
     <main>
-        <h1>Hello to bank menu</h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad quia obcaecati dolore nulla distinctio rem dolores fugit quisquam in temporibus, est expedita id, assumenda harum provident corporis pariatur, unde nobis.</p>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat reiciendis quis, ipsa earum ex veniam nulla unde aliquid labore dignissimos eveniet itaque molestias, numquam voluptates consectetur? Quasi modi officiis at!</p>
-        <form>
-            <label>Test name</label>
-            <input type="text" />
-        </form>
+        <div id="mainmenu">
+            <h1>Welcome to SETU Bank</h1>
+            <p>A full stack web development project built using frontend and backend technologies such as:</p>
+            <ul>
+                <li>Frontend: HTML, CSS, JavaScript</li>
+                <li>Backend: PHP, MySQL</li>
+            </ul>
+            <p>Made for the Software Development course in SETU Carlow as part of the Web Development module in 2nd year</p>
+            <h3>The authors:</h3>
+            <ul>
+                <li>Brandon Jaroszczak</li>
+                <li>Oliwier Jakubiec</li>
+                <li>Darian Byrne</li>
+                <li>Kyle Purcell</li>
+            </ul>
+        </div>
     </main>
 </body>
-
 </html>
