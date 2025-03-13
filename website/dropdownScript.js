@@ -62,27 +62,32 @@ dropdowns.forEach((dropdown) => {
 window.addEventListener("load", () => {
     const sidenav = document.querySelector(".sidenav");
     const anchors = sidenav.querySelectorAll("a");
-    // loops through every anchor on the sidenav
-    anchors.forEach((anchor) => {
-        // checks if the href of the anchor is the same as the current page
-        if ((window.location.href === anchor.href)) {
-            // adds the active class
-            anchor.classList.add("active");
 
-            // continues to expand the dropdown for it
-            const dropdown = anchor.parentElement.parentElement.parentElement;
-            // checks if it is a dropdown
-            if (dropdown.classList.contains("dropdown")) {
-                // continues to expand the double dropdown for it
-                const doubleDropdown = dropdown.parentElement.parentElement;
-                // checks if it is a double dropdown
-                if (doubleDropdown.classList.contains("dropdown")) {
-                    // expand the double dropdown
-                    doubleDropdown.click();
-                }
-                // expand the dropdown
-                dropdown.click();
-            }
+    // loops through every anchor on the sidenav
+    let i = 0;
+    // checks if the href of the anchor is the same as the current page
+    // continue looping if it's not
+    while (i < anchors.length && (window.location.href !== anchors[i].href)) {
+        i++
+    }
+    // if we got to the end of all the anchors, return because there is no matching href
+    if (i >= anchors.length) return;
+
+    // adds the active class
+    anchors[i].classList.add("active");
+
+    // continues to expand the dropdown for it
+    const dropdown = anchors[i].parentElement.parentElement.parentElement;
+    // checks if it is a dropdown
+    if (dropdown.classList.contains("dropdown")) {
+        // continues to expand the double dropdown for it
+        const doubleDropdown = dropdown.parentElement.parentElement;
+        // checks if it is a double dropdown
+        if (doubleDropdown.classList.contains("dropdown")) {
+            // expand the double dropdown
+            doubleDropdown.click();
         }
-    })
+        // expand the dropdown
+        dropdown.click();
+    }
 });
