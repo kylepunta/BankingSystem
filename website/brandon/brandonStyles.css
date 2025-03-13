@@ -1,13 +1,21 @@
+/* Name: Brandon Jaroszczak
+Student ID: C00296052
+Month: March 2025
+Purpose: CSS used by all screens */
+
+/* Store color variables here */
 :root {
     --border-color: #702e94;
     --bg-color: #e7caf7;
 }
 
+/* Style input fields that are readonly */
 input:read-only, input:read-only:focus {
     background-color: rgb(230, 230, 230);
-	outline: none !important;
+	outline: none;
 }
 
+/* Style the form */
 form {
     margin-top: 50px;
     background-color: var(--bg-color);
@@ -16,32 +24,44 @@ form {
     border-radius: 30px;
 }
 
+/* Style the div the buttons are in */
 .buttons {
     margin-top: 15px;
 }
 
-input[type="submit"] {
+/* Style inputs of type submit and reset (buttons) */
+input[type="submit"], input[type="reset"] {
     background-color: white;
     border: solid var(--border-color) 1px;
     transition-duration: 0.5s;
 }
 
+/* Style the animation on inputs of type submit when hovered on */
 input[type="submit"]:not(:disabled):hover {
     background-color: #ce75fd;
     transition-duration: 0.75s;
 }
 
+/* Style the animation on inputs of type reset when hovered on */
+input[type="reset"]:not(:disabled):hover {
+    background-color: rgb(255, 69, 69);
+    transition-duration: 0.75s;
+}
+
+/* Style h1 inside of form */
 form h1 {
     margin: 0;
     margin-bottom: 20px;
 }
 
+/* Style h2 */
 h2 {
     text-align: center;
     font-size: 2em;
     padding: 15px;
 }
 
+/* Style the table itself */
 table {
     margin-left: auto;
     margin-right: auto;
@@ -52,30 +72,36 @@ table {
     border-radius: 25px;
 }
 
+/* Style all elements inside a table element */
 table * {
     font-size: 1.05em;
     padding: 5px 25px;
     text-align: center;
 }
 
+/* Style all elements in a table row */
 tr * {
     border-left: solid black 1px;
 }
 
+/* Style the first element in a table row */
 tr *:first-child {
     border-left: none;
 }
 
+/* Style all elements in a table row that's in a table header (thead) */
 thead tr * {
     border-bottom: solid black 2px;
 }
 
+/* Style the upper form (used only by open deposit accounts to "combine" 2 separate forms into 1 using css)*/
 .upperForm {
     border-bottom: none;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
 
+/* Style the lower form (used only by open deposit accounts to "combine" 2 separate forms into 1 using css)*/
 .lowerForm {
     margin-top: 0;
     padding-top: 0;
@@ -84,11 +110,20 @@ thead tr * {
     border-top-right-radius: 0;
 }
 
+/* Style p elements with id message */
 p#message {
     text-align: center;
     padding: 0 100px;
 }
 
+/* Style p elements with id error message */
+p#errorMessage {
+    color: red;
+    text-align: center;
+    font-size: 20
+}
+
+/* Style the labels in elements with class inputbox */
 .inputbox > label {
     width: 225px;
 }
