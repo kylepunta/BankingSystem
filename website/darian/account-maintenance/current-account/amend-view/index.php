@@ -26,6 +26,7 @@ Amend/View Current Account -->
     <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
     include $_SERVER["DOCUMENT_ROOT"] . '/db.inc.php';
 
+    // TODO consider deleted customers AND deleted accounts
     // TODO move into function
     $sql = "SELECT customerNo, `Current Account`.accountId, accountNumber, balance, overdraftLimit FROM `Current Account`
     INNER JOIN `Customer/CurrentAccount` ON `Current Account`.accountId = `Customer/CurrentAccount`.accountId
