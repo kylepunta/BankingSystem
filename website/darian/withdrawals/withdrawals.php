@@ -32,7 +32,7 @@ $overdraftLimit = $row["overdraftLimit"];
 $newbal = $balance - $_POST["withdrawalamt"];
 
 // checks that the new balance is within the accounts limit
-if ($newbal > 0 - $overdraftLimit) {
+if ($newbal >= 0 - $overdraftLimit) {
     // stores the SQL statement to be queried later
     // updates a row in the current or deposit account table, uses the user input to set the new balance
     $sql = "UPDATE `$_POST[accounttype] Account` SET balance='$newbal' WHERE accountId = '$accountId'";

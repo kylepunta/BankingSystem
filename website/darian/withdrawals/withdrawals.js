@@ -81,16 +81,9 @@ function populate(select) {
 function confirmSubmit() {
   // TODO test withdrawal amount too
   const value = document.getElementById("accountbal").value;
-  const odlimit = parseInt(document.getElementById("overdraftlimit").value);
+  const odlimit = parseFloat(document.getElementById("overdraftlimit").value);
   // parses the value from the input display
   const bal = parseFloat(value.split("€")[1]);
-  // checks that the balance is in credit (the customer owes the bank)
-  // checks that the overdraft limit is able to contain the balance (the user can't have a balance lower than it's overdraft limit)
-  if (value.charAt(0).toUpperCase() == "C" && odlimit <= bal) {
-    // alerts the user if the overdraft limit can't contain the balance
-    alert("The overdraft limit of " + odlimit + " is too low. It can't allow for the current balance of €" + bal);
-    return false;
-  }
 
   // displays a confirmation box to the user, the form will be submitted if they press OK
   if (confirm("Are you sure you want to make this withdrawal?")) {
@@ -177,7 +170,6 @@ function inputAccount(input) {
 
 // function that handles the withdrawal amount from the inputbox
 function inputAmount(input) {
-  console.log(input);
   // get and store the form displays
   const cid = document.getElementById("cid");
   const accno = document.getElementById("accountno");
@@ -216,14 +208,14 @@ function inputAmount(input) {
     // store the balance of the account
     let balance = parseFloat(accounts[i][3]);
     let odl = parseFloat(odlimit.value);
-    let withdraw = parseFloat(wdamt.value);
+    const withdrawalamt = parseFloat(wdamt.value);
+    const newbal = balance - withdrawalamt;
+    const minbal = 0 - odl;
 
-    let maxwithdraw = balance + odl;
-
-    if (withdraw < maxwithdraw) {
+    if (newbal >= minbal) {
       input.setCustomValidity("");
     } else {
-      input.setCustomValidity("The withdrawal amount of €" + withdraw + " is more than the maximum withdrawal of €" + maxwithdraw);
+      input.setCustomValidity("The withdrawal of €" + withdrawalamt + " from balance €" + balance + " exceeds the overdraft limit of €" + odl + ". The new balance would have been €" + newbal);
     }
   }
 }
