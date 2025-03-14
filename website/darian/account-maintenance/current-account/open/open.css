@@ -49,3 +49,9 @@ form {
   background-color: #78569F;
   color: white;
 }
+
+.errorDisplay {
+  color: red;
+  font-size: 2em;
+  text-align: center;
+}

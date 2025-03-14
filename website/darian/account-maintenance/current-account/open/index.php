@@ -3,7 +3,9 @@ Student Name 	: Darian Byrne
 Student Id Number: C00296036
 Date 			: 13/02/2025
 Open Current Account -->
-<?php session_start(); ?>
+<?php session_start();
+global $validId;
+global $errorMsg; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,17 +20,9 @@ Open Current Account -->
 
 <body>
     <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
-    require($_SERVER["DOCUMENT_ROOT"] . '/darian/accountno.inc.php');
-    $_SESSION["accountno"] = generateAccountNo(); ?>
-    <script>
-        // this code is a bit weird, I found it to be the best way to send server side php data to the client side javascript
-        // it generates a unique account number when the page loads
-        // it then stores the account number in a global variable
-        // this global variable is then referenced when the user selects a customer
-        var accountno = '<?php echo $_SESSION["accountno"]; ?>';
-    </script>
+    require($_SERVER["DOCUMENT_ROOT"] . '/darian/accountno.inc.php');?>
     <main>
-        <form action="open.php" onsubmit="return confirmSubmit()" method="post">
+        <form action="./" onsubmit="return confirmSubmit()" method="post">
             <!-- the heading of the form -->
             <h2>Open Current Account</h2>
 
@@ -36,7 +30,8 @@ Open Current Account -->
             <div class="inputbox">
                 <label for="cid">Customer number:</label>
                 <!-- the cid input box -->
-                <input type="number" name="cid" id="cid" placeholder="Customer number" onchange="inputCustomer(this)" min="0" step="1" required>
+                <?php if (isset($_POST["cid"]) && !$validId) $errorMsg .= "No record found for customer number: $_POST[cid]<br>Please try again!<br>" ?>
+                <input type="number" name="cid" id="cid" placeholder="Customer number" onchange="inputCustomer(this)" value="<?php if (isset($_POST["cid"]) && $validId) echo $_POST["cid"]; ?>" min="0" step="1" required>
             </div>
 
             <!-- a div which groups the input box and it's label -->
@@ -94,9 +89,9 @@ Open Current Account -->
             <!-- a div which groups the buttons -->
             <div class="myButton">
                 <!-- the submit button -->
-                <input class="button" type="submit" value="Open current account" name="submit">
+                <input class="button" type="submit" value="Open current account">
                 <!-- the reset button -->
-                <input class="button" type="reset" value="Cancel" name="reset">
+                <input class="button" type="reset" value="Cancel">
             </div>
 
             <!-- paragraph that will be used to display a message to the user after submitting the form -->
@@ -107,6 +102,14 @@ Open Current Account -->
                 // clears the message afterward
                 unset($_SESSION["message"]); ?></p>
         </form>
+
+        <!-- paragraph that will be used to display a error to the user after submitting the form -->
+        <p class="errorDisplay">
+            <?php
+            // checks if there is a error and displays it
+            if (isset($errorMsg)) echo $errorMsg;
+            // clears the error afterward
+            unset($errorMsg); ?></p>
     </main>
 </body>
 
