@@ -3,7 +3,6 @@
 // Second half entirely done by Darian Byrne
 // Purpose: javascript for the dropdown menu animations and related functions
 
-
 // This section done by Brandon Jaroszczak with help from Kyle Purcell
 // Gets all uls and dropdowns
 const uls = document.querySelectorAll(".dropdown > ul");
@@ -14,10 +13,9 @@ uls.forEach((ul) => {
     ul.style.maxHeight = '0px';
     ul.classList.toggle("hidden");
 });
-// level2 variable
-let leveltwos = 1;
-// doublesize constant for animation height
-const doubleSize = 182.4;
+
+// global leveltwos variable
+let leveltwos = 0;
 
 // for each dropdown button run this function
 dropdowns.forEach((dropdown) => {
@@ -28,46 +26,29 @@ dropdowns.forEach((dropdown) => {
         // Prevent event from bubbling up and affecting parent dropdowns
         event.stopPropagation();
 
-        // get all lis in a dropdown
-        const li = dropdown.querySelectorAll("li");
-
-        // totalheight variable for each li increase the total height to get the height of all li inside a dropdown
-        let totalHeight = 0;
-        li.forEach((l) => {
-            totalHeight = totalHeight + parseFloat(getComputedStyle(l).paddingTop) + (parseFloat(getComputedStyle(l).fontSize) * 1.6);
-        });
-
-        // if the dropdown is management make the height taller as some elements are 2 lines long
-        const mgm = dropdown.querySelector(".management");
-        if (mgm != null) {
-            totalHeight = totalHeight * 1.6;
-        }
-
-        // if the dropdown is a double dropdown divide by 3 and multiply by the amount of selected level2s to get just one of the 3 dropdowns inside the double dropdown
-        const dd = dropdown.querySelector(".double");
-        if (dd != null) {
-            totalHeight = totalHeight / 3 * leveltwos;
-        }
-
-        // get all level2 dropdowns inside this dropdown
+        // get does this dropdown contain or is this dropdown a level2
         const l2 = dropdown.querySelector(".leveltwo");
         if (l2 != null) {
-            // if there are any increase or decrease the amount of shown level2 dropdowns
-            const parent = l2.parentElement.parentElement;
-            if (!expanded) {
-                leveltwos++;
-            } else {
-                leveltwos--;
-            }
-            // change the parent dropdown's height to accomodate for the increase in level2 dropdowns being shown
-            parent.style.maxHeight = doubleSize * leveltwos + 'px';
+            // if level2 dropdowns found increase or decrease amount of them showing by checking is it expanded or not
+            leveltwos += expanded ? -1 : 1;
+            // change the parent dropdown height to accomodate for the extra height of the level2 dropdown
+            l2.parentElement.parentElement.style.maxHeight = l2.scrollHeight * leveltwos + 'px';
         }
 
         // get the ul element of the currently clicked dropdown
         const ul = dropdown.querySelector("ul");
+
+        // if it's not expanded, then expand it
         if (!expanded) {
-            // if it's not expanded, then expand it and wait for the animation to finish to prevent visual glitches
-            ul.style.maxHeight = totalHeight + 'px';
+            // get the non hidden uls inside the dropdown
+            const elements = dropdown.querySelector("ul:not(.hidden *)");
+            if (!elements) {
+                return; // if null return, this prevents an error occurring when spam clicking level 2 dropdowns before the animation is finished
+            }
+            // get the total height of the elements and apply it as the ul maxheight
+            ul.style.maxHeight = elements.scrollHeight + 'px';
+
+            // wait for the animation to finish to prevent visual glitches
             ul.addEventListener("transitionend", () => {
                 ul.classList.toggle("hidden");
             }, { once: true });
@@ -80,8 +61,7 @@ dropdowns.forEach((dropdown) => {
         expanded = !expanded;
 
         // get the button arrow and toggle it up or down facing
-        const button = dropdown.querySelector(".material-symbols-outlined");
-        button.classList.toggle("arrow");
+        dropdown.querySelector(".material-symbols-outlined").classList.toggle("arrow");
     });
 });
 
