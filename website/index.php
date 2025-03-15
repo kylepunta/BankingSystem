@@ -1,3 +1,6 @@
+<!-- Name: Group work (mostly done by Brandon Jaroszczak and Darian Byrne) -->
+<!-- Month: February/March 2025 -->
+<!-- Purpose: index page when first logging into https://c2p-bank.candept.com -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
