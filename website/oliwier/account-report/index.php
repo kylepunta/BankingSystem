@@ -15,7 +15,16 @@
 </head>
 
 <body>
-<?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html'); ?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html'); 
+    if (ISSET($_POST['viewAccounts']) || ISSET($_POST['View Report'])) {
+        include 'db.inc.php';
+
+        $_SESSION['customerID']=$_POST['custID'];
+        $_SESSION['address']=$_POST['address'];
+        $_SESSION['dob']=$_POST['dob'];
+        $_SESSION['phone']=$_POST['phone'];
+    }
+    ?>
 
     <script>
 
@@ -53,9 +62,26 @@
             document.getElementById("address").disabled = false;
             document.getElementById("dob").disabled = false;
             document.getElementById("phone").disabled = false;
-
-            alert(document.getElementById("custId").disabled);
             return true;
+        }
+
+        function showDetails(element) {
+
+            if(element.classList.contains("selectedAccount")) {
+                element.classList.remove("selectedAccount");
+                document.getElementById("submit").disabled = true;
+                document.getElementById("accountNumber").value = "";
+                return;
+            }
+
+            var array = document.getElementsByClassName("accountRow");
+            for (var i = 0; i < array.length; i++) {
+                array[i].classList.remove("selectedAccount")
+            }
+
+            element.classList.add("selectedAccount");
+            document.getElementById("submit").disabled = false;
+            document.getElementById("accountNumber").value = element.id;
         }
        
     </script>
@@ -105,50 +131,89 @@
         </div>
 
         <!-- submit button -->
-         <div class="buttons">
+         <div class="button">
 
              <input type="submit" name="viewAccounts" value="View Accounts"/>
         </div>
 
     </form>
 
-    </div>
+    
     <!-- php section -->
     <?php
-        // if firstname and personid are unset after the query was made print the error message
-        if (ISSET($_POST['viewAccounts'])) {
+        if (ISSET($_POST['viewAccounts']) || ISSET($_POST['View Report'])) {
             include 'db.inc.php';
 
-            $_SESSION['customerID']=$_POST['custID'];
-            $_SESSION['address']=$_POST['address'];
-            $_SESSION['dob']=$_POST['dob'];
-            $_SESSION['phone']=$_POST['phone'];
-            echo "<p>Customer ID: " . $_POST['custID'] . "</p>";
-            
-            // create a small sql query
-            $sql = "SELECT Customer.customerNo, firstName, `Current Account`.accountID, `Current Account`.accountNumber FROM Customer 
+            echo "<table><thead><tr><th>Account Type</th><th>Account ID</th><th>Account Number</th><th>Balance</th></tr></thead><tbody>";
+            // create query for current accounts first
+            $sql = "SELECT Customer.customerNo, firstName, surName, `Current Account`.accountID, `Current Account`.accountNumber, balance FROM Customer 
             INNER JOIN `Customer/CurrentAccount` ON Customer.customerNo = `Customer/CurrentAccount`.`customerNo` 
             INNER JOIN `Current Account` ON `Customer/CurrentAccount`.`accountId` = `Current Account`.`accountId` 
-            WHERE Customer.deletedFlag=0 AND `Current Account`.`deletedFlag` = 0 AND Customer.customerNo = '$_POST[custID]' 
-            UNION (SELECT Customer.customerNo, firstName, `Loan Account`.accountID, `Loan Account`.accountNumber FROM Customer 
-            INNER JOIN `Customer/LoanAccount` ON Customer.customerNo = `Customer/LoanAccount`.`customerNo` 
-            INNER JOIN `Loan Account` ON `Customer/LoanAccount`.`accountID` = `Loan Account`.`accountID` 
-            WHERE Customer.deletedFlag=0 AND `Loan Account`.`deletedFlag` =0 AND Customer.customerNo = '$_POST[custID]');";
+            WHERE Customer.deletedFlag=0 AND `Current Account`.`deletedFlag` = 0 AND Customer.customerNo = '$_POST[custID]';";
             
             if (!$result = mysqli_query($con, $sql)) {
                 die("Error in querying the database " . mysqli_error($con));
             }
             if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                echo "id: " . $row["customerNo"]. " - Name: " . $row["firstName"]. " - accountId: " . $row["accountID"].  " - accountNum: " . $row["accountNumber"] . "<br>";
-              }
+                while($row = $result->fetch_assoc()) {
+                    $custNo = $row["customerNo"];
+                    $fname = $row["firstName"];
+                    $lname = $row["surName"];
+                    $accID = $row["accountID"];
+                    $accNum = $row["accountNumber"];
+                    $balance = $row["balance"];
+                    $allText = "$custNo#$fname#$lname#$accID#$accNum#Current";
+                   
+                    echo "<tr class='accountRow' id='$allText' onclick='showDetails(this)'><td>Current</td><td>".$row['accountID']."</td><td>".$row['accountNumber']."</td><td>".$row['balance']."</td></tr>"; 
+                }
+                 
+            
             }
+            // create query for loan accounts 
+            $sql = "SELECT Customer.customerNo, firstName, surName, `Loan Account`.accountID, `Loan Account`.accountNumber, balance FROM Customer 
+            INNER JOIN `Customer/LoanAccount` ON Customer.customerNo = `Customer/LoanAccount`.`customerNo` 
+            INNER JOIN `Loan Account` ON `Customer/LoanAccount`.`accountID` = `Loan Account`.`accountID` 
+            WHERE Customer.deletedFlag=0 AND `Loan Account`.`deletedFlag` =0 AND Customer.customerNo = '$_POST[custID]';";
+            
+            if (!$result = mysqli_query($con, $sql)) {
+                die("Error in querying the database " . mysqli_error($con));
+            }
+
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    $custNo = $row["customerNo"];
+                    $fname = $row["firstName"];
+                    $lname = $row["surName"];
+                    $accID = $row["accountID"];
+                    $accNum = $row["accountNumber"];
+                    $balance = $row["balance"];
+                    $allText = "$custNo#$fname#$lname#$accID#$accNum#Loan";
+
+                    echo "<tr class='accountRow' id='$allText' onclick='showDetails(this)'><td>Loan</td><td>".$row['accountID']."</td><td>".$row['accountNumber']."</td><td>".$row['balance']."</td></tr>"; 
+                }
+            }
+            echo "</tbody></table>";    
             // close the connection
             mysqli_close($con);
+            echo '<form action="confirmAcc.php" method="POST">
+                <input type="hidden" name="accountNumber" id="accountNumber" value="" />
 
-            unset ($_SESSION['customerID']); 
+                <div class="inputbox">
+                <label for="startDate">Start date (optional):</label>
+                <input type="date" name="startDate" id="startDate" />
+                </div>
+                <div class="inputbox">
+                <label for="endDate">End date (optional):</label>
+                <input type="date" name="endDate" id="endDate"/>
+                </div>';
+
+            echo "<div class='button'>
+                    <input type='submit' value='View Report' name='View Report' id='submit' disabled/> 
+                </div>
+                </form>";
         }
     ?>
+    </div>
     </main>
 </body>
 </html>

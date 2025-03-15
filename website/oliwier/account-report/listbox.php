@@ -10,6 +10,7 @@ if (!$result = mysqli_query($con, $sql)) {
 }
 
 $selectedCust = $_SESSION['customerID'] ?? '';
+// $selectedCust = '';
 
 echo "<option value='placeholder'>Select a customer</option>";
 
