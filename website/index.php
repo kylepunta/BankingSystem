@@ -9,7 +9,6 @@
 </head>
 <body>
     <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html'); ?>
-    <script src="/dropdownScript.js"></script>
     <main>
         <div id="mainmenu">
             <h1>Welcome to SETU Bank</h1>
