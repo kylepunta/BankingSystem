@@ -23,7 +23,7 @@ Open Current Account */
 
 /* styles the inputs */
 .inputbox > input, select {
-  /* I'm using !important because the nav menu conflicts with my styles */
+
   /* thin purple border */
   border: solid #78569F 2px !important;
   /* slight rounded border */
