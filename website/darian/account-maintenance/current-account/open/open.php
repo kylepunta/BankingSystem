@@ -87,6 +87,7 @@ VALUES ('$accountId','$now','Lodgement','$_POST[initbal]','$_POST[initbal]');";
 
         // cleanup
         session_unset();
+        unset($_POST["cid"]);
 
         // sets the message to show to the user
         $_SESSION["message"] = "Current account opened with account number: " . $accountNo;

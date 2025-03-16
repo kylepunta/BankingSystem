@@ -3,6 +3,8 @@ Student Name 	: Darian Byrne
 Student Id Number: C00296036
 Date 			: 15/03/2025
 Customer Details -->
+<!-- handles the customerNo from the inputbox -->
+<script src="/darian/customerDetails.js"></script>
 
 <!-- a div which groups the input box and it's label -->
 <div class="inputbox">

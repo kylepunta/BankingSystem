@@ -5,6 +5,7 @@ Date 			: 13/02/2025
 Open Current Account -->
 <?php session_start();
 if (!isset($_SESSION["errorMsg"])) $_SESSION["errorMsg"] = "";
+global $validId;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +16,7 @@ if (!isset($_SESSION["errorMsg"])) $_SESSION["errorMsg"] = "";
     <title>Bank - Open Current Account</title>
     <?php require($_SERVER["DOCUMENT_ROOT"] . '/head.html'); ?>
     <link rel="stylesheet" href="/darian/darianStyles.css">
-    <script src="/darian/customerDetails.js"></script>
+    <script src="open.js"></script>
 </head>
 
 <body>
@@ -28,9 +29,18 @@ if (!empty($_POST["cid"])) {
     } else {
 //        query customer details
         require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.inc.php');
+
+        if ($validId) {
+            require($_SERVER["DOCUMENT_ROOT"] . '/darian/accountno.inc.php');
+            if (!isset($_SESSION["accountno"])) $_SESSION["accountno"] = generateAccountNo();
+        } else {
+            unset($_SESSION["accountno"]);
+        }
     }
 } else {
-    session_unset();
+    unset($_SESSION["address"]);
+    unset($_SESSION["eircode"]);
+    unset($_SESSION["dob"]);
 }
 ?>
 <main>
