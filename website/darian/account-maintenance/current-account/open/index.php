@@ -4,8 +4,8 @@ Student Id Number: C00296036
 Date 			: 13/02/2025
 Open Current Account -->
 <?php session_start();
-global $validId;
-global $errorMsg; ?>
+if (!isset($_SESSION["errorMsg"])) $_SESSION["errorMsg"] = "";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,62 +14,38 @@ global $errorMsg; ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank - Open Current Account</title>
     <?php require($_SERVER["DOCUMENT_ROOT"] . '/head.html'); ?>
-    <link rel="stylesheet" href="./open.css">
-    <script src="./open.js"></script>
+    <link rel="stylesheet" href="/darian/darianStyles.css">
+    <script src="/darian/customerDetails.js"></script>
 </head>
 
 <body>
     <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
-    require($_SERVER["DOCUMENT_ROOT"] . '/darian/accountno.inc.php');?>
+
+    if (!empty($_POST["cid"])) {
+        if (!empty($_POST["overdraftlimit"]) && !empty($_POST["initbal"])) {
+//            continue to open current account
+            require("open.php");
+        } else {
+//            query customer details
+            require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.inc.php');
+        }
+    } else {
+        session_unset();
+    }
+    ?>
     <main>
         <form action="./" onsubmit="return confirmSubmit()" method="post">
             <!-- the heading of the form -->
             <h2>Open Current Account</h2>
 
-            <!-- a div which groups the input box and it's label -->
-            <div class="inputbox">
-                <label for="cid">Customer number:</label>
-                <!-- the cid input box -->
-                <?php if (isset($_POST["cid"]) && !$validId) $errorMsg .= "No record found for customer number: $_POST[cid]<br>Please try again!<br>" ?>
-                <input type="number" name="cid" id="cid" placeholder="Customer number" onchange="inputCustomer(this)" value="<?php if (isset($_POST["cid"]) && $validId) echo $_POST["cid"]; ?>" min="0" step="1" required>
-            </div>
-
-            <!-- a div which groups the input box and it's label -->
-            <div class="inputbox">
-                <label for="name">Customer Name:</label>
-                <!-- the name select box -->
-                <select id="name" onchange="populate(this)" required>
-                    <option></option>
-                    <?php require('./listbox.php'); ?>
-                </select>
-            </div>
-
-            <!-- a div which groups the input box and it's label -->
-            <div class="inputbox">
-                <label for="address">Address:</label>
-                <!-- the address input box -->
-                <input type="text" name="address" id="address" placeholder="Address" disabled>
-            </div>
-
-            <!-- a div which groups the input box and it's label -->
-            <div class="inputbox">
-                <label for="eircode">Eircode:</label>
-                <!-- the eircode input box -->
-                <input type="text" name="eircode" id="eircode" placeholder="Eircode" disabled>
-            </div>
-
-            <!-- a div which groups the calendar and it's label -->
-            <div class="inputbox">
-                <label for="dob">Date of Birth:</label>
-                <!-- the dob calendar -->
-                <input type="date" name="dob" id="dob" disabled>
-            </div>
+            <!-- contains the labels and inputs for a customer -->
+            <?php require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.html.php') ?>
 
             <!-- a div which groups the input box and it's label -->
             <div class="inputbox">
                 <label for="accountno">Account number:</label>
                 <!-- the accountno input box -->
-                <input type="text" name="accountno" id="accountno" placeholder="Account number" disabled>
+                <input type="text" name="accountno" id="accountno" value="<?php if (isset($_SESSION["accountno"])) echo $_SESSION["accountno"] ?>" placeholder="Account number" disabled>
             </div>
 
             <!-- a div which groups the input box and it's label -->
@@ -83,7 +59,7 @@ global $errorMsg; ?>
             <div class="inputbox">
                 <label for="initbal">Initial Deposit:</label>
                 <!-- the initbal input box -->
-                <input type="number" name="initbal" id="initbal" value="0" placeholder="Initial Deposit" title="0 for no first deposit" min="0" step="0.01" required>
+                <input type="number" name="initbal" id="initbal" placeholder="Initial Deposit" title="0 for no initial deposit" min="0" step="0.01" required>
             </div>
 
             <!-- a div which groups the buttons -->
@@ -103,13 +79,13 @@ global $errorMsg; ?>
                 unset($_SESSION["message"]); ?></p>
         </form>
 
-        <!-- paragraph that will be used to display a error to the user after submitting the form -->
+        <!-- paragraph that will be used to display an error to the user after submitting the form -->
         <p class="errorDisplay">
             <?php
-            // checks if there is a error and displays it
-            if (isset($errorMsg)) echo $errorMsg;
+            // checks if there is an error and displays it
+            if (isset($_SESSION["errorMsg"])) echo $_SESSION["errorMsg"];
             // clears the error afterward
-            unset($errorMsg); ?></p>
+            unset($_SESSION["errorMsg"]); ?></p>
     </main>
 </body>
 
