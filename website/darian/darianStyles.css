@@ -5,53 +5,53 @@ Date 			: 13/02/2025
 Styles */
 
 form {
-  /* adds space above the form */
-  margin-top: 6em;
-  /* sets a light purple background colour */
-  background-color: rgb(233, 194, 255);
-  /* thin purple border */
-  border: solid #78569F 2px;
-  /* rounded borders */
-  border-radius: 16px;
-  /* space around the form's elements */
-  padding: 16px;
+    /* adds space above the form */
+    margin-top: 6em;
+    /* sets a light purple background colour */
+    background-color: rgb(233, 194, 255);
+    /* thin purple border */
+    border: solid #78569F 2px;
+    /* rounded borders */
+    border-radius: 16px;
+    /* space around the form's elements */
+    padding: 16px;
 }
 
 /* styles the inputs */
 .inputbox > input, select {
-  /* I'm using !important because the nav menu conflicts with my styles */
-  /* thin purple border */
-  border: solid #78569F 2px !important;
-  /* slight rounded border */
-  border-radius: 8px !important;
-  /* horizontal padding */
-  padding: 0 8px !important;
+    /* I'm using !important because the nav menu conflicts with my styles */
+    /* thin purple border */
+    border: solid #78569F 2px !important;
+    /* slight rounded border */
+    border-radius: 8px !important;
+    /* horizontal padding */
+    padding: 0 8px !important;
 }
 
 .myButton {
-  /* slightly spaces the row of buttons away from the form's content */
-  margin-top: 1em;
+    /* slightly spaces the row of buttons away from the form's content */
+    margin-top: 1em;
 }
 
 .button {
-  /* thin purple border */
-  border: solid #78569F 2px;
-  /* slight rounded border */
-  border-radius: 8px;
-  /* makes the button larger */
-  padding: 16px;
-  /* makes the button look like it is popping out of the page */
-  border-bottom-width: 4px;
+    /* thin purple border */
+    border: solid #78569F 2px;
+    /* slight rounded border */
+    border-radius: 8px;
+    /* makes the button larger */
+    padding: 16px;
+    /* makes the button look like it is popping out of the page */
+    border-bottom-width: 4px;
 }
 
 .button:hover {
-  /* highlights the button when it is hovered */
-  background-color: #78569F;
-  color: white;
+    /* highlights the button when it is hovered */
+    background-color: #78569F;
+    color: white;
 }
 
 .errorDisplay {
-  color: red;
-  font-size: 2em;
-  text-align: center;
+    color: red;
+    font-size: 2em;
+    text-align: center;
 }

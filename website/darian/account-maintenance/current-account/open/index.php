@@ -19,74 +19,78 @@ if (!isset($_SESSION["errorMsg"])) $_SESSION["errorMsg"] = "";
 </head>
 
 <body>
-    <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
+<?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
 
-    if (!empty($_POST["cid"])) {
-        if (!empty($_POST["overdraftlimit"]) && !empty($_POST["initbal"])) {
-//            continue to open current account
-            require("open.php");
-        } else {
-//            query customer details
-            require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.inc.php');
-        }
+if (!empty($_POST["cid"])) {
+    if (!empty($_POST["overdraftlimit"]) && !empty($_POST["initbal"])) {
+//        continue to open current account
+        require("open.php");
     } else {
-        session_unset();
+//        query customer details
+        require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.inc.php');
     }
-    ?>
-    <main>
-        <form action="./" onsubmit="return confirmSubmit()" method="post">
-            <!-- the heading of the form -->
-            <h2>Open Current Account</h2>
+} else {
+    session_unset();
+}
+?>
+<main>
+    <form action="./" onsubmit="return confirmSubmit()" method="post">
+        <!-- the heading of the form -->
+        <h2>Open Current Account</h2>
 
-            <!-- contains the labels and inputs for a customer -->
-            <?php require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.html.php') ?>
+        <!-- contains the labels and inputs for a customer -->
+        <?php require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.html.php') ?>
 
-            <!-- a div which groups the input box and it's label -->
-            <div class="inputbox">
-                <label for="accountno">Account number:</label>
-                <!-- the accountno input box -->
-                <input type="text" name="accountno" id="accountno" value="<?php if (isset($_SESSION["accountno"])) echo $_SESSION["accountno"] ?>" placeholder="Account number" disabled>
-            </div>
+        <!-- a div which groups the input box and it's label -->
+        <div class="inputbox">
+            <label for="accountno">Account number:</label>
+            <!-- the accountno input box -->
+            <input type="text" name="accountno" id="accountno"
+                   value="<?php if (isset($_SESSION["accountno"])) echo $_SESSION["accountno"] ?>"
+                   placeholder="Account number" disabled>
+        </div>
 
-            <!-- a div which groups the input box and it's label -->
-            <div class="inputbox">
-                <label for="overdraftlimit">Overdraft limit:</label>
-                <!-- the overdraftlimit input box -->
-                <input type="number" name="overdraftlimit" id="overdraftlimit" placeholder="Overdraft limit" title="0 for no limit" min="0" step="0.01" required>
-            </div>
+        <!-- a div which groups the input box and it's label -->
+        <div class="inputbox">
+            <label for="overdraftlimit">Overdraft limit:</label>
+            <!-- the overdraftlimit input box -->
+            <input type="number" name="overdraftlimit" id="overdraftlimit" placeholder="Overdraft limit"
+                   title="0 for no limit" min="0" step="0.01" required>
+        </div>
 
-            <!-- a div which groups the input box and it's label -->
-            <div class="inputbox">
-                <label for="initbal">Initial Deposit:</label>
-                <!-- the initbal input box -->
-                <input type="number" name="initbal" id="initbal" placeholder="Initial Deposit" title="0 for no initial deposit" min="0" step="0.01" required>
-            </div>
+        <!-- a div which groups the input box and it's label -->
+        <div class="inputbox">
+            <label for="initbal">Initial Deposit:</label>
+            <!-- the initbal input box -->
+            <input type="number" name="initbal" id="initbal" placeholder="Initial Deposit"
+                   title="0 for no initial deposit" min="0" step="0.01" required>
+        </div>
 
-            <!-- a div which groups the buttons -->
-            <div class="myButton">
-                <!-- the submit button -->
-                <input class="button" type="submit" value="Open current account">
-                <!-- the reset button -->
-                <input class="button" type="reset" value="Cancel">
-            </div>
+        <!-- a div which groups the buttons -->
+        <div class="myButton">
+            <!-- the submit button -->
+            <input class="button" type="submit" value="Open current account">
+            <!-- the reset button -->
+            <input class="button" type="reset" value="Cancel">
+        </div>
 
-            <!-- paragraph that will be used to display a message to the user after submitting the form -->
-            <p class="display">
-                <?php
-                // checks if there is a message and displays it
-                if (isset($_SESSION["message"])) echo $_SESSION["message"];
-                // clears the message afterward
-                unset($_SESSION["message"]); ?></p>
-        </form>
-
-        <!-- paragraph that will be used to display an error to the user after submitting the form -->
-        <p class="errorDisplay">
+        <!-- paragraph that will be used to display a message to the user after submitting the form -->
+        <p class="display">
             <?php
-            // checks if there is an error and displays it
-            if (isset($_SESSION["errorMsg"])) echo $_SESSION["errorMsg"];
-            // clears the error afterward
-            unset($_SESSION["errorMsg"]); ?></p>
-    </main>
+            // checks if there is a message and displays it
+            if (isset($_SESSION["message"])) echo $_SESSION["message"];
+            // clears the message afterward
+            unset($_SESSION["message"]); ?></p>
+    </form>
+
+    <!-- paragraph that will be used to display an error to the user after submitting the form -->
+    <p class="errorDisplay">
+        <?php
+        // checks if there is an error and displays it
+        if (isset($_SESSION["errorMsg"])) echo $_SESSION["errorMsg"];
+        // clears the error afterward
+        unset($_SESSION["errorMsg"]); ?></p>
+</main>
 </body>
 
 </html>
