@@ -40,13 +40,8 @@ dropdowns.forEach((dropdown) => {
 
         // if it's not expanded, then expand it
         if (!expanded) {
-            // get the non hidden uls inside the dropdown
-            const elements = dropdown.querySelector("ul:not(.hidden *)");
-            if (!elements) {
-                return; // if null return, this prevents an error occurring when spam clicking level 2 dropdowns before the animation is finished
-            }
             // get the total height of the elements and apply it as the ul maxheight
-            ul.style.maxHeight = elements.scrollHeight + 'px';
+            ul.style.maxHeight = dropdown.querySelector("ul").scrollHeight + 'px';
 
             // wait for the animation to finish to prevent visual glitches
             ul.addEventListener("transitionend", () => {
