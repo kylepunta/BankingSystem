@@ -6,7 +6,6 @@ Close Current Account */
 
 // function that checks the user wants to submit the form
 function confirmSubmit() {
-    // TODO add this little bit confirmed hidden input to open current account
     // displays a confirmation box to the user, the form will be submitted if they press OK
     if (confirm("Are you sure you want to close this current account?")) {
         document.getElementById("confirmed").value = "1";

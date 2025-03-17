@@ -22,7 +22,6 @@ global $validAccount;
 
 <body>
 <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
-// TODO only accept current account details, currently accepts deposit and current accounts
 
 function clearPreviousAccount()
 {
@@ -66,7 +65,7 @@ WHERE `accountNumber` = '$_POST[accountno]' AND `customerNo` = '$_POST[cid]'";
     if (mysqli_num_rows($result) != 0) {
         // displays both customer details and account details
         require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.inc.php');
-        require($_SERVER["DOCUMENT_ROOT"] . '/darian/accountDetails.inc.php');
+        require($_SERVER["DOCUMENT_ROOT"] . '/darian/currentAccountDetails.inc.php');
     } else {
         // if the account number and customer mismatch, just display the customers details and reset the account details
         require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.inc.php');
@@ -74,7 +73,7 @@ WHERE `accountNumber` = '$_POST[accountno]' AND `customerNo` = '$_POST[cid]'";
     }
 } else if ($gotAccountNo) {
     // only an account number was entered, display that account
-    require($_SERVER["DOCUMENT_ROOT"] . '/darian/accountDetails.inc.php');
+    require($_SERVER["DOCUMENT_ROOT"] . '/darian/currentAccountDetails.inc.php');
     // then if the account entered was valid
     if ($validAccount) {
         // display the customer for that account
@@ -93,6 +92,9 @@ WHERE `accountNumber` = '$_POST[accountno]' AND `customerNo` = '$_POST[cid]'";
     clearPreviousCustomer();
     clearPreviousAccount();
 }
+
+// error that checks if the account's balance isn't 0
+if (isset($_SESSION["balance"]) && $_SESSION["balance"] != 0) $_SESSION["errorMsg"] .= "Balance for account number: $_POST[accountno] is: $_SESSION[balance].<br>It must be 0 before the account can be closed.<br>";
 ?>
 <main>
     <form action="./" onsubmit="return confirmSubmit()" method="post">
@@ -106,14 +108,12 @@ WHERE `accountNumber` = '$_POST[accountno]' AND `customerNo` = '$_POST[cid]'";
         <div class="inputbox">
             <label for="accountno">Account number:</label>
             <!-- the accountno input box -->
-            <!-- TODO only display current accounts, currently displays deposit and current accounts -->
-            <!-- TODO allow getting the customer details just from entering the account number -->
             <input type="number" name="accountno" id="accountno" list="accounts"
                    value="<?php if (isset($_POST["accountno"])) echo $_POST["accountno"]; ?>"
                    placeholder="Account number" onchange="inputAccount(this)" min="0" step="1" required>
             <!-- this datalist is used to help prompt the user with a list of accounts that the customer has -->
             <datalist id="accounts">
-                <?php require($_SERVER["DOCUMENT_ROOT"] . '/darian/accountList.php'); ?>
+                <?php require($_SERVER["DOCUMENT_ROOT"] . '/darian/currentAccountList.php'); ?>
             </datalist>
         </div>
 
@@ -121,10 +121,10 @@ WHERE `accountNumber` = '$_POST[accountno]' AND `customerNo` = '$_POST[cid]'";
         <div class="inputbox">
             <label for="accountbal">Account balance:</label>
             <!-- the accountbal input box -->
-            <!-- TODO echo with debit 100/credit 100 NOT 100/-100 -->
-            <input type="text" name="accountbal" id="accountbal"
-                   value="<?php if (isset($_SESSION["balance"])) echo $_SESSION["balance"]; ?>"
-                   placeholder="Account balance" disabled>
+            <input type="text" name="accountbal" id="accountbal" value="<?php if (isset($_SESSION["balance"])) {
+                require($_SERVER["DOCUMENT_ROOT"] . '/darian/balance.inc.php');
+                echo displayBalance($_SESSION["balance"]);
+            } ?>" placeholder="Account balance" disabled>
         </div>
 
         <!-- a div which groups the input box and it's label -->
@@ -140,7 +140,6 @@ WHERE `accountNumber` = '$_POST[accountno]' AND `customerNo` = '$_POST[cid]'";
         <div class="myButton">
             <!-- the submit button -->
             <input class="button" type="submit" value="Close current account">
-            <!-- TODO cancel button doesn't clear the options in the accounts datalist (or anything) -->
             <!-- the reset button -->
             <input class="button" type="reset" value="Cancel" onclick="cancel()">
         </div>

@@ -11,7 +11,7 @@ global $validId;
 $validId = false;
 
 $sql = "SELECT customerNo, firstName, surName, address, eircode, dateOfBirth FROM Customer
-WHERE deletedFlag = false AND Customer.customerNo = " . (!empty($_POST["cid"]) ? "$_POST[cid]" : "0");
+WHERE deletedFlag = 0 AND Customer.customerNo = " . (!empty($_POST["cid"]) ? "$_POST[cid]" : "0");
 
 if (!$result = mysqli_query($con, $sql)) {
     die("Error in querying the database " . mysqli_error($con));
@@ -25,11 +25,10 @@ if (mysqli_num_rows($result) == 1) {
     $_SESSION["eircode"] = $row["eircode"];
     $_SESSION["dob"] = $row["dateOfBirth"];
 } else {
-    $errorMsg = $_SESSION["errorMsg"];
     unset($_SESSION["address"]);
     unset($_SESSION["eircode"]);
     unset($_SESSION["dob"]);
-    $_SESSION["errorMsg"] = $errorMsg . "No record found for customer number: $_POST[cid]<br>Please try again!<br>";
+    $_SESSION["errorMsg"] .= "No record found for customer number: $_POST[cid]<br>Please try again!<br>";
 }
 
 mysqli_close($con);
