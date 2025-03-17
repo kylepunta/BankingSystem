@@ -50,8 +50,26 @@ form {
     color: white;
 }
 
+/* styles the small display message at the bottom of each form */
+.display {
+    /* adds some spacing between the message and the form's buttons */
+    margin-top: 1em;
+}
+
+/* styles the button within the display message */
+.display > span {
+    /* changes the color of the text to blue */
+    color: blue;
+    /* sets a pointer cursor, so the user knows this is clickable */
+    cursor: pointer;
+}
+
+/* styles the large error message shown below each form */
 .errorDisplay {
+    /* changes the color of the text to red */
     color: red;
+    /* increases the font size */
     font-size: 2em;
+    /* centres the text */
     text-align: center;
 }

@@ -3,6 +3,7 @@ Student Name 	: Darian Byrne
 Student Id Number: C00296036
 Date 			: 13/02/2025
 Open Current Account -->
+<!-- TODO BIG BUG cannot open account with od limit of 0 or init deposit of 0 -->
 <?php session_start();
 if (!isset($_SESSION["errorMsg"])) $_SESSION["errorMsg"] = "";
 global $validId;
@@ -16,6 +17,7 @@ global $validId;
     <title>Bank - Open Current Account</title>
     <?php require($_SERVER["DOCUMENT_ROOT"] . '/head.html'); ?>
     <link rel="stylesheet" href="/darian/darianStyles.css">
+    <script src="/darian/darianScript.js"></script>
     <script src="open.js"></script>
 </head>
 
@@ -23,7 +25,7 @@ global $validId;
 <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
 
 if (!empty($_POST["cid"])) {
-    if (!empty($_POST["overdraftlimit"]) && !empty($_POST["initbal"])) {
+    if (!empty($_POST["confirmed"]) && !empty($_SESSION["accountno"]) && !empty($_POST["overdraftlimit"]) && !empty($_POST["initbal"])) {
 //        continue to open current account
         require("open.php");
     } else {
@@ -38,6 +40,7 @@ if (!empty($_POST["cid"])) {
         }
     }
 } else {
+    unset($_SESSION["accountno"]);
     unset($_SESSION["address"]);
     unset($_SESSION["eircode"]);
     unset($_SESSION["dob"]);
@@ -81,14 +84,18 @@ if (!empty($_POST["cid"])) {
             <!-- the submit button -->
             <input class="button" type="submit" value="Open current account">
             <!-- the reset button -->
-            <input class="button" type="reset" value="Cancel">
+            <input class="button" type="reset" value="Cancel" onclick="cancel()">
         </div>
+
+        <!-- hidden input that is used to tell the server that the user has confirmed closing the current account -->
+        <input type="hidden" name="confirmed" id="confirmed" value="0">
 
         <!-- paragraph that will be used to display a message to the user after submitting the form -->
         <p class="display">
             <?php
             // checks if there is a message and displays it
-            if (isset($_SESSION["message"])) echo $_SESSION["message"];
+            // there's a text button that lets the user hide the message
+            if (isset($_SESSION["message"])) echo "<span onclick='hide(this)'>Click here to hide:</span> " . $_SESSION["message"];
             // clears the message afterward
             unset($_SESSION["message"]); ?></p>
     </form>

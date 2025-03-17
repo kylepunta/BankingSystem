@@ -17,6 +17,7 @@ global $validAccount;
     <title>Bank - Close Current Account</title>
     <?php require($_SERVER["DOCUMENT_ROOT"] . '/head.html'); ?>
     <link rel="stylesheet" href="/darian/darianStyles.css">
+    <script src="/darian/darianScript.js"></script>
     <script src="close.js"></script>
 </head>
 
@@ -144,13 +145,15 @@ if (isset($_SESSION["balance"]) && $_SESSION["balance"] != 0) $_SESSION["errorMs
             <input class="button" type="reset" value="Cancel" onclick="cancel()">
         </div>
 
+        <!-- hidden input that is used to tell the server that the user has confirmed closing the current account -->
         <input type="hidden" name="confirmed" id="confirmed" value="0">
 
         <!-- paragraph that will be used to display a message to the user after submitting the form -->
         <p class="display">
             <?php
             // checks if there is a message and displays it
-            if (isset($_SESSION["message"])) echo $_SESSION["message"];
+            // there's a text button that lets the user hide the message
+            if (isset($_SESSION["message"])) echo "<span onclick='hide(this)'>Click here to hide:</span> " . $_SESSION["message"];
             // clears the message afterward
             unset($_SESSION["message"]); ?></p>
     </form>
