@@ -7,5 +7,5 @@ Open Current Account */
 // function that checks the user wants to submit the form
 function confirmSubmit() {
     // displays a confirmation box to the user, the form will be submitted if they press OK
-    return confirm("Are you sure you want to open this current account?")
+    return confirm("Are you sure you want to open this current account?");
 }

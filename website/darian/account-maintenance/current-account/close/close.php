@@ -6,12 +6,14 @@ Date 			: 03/03/2025
 Close Current Account */
 // start a session
 session_start();
-// TODO could this entire thing just self submit into index.php?
-include $_SERVER["DOCUMENT_ROOT"] . '/db.inc.php';
+require($_SERVER["DOCUMENT_ROOT"] . '/db.inc.php');
+global $con;
 date_default_timezone_set("UTC");
 
+//TODO error detect
+
 // marks the current account for deletion
-$sql1 = "UPDATE `Current Account` SET deletedFlag = 1 WHERE accountNumber = $_POST[accountno];";
+$sql1 = "UPDATE `Current Account` SET deletedFlag = 1 WHERE accountNumber = $_POST[accountno]";
 
 // checks that the sql query was successful
 if (!mysqli_query($con, $sql1)) {
@@ -23,9 +25,9 @@ if (!mysqli_query($con, $sql1)) {
 // sets the message to show to the user
 $_SESSION["message"] = "Current account closed with account number: " . $_POST["accountno"];
 
-// TODO do I have to close the connection beefore this?
-// sends the user back to the form
-header("Location: ./");
+// cleanup
+session_unset();
+unset($_POST["cid"]);
 
 // closes the connection
 mysqli_close($con);

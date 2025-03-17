@@ -3,7 +3,11 @@ Student Name 	: Darian Byrne
 Student Id Number: C00296036
 Date 			: 03/03/2025
 Close Current Account -->
-<?php session_start(); ?>
+<?php session_start();
+if (!isset($_SESSION["errorMsg"])) $_SESSION["errorMsg"] = "";
+global $validId;
+global $validAccount;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,116 +16,212 @@ Close Current Account -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank - Close Current Account</title>
     <?php require($_SERVER["DOCUMENT_ROOT"] . '/head.html'); ?>
-    <link rel="stylesheet" href="./close.css">
-    <script src="./close.js"></script>
+    <link rel="stylesheet" href="/darian/darianStyles.css">
+    <script src="close.js"></script>
 </head>
 
 <body>
     <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
-    include $_SERVER["DOCUMENT_ROOT"] . '/db.inc.php';
+    // TODO only display current account details, currently displays deposit and current accounts
 
-    // TODO move into function
-    $sql = "SELECT customerNo, `Current Account`.accountId, accountNumber, balance, overdraftLimit FROM `Current Account`
-    INNER JOIN `Customer/CurrentAccount` ON `Current Account`.accountId = `Customer/CurrentAccount`.accountId
-    WHERE deletedFlag = 0";
-
-    // checks that the sql query was successful
-    if (!$result = mysqli_query($con, $sql)) {
-        // displays the error that caused the query to fail
-        // exits the script
-        die("An error in the SQL Query1: " . mysqli_error($con));
+    function clearPreviousAccount()
+    {
+        unset($_POST["accountno"]);
+        unset($_SESSION["balance"]);
+        unset($_SESSION["overdraftLimit"]);
     }
 
-    while ($row = mysqli_fetch_array($result)) {
-        $accounts[] = $row;
+    function clearPreviousCustomer()
+    {
+        unset($_SESSION["address"]);
+        unset($_SESSION["eircode"]);
+        unset($_SESSION["dob"]);
     }
 
-    $_SESSION["accounts"] = $accounts;
+    // A you provide an account no
+    // B you provide a customer no
+    // C you provide both, account number must match customer
+    // D you provide an account no and you confirm to close the account
+    // E you provide an account no and it's invalid
+
+    $gotAccountNo = !empty($_POST["accountno"]);
+    $gotCustomerId = !empty($_POST["cid"]);
+
+    if ($gotAccountNo && $gotCustomerId) {
+        // C you provide both, account number must match customer
+
+        require($_SERVER["DOCUMENT_ROOT"] . '/db.inc.php');
+        global $con;
+
+        $sql = "SELECT `accountNumber`, `customerNo` FROM `Current Account`
+INNER JOIN `Customer/CurrentAccount` ON `Current Account`.`accountId` = `Customer/CurrentAccount`.`accountId`
+WHERE `accountNumber` = '$_POST[accountno]' AND `customerNo` = '$_POST[cid]'";
+
+        // checks that the sql query was successful
+        if (!$result = mysqli_query($con, $sql)) {
+            // displays the error that caused the query to fail
+            // exits the script
+            die("An error in the SQL Query: " . mysqli_error($con));
+        }
+
+        // closes the connection
+        mysqli_close($con);
+
+        $theymatch = mysqli_num_rows($result) != 0;
+
+        if ($theymatch) {
+            // echo $_POST["accountno"] . " belongs to customer " . $_POST["cid"];
+            // display both account details and customer details
+
+            require($_SERVER["DOCUMENT_ROOT"] . '/darian/accountDetails.inc.php');
+            // if ($validAccount) {
+            require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.inc.php');
+            // } else {
+            //     unset($_SESSION["address"]);
+            //     unset($_SESSION["eircode"]);
+            //     unset($_SESSION["dob"]);
+            // }
+        } else {
+            // echo $_POST["accountno"] . " doesnt belong to customer " . $_POST["cid"];
+            // display only customer details, clear previous account details
+
+            require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.inc.php');
+
+            clearPreviousAccount();
+        }
+    } else if ($gotAccountNo) {
+        // A you provide an account number
+
+        // show account details, shows it's customers details
+        // echo "showing account details for " . $_POST["accountno"];
+        // echo "showing customer details for that account...";
+
+        require($_SERVER["DOCUMENT_ROOT"] . '/darian/accountDetails.inc.php');
+        if ($validAccount) {
+            require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.inc.php');
+        } else {
+            clearPreviousCustomer();
+        }
+    } else if ($gotCustomerId) {
+        // B you provide a customer no
+        // echo "showing customer details for " . $_POST["cid"];
+
+        // echo "clear previous account details";
+
+        require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.inc.php');
+
+        clearPreviousAccount();
+    } else {
+        // echo "clear previous customer and account details";
+
+        clearPreviousCustomer();
+        clearPreviousAccount();
+    }
+
+    // require($_SERVER["DOCUMENT_ROOT"] . '/darian/accountDetails.inc.php');
+    // if ($validAccount) {
+    //     require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.inc.php');
+    // }
+
+    //TODO idk if this works
+    // if (isset($_POST["confirmed"]) && $_POST["confirmed"] == "1" && $gotCustomerId && $gotAccountNo) {
+    //     // D you provide an account no and you confirm to close the account
+    //     // close account
+    //     echo $_POST["accountno"] . "account closed";
+    // }
+
+    //     if (!empty($_POST["accountno"]) && !empty($_POST["cid"]) && $_POST["confirmed"] == "1") {
+    // //        continue to close current account
+    // //             require("close.php");
+    //         ECHO "all details for closure receieved... closing";
+    //     } else if (!empty($_POST["accountno"]) && empty($_POST["cid"])) {
+    //         ECHO "account number, no customer id";
+    //         // query account details
+    //         require($_SERVER["DOCUMENT_ROOT"] . '/darian/accountDetails.inc.php');
+    //
+    //         if ($validAccount) {
+    //             require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.inc.php');
+    //
+    //             if (!$validId) {
+    //                 unset($_SESSION["address"]);
+    //                 unset($_SESSION["eircode"]);
+    //                 unset($_SESSION["dob"]);
+    //             }
+    //         } else {
+    //             unset($_SESSION["balance"]);
+    //             unset($_SESSION["overdraftLimit"]);
+    //         }
+    //     } else if (!empty($_POST["cid"]) && empty($_POST["accountno"])) {
+    //         ECHO "customer id, no account number";
+    // //        query customer details
+    //         require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.inc.php');
+    //
+    //         if (!$validId) {
+    //             unset($_SESSION["address"]);
+    //             unset($_SESSION["eircode"]);
+    //             unset($_SESSION["dob"]);
+    //         }
+    //     } else {
+    //         ECHO "default";
+    //         unset($_SESSION["balance"]);
+    //         unset($_SESSION["overdraftLimit"]);
+    //         unset($_SESSION["address"]);
+    //         unset($_SESSION["eircode"]);
+    //         unset($_SESSION["dob"]);
+    //     }
     ?>
-
-    <script>
-        // this code is a bit weird, I found it to be the best way to send server side php data to the client side javascript
-        // it encodes the PHP array into a JSON format,
-        // then the JS parses the JSON format into a JS array
-        // the JS array is then stored in a global variable
-        // this global variable is then referenced when the user selects a customer
-        let php = '<?php echo json_encode($_SESSION["accounts"]); ?>';
-        var accounts = JSON.parse(php);
-    </script>
     <main>
-        <form action="close.php" onsubmit="return confirmSubmit()" method="post">
+        <form action="./" onsubmit="return confirmSubmit()" method="post">
             <!-- the heading of the form -->
             <h2>Close Current Account</h2>
 
-            <!-- a div which groups the input box and it's label -->
-            <div class="inputbox">
-                <label for="cid">Customer number:</label>
-                <!-- the cid input box -->
-                <input type="number" name="cid" id="cid" placeholder="Customer number" onchange="inputCustomerCid(this)" value="<?php if (isset($_SESSION["cid"])) echo $_SESSION["cid"] ?>" min="0" step="1" required>
-            </div>
-
-            <!-- a div which groups the input box and it's label -->
-            <div class="inputbox">
-                <label for="name">Customer Name:</label>
-                <!-- the name select box -->
-                <select id="name" onchange="populate(this)" required>
-                    <option></option>
-                    <?php require('./listbox.php'); ?>
-                </select>
-            </div>
-
-            <!-- a div which groups the input box and it's label -->
-            <div class="inputbox">
-                <label for="address">Address:</label>
-                <!-- the address input box -->
-                <input type="text" name="address" id="address" placeholder="Address" disabled>
-            </div>
-
-            <!-- a div which groups the input box and it's label -->
-            <div class="inputbox">
-                <label for="eircode">Eircode:</label>
-                <!-- the eircode input box -->
-                <input type="text" name="eircode" id="eircode" placeholder="Eircode" disabled>
-            </div>
-
-            <!-- a div which groups the calendar and it's label -->
-            <div class="inputbox">
-                <label for="dob">Date of Birth:</label>
-                <!-- the dob calendar -->
-                <input type="date" name="dob" id="dob" disabled>
-            </div>
+            <!-- contains the labels and inputs for a customer -->
+            <?php require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.html.php') ?>
 
             <!-- a div which groups the input box and it's label -->
             <div class="inputbox">
                 <label for="accountno">Account number:</label>
                 <!-- the accountno input box -->
-                <input type="number" name="accountno" id="accountno" list="accounts" onchange="inputAccount(this)" placeholder="Account number">
+                <!-- TODO only display current accounts, currently displays deposit and current accounts -->
+                <!-- TODO allow getting the customer details just from entering the account number -->
+                <input type="number" name="accountno" id="accountno" list="accounts"
+                       value="<?php if (isset($_POST["accountno"])) echo $_POST["accountno"]; ?>"
+                       placeholder="Account number" onchange="inputAccount(this)" min="0" step="1" required>
                 <!-- this datalist is used to help prompt the user with a list of accounts that the customer has -->
-                <datalist id="accounts"><!-- filled by JS function --></datalist>
+                <datalist id="accounts">
+                    <?php require($_SERVER["DOCUMENT_ROOT"] . '/darian/accountList.php'); ?>
+                </datalist>
             </div>
 
             <!-- a div which groups the input box and it's label -->
             <div class="inputbox">
                 <label for="accountbal">Account balance:</label>
                 <!-- the accountbal input box -->
-                <input type="text" name="accountbal" id="accountbal" placeholder="Account balance" disabled>
+                <!-- TODO echo with debit 100/credit 100 NOT 100/-100 -->
+                <input type="text" name="accountbal" id="accountbal"
+                       value="<?php if (isset($_SESSION["balance"])) echo $_SESSION["balance"]; ?>"
+                       placeholder="Account balance" disabled>
             </div>
 
             <!-- a div which groups the input box and it's label -->
             <div class="inputbox">
                 <label for="overdraftlimit">Overdraft limit:</label>
                 <!-- the overdraftlimit input box -->
-                <input type="text" name="overdraftlimit" id="overdraftlimit" placeholder="Overdraft limit" disabled>
+                <input type="text" name="overdraftlimit" id="overdraftlimit"
+                       value="<?php if (isset($_SESSION["overdraftLimit"])) echo $_SESSION["overdraftLimit"]; ?>"
+                       placeholder="Overdraft limit" disabled>
             </div>
 
             <!-- a div which groups the buttons -->
             <div class="myButton">
                 <!-- the submit button -->
-                <input class="button" type="submit" value="Close current account" name="submit">
-                <!-- TODO cancel button doesn't clear the options in the accounts datalist -->
+                <input class="button" type="submit" value="Close current account">
+                <!-- TODO cancel button doesn't clear the options in the accounts datalist (or anything) -->
                 <!-- the reset button -->
-                <input class="button" type="reset" value="Cancel" name="reset">
+                <input class="button" type="reset" value="Cancel" onclick="cancel()">
             </div>
+
+            <input type="hidden" name="confirmed" id="confirmed" value="0">
 
             <!-- paragraph that will be used to display a message to the user after submitting the form -->
             <p class="display">
@@ -131,6 +231,14 @@ Close Current Account -->
                 // clears the message afterward
                 unset($_SESSION["message"]); ?></p>
         </form>
+
+        <!-- paragraph that will be used to display an error to the user after submitting the form -->
+        <p class="errorDisplay">
+            <?php
+            // checks if there is an error and displays it
+            if (isset($_SESSION["errorMsg"])) echo $_SESSION["errorMsg"];
+            // clears the error afterward
+            unset($_SESSION["errorMsg"]); ?></p>
     </main>
 </body>
 
