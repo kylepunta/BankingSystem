@@ -17,25 +17,26 @@ $overdraftlimit = floatval($_POST["overdraftlimit"]);
 $initbal = floatval($_POST["initbal"]);
 
 if ($overdraftlimit < 0) {
-//    error
+    // error
     $_SESSION["errorMsg"] .= "Overdraft limit of $_POST[overdraftlimit] is less than 0. It must be greater than 0!<br>";
 }
 
 if ($initbal < 0) {
-//    error
+    // error
     $_SESSION["errorMsg"] .= "Initial deposit of $_POST[initbal] is less than 0. It must be greater than 0!<br>";
 }
 
-//check that valid customer id was POSTed
+// check that valid customer id was POSTed
 $sql = "SELECT customerNo FROM Customer WHERE customerNo = $_POST[cid] AND deletedFlag = 0";
 if (!$result = mysqli_query($con, $sql)) {
     die("Error in querying the database " . mysqli_error($con));
 }
 if (mysqli_num_rows($result) != 1) {
-//    error
+    // error
     $_SESSION["errorMsg"] .= "No record found for customer number: $_POST[cid]<br>";
 }
 
+// checks that there are no error messages
 if (empty($_SESSION["errorMsg"])) {
 // creates the new current account
     $sql1 = "INSERT INTO `Current Account` (accountNumber, balance, overdraftLimit)

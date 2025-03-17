@@ -13,22 +13,28 @@ date_default_timezone_set("UTC");
 // gets the accountNo
 $accountNo = $_POST["accountno"];
 
+// gets the balance on the account
 $sql = "SELECT `balance` FROM `Current Account` WHERE accountNumber = $accountNo";
 
 if (!$result = mysqli_query($con, $sql)) {
     die("Error in querying the database " . mysqli_error($con));
 }
+// checks that only one account was queried
 if (mysqli_num_rows($result) != 1) {
-//    error
+    // error
     $_SESSION["errorMsg"] .= "No record found for account number: $accountNo<br>";
 } else {
+    // gets the balance on the account
     $balance = mysqli_fetch_array($result)["balance"];
+
+    // checks that the account balance is 0
     if ($balance != 0) {
         // error
-        $_SESSION["errorMsg"] .= "Balance for account number: $accountNo is $balance.<br>It must be 0 before the account can be closed.<br>";
+        $_SESSION["errorMsg"] .= "Balance for account number: $accountNo is: $balance.<br>It must be 0 before the account can be closed.<br>";
     }
 }
 
+// checks that there are no error messages
 if (empty($_SESSION["errorMsg"])) {
     // marks the current account for deletion
     $sql1 = "UPDATE `Current Account` SET deletedFlag = 1 WHERE accountNumber = $accountNo";
