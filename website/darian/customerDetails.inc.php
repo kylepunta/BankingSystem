@@ -10,7 +10,8 @@ global $validId;
 
 $validId = false;
 
-$sql = "SELECT customerNo, firstName, surName, address, eircode, dateOfBirth FROM Customer WHERE customerNo = $_POST[cid] AND deletedFlag = 0";
+$sql = "SELECT customerNo, firstName, surName, address, eircode, dateOfBirth FROM Customer
+WHERE deletedFlag = false AND Customer.customerNo = " . (!empty($_POST["cid"]) ? "$_POST[cid]" : "0");
 
 if (!$result = mysqli_query($con, $sql)) {
     die("Error in querying the database " . mysqli_error($con));
