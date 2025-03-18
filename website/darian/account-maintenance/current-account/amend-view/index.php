@@ -185,9 +185,9 @@ WHERE `accountNumber` = '$_POST[accountno]' AND `customerNo` = '$_POST[cid]'";
 
         $sql = "SELECT date, transactionType, amount, `Current Account History`.balance
 FROM `Current Account History`
-INNER JOIN `Current Account` ON `Current Account History`.accountId = `Current Account`.accountId" . (
-            !empty($_POST["accountno"]) ? " WHERE accountNumber = $_POST[accountno] " : " ")
-            . "ORDER BY `Current Account History`.accountId, date DESC, transactionId DESC";
+INNER JOIN `Current Account` ON `Current Account History`.accountId = `Current Account`.accountId
+WHERE deletedFlag = 0 AND accountNumber =" . (!empty($_POST["accountno"]) ? "$_POST[accountno]" : "0") . "
+ORDER BY `Current Account History`.accountId, date DESC, transactionId DESC";
 
         // checks that the sql query was successful
         if (!$result = mysqli_query($con, $sql)) {
