@@ -1,7 +1,15 @@
+/* Names: Kyle Purcell, Brandon Jaroszczak, Darian Byrne
+Note: this page was made about 45% Kyle, 45% Brandon, 10% Darian
+Due to the very mixed contributions it is impossible to determine exactly who contributed to which line of code
+Month: February/March 2025
+Purpose: Common CSS styles used by the sidemenu and every webpage in the project */
+
+/* CSS constants */
 :root {
     --sidebar-bg-color: #78569F;
 }
 
+/* Style every element */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -10,21 +18,25 @@
     font-size: 1rem;
 }
 
+/* Style HTML and body with a height of 100 */
 html, body {
     height: 100%;
 }
 
+/* Style main body layout */
 body {
     display: grid;
     grid-template-columns: auto 4fr;
 }
 
+/* Style all elements in sidenav */
 .sidenav * {
     font-family: 'poppins';
     color: white;
     text-decoration: none;
 }
 
+/* Style the sidenav itself */
 .sidenav {
     width: 330px;
     display: flex;
@@ -33,16 +45,19 @@ body {
     padding-bottom: 20px;
 }
 
+/* Style all elements in sidenav */
 .sidenav ul {
     padding: 0px 20px 0px 20px;
 }
 
+/* Style all h2 in sidenav */
 .sidenav h2, .sidenav h2 a{
     font-size: 32px;
     text-align: center;
     padding: 30px 0px 10px 0px;
 }
 
+/* Style all buttons in sidenav */
 .sidenav button {
     background-color: var(--sidebar-bg-color);
     border: none;
@@ -51,65 +66,79 @@ body {
     justify-content: space-between;
 }
 
+/* Style all divs inside of all buttons in sidenav */
 .sidenav button > div{
     font-weight: bold;
 }
 
+/* Style the hover inside of sidenav buttons */
 .sidenav button:hover {
     cursor: pointer;
     opacity: 0.8;
 }
 
+/* Style all li elements in sidenav */
 .sidenav li {
     padding-top: 20px;
     display: flex;
 }
 
+/* Style all links in sidenav */
 .sidenav > ul > li > a {
     font-weight: bold;
 }
 
+/* Style all li with class dropdown */
 li.dropdown {
     flex-direction: column;
 }
 
+/* Style the imported arrow element class */
 .arrow {
     transform: rotate(180deg);
 }
 
+/* Style the imported arrow element */
 .material-symbols-outlined {
     transition-duration: 0.5s;
 }
 
+/* Style the imported arrow element hover */
 .material-symbols-outlined:hover {
     cursor: pointer;
 }
 
+/* Style a elements that are active */
 a.active {
     color: #250066
 }
 
+/* Style all a elements when hovered on */
 a:hover {
     opacity: 0.8;
 }
 
+/* Style all hidden class uls inside of dropdown class elements */
 .dropdown ul.hidden {
     overflow: hidden;
     transition: max-height 0.5s ease-in-out;
     transition-behavior: allow-discrete;
 }
 
+/* Style all uls inside of dropdown class elements */
 .dropdown ul{
     transition: max-height 0.5s ease-in-out;
     transition-behavior: allow-discrete;
 }
 
+/* Style h1 */
 h1 {
     text-align: center;
     font-size: 2.5em;
     margin: 20px 0;
 }
 
+/* Style all forms that are not class close-window */
 form:not(.close-window) {
     margin-left: auto;
     margin-right: auto;
@@ -118,16 +147,19 @@ form:not(.close-window) {
     max-width: 1000px;
 }
 
+/* Style the inputbox class */
 .inputbox {
     display: flex;
     padding: 5px 10px;
 }
 
+/* Style all labels in the inputbox class */
 .inputbox > label {
     font-size: 1.4em;
     width: 200px;
 }
 
+/* Style all inputs and selects in the inputbox class */
 .inputbox > input, select {
     flex-grow: 1;
     margin-left: 20px;
@@ -137,22 +169,26 @@ form:not(.close-window) {
     outline: none;
 }
 
+/* Style all inputs and selects focus in the inputbox class */
 .inputbox > input:focus, select:focus {
     outline: solid black 1px;
 } 
 
+/* Style all h2 elements in form */
 form > h2 {
     font-size: 1.6em;
     text-align: center;
     margin: 10px 0px;
 }
 
+/* Style elements with the buttons class */
 .buttons {
     display: flex;
     justify-content: space-evenly;
     margin-bottom: 10px;
 }
 
+/* Style all inputs inside the buttons class element */
 .buttons > input {
     padding: 4px 40px;
     border: 1px solid gray;

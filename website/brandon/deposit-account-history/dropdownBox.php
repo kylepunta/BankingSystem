@@ -1,8 +1,14 @@
+<!-- Name: Brandon Jaroszczak -->
+<!-- Student ID: C00296052 -->
+<!-- Month: March 2025 -->
+<!-- Purpose: dropdown box for deposit account history -->
 <?php 
+    // Load in session and DB connect file
 	session_start();
     require '../../db.inc.php'; // database connection
     date_default_timezone_set('UTC');
 
+    // SQL query to select all non deleted customers and their non deleted deposit accounts 
     $sql = "SELECT firstName, surName, Customer.customerNo, accountNumber, balance 
     FROM (Customer INNER JOIN `Customer/Deposit Account` ON Customer.customerNo = `Customer/Deposit Account`.`customerNo`) 
     INNER JOIN `Deposit Account` ON `Customer/Deposit Account`.`accountID` = `Deposit Account`.`accountID` 
@@ -12,6 +18,8 @@
         die ('Error in querying the database ' . mysqli_error($con));
     }
 
+    // if the value of selected customer/account is not null then store it in the variable, otherwise store empty string
+    // ?? means if $_SESSION is null or doesn't exist then result will be ''
 	$selectedCustomer = $_SESSION['historycustNumber'] ?? ''; // Retrieve stored number or empty string
     $selectedAccount = $_SESSION['historyaccNumber'] ?? '';
     echo "<select name='listbox' id='listbox' onchange='populate()'>";
@@ -24,10 +32,12 @@
         $allText = "$customerNo ¬$fullName ¬$accountNumber"; 
 		
 		// Check if the current customer should be selected
+        // If both statements are true then use the value beside the ? otherwise use the value beside : (ternary operator)
     	$selected = (($customerNo == $selectedCustomer) && ($accountNumber == $selectedAccount)) ? "selected" : "";
 		
         echo "<option value='$allText' $selected>$fullName: $accountNumber</option>";
     }
     echo "</select>";
+    // close connection
     mysqli_close($con);
 ?>

@@ -2,8 +2,8 @@
 /*
 Student Name 	: Darian Byrne
 Student Id Number: C00296036
-Date 			: 13/02/2025
-Open Current Account */
+Date 			: 10/03/2025
+Withdrawals */
 
 include $_SERVER["DOCUMENT_ROOT"] . '/db.inc.php';
 date_default_timezone_set("UTC");

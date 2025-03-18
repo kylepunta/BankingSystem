@@ -1,3 +1,7 @@
+<!-- Name: Brandon Jaroszczak -->
+<!-- Student ID: C00296052 -->
+<!-- Month: March 2025 -->
+<!-- Purpose: main HTML page for close deposit account -->
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -5,19 +9,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Close Deposit Account</title>
+    <!-- Import head styles using PHP -->
     <?php require('../../head.html') ?>
+    <!-- Styles and script used by this page -->
     <link rel="stylesheet" href="../brandonStyles.css">
     <script src="./script.js"></script>
 </head>
+<!-- Run the populate() function when page loads -->
 <body onload="populate()">
+    <!-- Load sidemenu using PHP -->
 	<?php require('../../sideMenu.html'); ?>
     <main>
+        <!-- Main form element -->
         <form action="processForm.php" method="post" id="customerDetailsForm" onsubmit="return submitCheck()">
             <h1>Close a deposit account</h1>
             <div class="inputbox">
                 <label>Choose an account:</label>
+                <!-- Load in dropdown using PHP -->
                 <?php require('./dropdownBox.php') ?>
-            </div>  
+            </div>
+            <!-- 2 inputfields to manually enter customer and account numbers, with validation to only allow digits -->
             <div class="inputbox">
                 <label for="custNumber">Customer number:</label>
                 <input type="text" name="custNumber" id="custNumber" required pattern="[0-9]+" title="Must enter a whole number" value="<?php if (ISSET($_SESSION['closecustNumber'])) echo $_SESSION['closecustNumber'] ?>"/>
@@ -27,8 +38,10 @@
                 <input type="text" name="accNumber" id="accNumber" required pattern="[0-9]+" title="Must enter a whole number" value="<?php if (ISSET($_SESSION['closeaccNumber'])) echo $_SESSION['closeaccNumber'] ?>"/>
             </div>
             <div class="buttons">
+                <!-- Submit button to manually check customer details -->
                 <input type="submit" value="Check details" id="chooseCustomerButton" name="checkDetails">
             </div>
+            <!-- Fields for the other customer details automatically populated with javascript or PHP -->
             <div class="inputbox">
                 <label for="name">Customer name:</label>
                 <input type="text" name="name" id="name" readonly required value="<?php if (ISSET($_SESSION['closename'])) echo $_SESSION['closename'] ?>"/>
@@ -49,15 +62,19 @@
                 <label for="balance">Balance:</label>
                 <input type="text" name="balance" id="balance" readonly required value="<?php if (ISSET($_SESSION['closebalance'])) echo $_SESSION['closebalance'] ?>"/>
             </div>
+            <!-- p element used to store the "Balance is too high" message -->
             <p id="message"></p>
             <div class="buttons">
+                <!-- Submit button to close the account, disabled by default unless balance = 0 -->
                 <input type="submit" value="Close account" id="deleteCustomer" name="deleteCustomer" disabled>
             </div>
         </form>
+        <!-- PHP to display error message if manually entered account details are incorrect -->
 		<?php 
             if (!ISSET($_SESSION['closename']) and ISSET($_SESSION['closecustNumber'])) {
-                echo '<p style="color: red; text-align: center; font-size: 20">No account found with customer no: '. $_SESSION['closecustNumber'] .' and account no: '. $_SESSION['closeaccNumber'] .'!<br>Please try again!</p>';
+                echo '<p id="errorMessage">No account found with customer no: '. $_SESSION['closecustNumber'] .' and account no: '. $_SESSION['closeaccNumber'] .'!<br>Please try again!</p>';
             }
+            // Destroy session after displaying error
             session_destroy();
         ?>
     </main>

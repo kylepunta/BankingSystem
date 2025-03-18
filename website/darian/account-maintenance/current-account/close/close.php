@@ -6,26 +6,54 @@ Date 			: 03/03/2025
 Close Current Account */
 // start a session
 session_start();
-// TODO could this entire thing just self submit into index.php?
-include $_SERVER["DOCUMENT_ROOT"] . '/db.inc.php';
+require($_SERVER["DOCUMENT_ROOT"] . '/db.inc.php');
+global $con;
 date_default_timezone_set("UTC");
 
-// marks the current account for deletion
-$sql1 = "UPDATE `Current Account` SET deletedFlag = 1 WHERE accountNumber = $_POST[accountno];";
+// gets the accountNo
+$accountNo = $_POST["accountno"];
 
-// checks that the sql query was successful
-if (!mysqli_query($con, $sql1)) {
-    // displays the error that caused the query to fail
-    // exits the script
-    die("An error in the SQL Query1: " . mysqli_error($con));
+// gets the balance on the account
+$sql = "SELECT `balance` FROM `Current Account` WHERE accountNumber = $accountNo";
+
+if (!$result = mysqli_query($con, $sql)) {
+    die("Error in querying the database " . mysqli_error($con));
+}
+// checks that only one account was queried
+if (mysqli_num_rows($result) != 1) {
+    // error
+    $_SESSION["errorMsg"] .= "No record found for account number: $accountNo<br>";
+} else {
+    // gets the balance on the account
+    $balance = mysqli_fetch_array($result)["balance"];
+
+    // checks that the account balance is 0
+    if ($balance != 0) {
+        // error
+        $_SESSION["errorMsg"] .= "Balance for account number: $accountNo is: $balance.<br>It must be 0 before the account can be closed.<br>";
+    }
 }
 
-// sets the message to show to the user
-$_SESSION["message"] = "Current account closed with account number: " . $_POST["accountno"];
+// checks that there are no error messages
+if (empty($_SESSION["errorMsg"])) {
+    // marks the current account for deletion
+    $sql1 = "UPDATE `Current Account` SET deletedFlag = 1 WHERE accountNumber = $accountNo";
 
-// TODO do I have to close the connection beefore this?
-// sends the user back to the form
-header("Location: ./");
+    // checks that the sql query was successful
+    if (!mysqli_query($con, $sql1)) {
+        // displays the error that caused the query to fail
+        // exits the script
+        die("An error in the SQL Query1: " . mysqli_error($con));
+    }
+
+    // cleanup
+    session_unset();
+    unset($_POST["cid"]);
+    unset($_POST["accountno"]);
+
+    // sets the message to show to the user
+    $_SESSION["message"] = "Current account closed with account number: " . $accountNo;
+}
 
 // closes the connection
 mysqli_close($con);

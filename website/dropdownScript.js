@@ -1,88 +1,95 @@
+// Authors: group work (Brandon Jaroszczak and Darian Byrne)
+// First half entirely done by Brandon Jaroszczak (refactored and improved from original non-working code by Kyle Purcell)
+// Second half entirely done by Darian Byrne
+// Purpose: javascript for the dropdown menu animations and related functions
+
+// This section done by Brandon Jaroszczak with help from Kyle Purcell
+// Gets all uls and dropdowns
 const uls = document.querySelectorAll(".dropdown > ul");
 const dropdowns = document.querySelectorAll(".dropdown");
 
+// For each ul make it hidden
 uls.forEach((ul) => {
     ul.style.maxHeight = '0px';
     ul.classList.toggle("hidden");
 });
-let leveltwos = 1;
-const doubleSize = 182.4;
 
+// global leveltwos variable
+let leveltwos = 0;
+
+// for each dropdown button run this function
 dropdowns.forEach((dropdown) => {
+    // expanded = false
     let expanded = false;
+    // add an onclick event listener to each dropdown button
     dropdown.addEventListener("click", (event) => {
         // Prevent event from bubbling up and affecting parent dropdowns
         event.stopPropagation();
 
-        const li = dropdown.querySelectorAll("li");
-
-        let totalHeight = 0;
-        li.forEach((l) => {
-            totalHeight = totalHeight + parseFloat(getComputedStyle(l).paddingTop) + (parseFloat(getComputedStyle(l).fontSize) * 1.6);
-        });
-
-        const mgm = dropdown.querySelector(".management");
-        if (mgm != null) {
-            totalHeight = totalHeight * 1.6;
-        }
-
-        const dd = dropdown.querySelector(".double");
-        if (dd != null) {
-            totalHeight = totalHeight / 3 * leveltwos;
-        }
-
+        // get does this dropdown contain or is this dropdown a level2
         const l2 = dropdown.querySelector(".leveltwo");
         if (l2 != null) {
-            const parent = l2.parentElement.parentElement;
-            if (!expanded) {
-                leveltwos++;
-            } else {
-                leveltwos--;
-            }
-            parent.style.maxHeight = doubleSize * leveltwos + 'px';
+            // if level2 dropdowns found increase or decrease amount of them showing by checking is it expanded or not
+            leveltwos += expanded ? -1 : 1;
+            // change the parent dropdown height to accomodate for the extra height of the level2 dropdown
+            l2.parentElement.parentElement.style.maxHeight = l2.scrollHeight * leveltwos + 'px';
         }
 
+        // get the ul element of the currently clicked dropdown
         const ul = dropdown.querySelector("ul");
+
+        // if it's not expanded, then expand it
         if (!expanded) {
-            ul.style.maxHeight = totalHeight + 'px';
+            // get the total height of the elements and apply it as the ul maxheight
+            ul.style.maxHeight = dropdown.querySelector("ul").scrollHeight + 'px';
+
+            // wait for the animation to finish to prevent visual glitches
             ul.addEventListener("transitionend", () => {
                 ul.classList.toggle("hidden");
             }, { once: true });
         } else {
+            // if it's expanded, then hide it
             ul.style.maxHeight = '0px';
             ul.classList.toggle("hidden");
         }
+        // toggle the expanded variable
         expanded = !expanded;
 
-        const button = dropdown.querySelector(".material-symbols-outlined");
-        button.classList.toggle("arrow");
+        // get the button arrow and toggle it up or down facing
+        dropdown.querySelector(".material-symbols-outlined").classList.toggle("arrow");
     });
 });
 
+// This section done by Darian Byrne
 window.addEventListener("load", () => {
     const sidenav = document.querySelector(".sidenav");
     const anchors = sidenav.querySelectorAll("a");
-    // loops through every anchor on the sidenav
-    anchors.forEach((anchor) => {
-        // checks if the href of the anchor is the same as the current page
-        if ((window.location.href === anchor.href)) {
-            // adds the active class
-            anchor.classList.add("active");
 
-            // continues to expand the dropdown for it
-            const dropdown = anchor.parentElement.parentElement.parentElement;
-            // checks if it is a dropdown
-            if (dropdown.classList.contains("dropdown")) {
-                // continues to expand the double dropdown for it
-                const doubleDropdown = dropdown.parentElement.parentElement;
-                // checks if it is a double dropdown
-                if (doubleDropdown.classList.contains("dropdown")) {
-                    // expand the double dropdown
-                    doubleDropdown.click();
-                }
-                // expand the dropdown
-                dropdown.click();
-            }
+    // loops through every anchor on the sidenav
+    let i = 0;
+    // checks if the href of the anchor is the same as the current page
+    // continue looping if it's not
+    while (i < anchors.length && (window.location.href !== anchors[i].href)) {
+        i++
+    }
+    // if we got to the end of all the anchors, return because there is no matching href
+    if (i >= anchors.length) return;
+
+    // adds the active class
+    anchors[i].classList.add("active");
+
+    // continues to expand the dropdown for it
+    const dropdown = anchors[i].parentElement.parentElement.parentElement;
+    // checks if it is a dropdown
+    if (dropdown.classList.contains("dropdown")) {
+        // continues to expand the double dropdown for it
+        const doubleDropdown = dropdown.parentElement.parentElement;
+        // checks if it is a double dropdown
+        if (doubleDropdown.classList.contains("dropdown")) {
+            // expand the double dropdown
+            doubleDropdown.click();
         }
-    })
+        // expand the dropdown
+        dropdown.click();
+    }
 });

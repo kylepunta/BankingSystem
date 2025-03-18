@@ -1,3 +1,5 @@
+<!-- Name: Group work -->
+<!-- Purpose: DB inc file to connect to database used by all php pages -->
 <?php
 $hostname = "localhost";
 $username = "bankDB";
