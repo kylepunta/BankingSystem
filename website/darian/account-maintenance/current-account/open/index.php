@@ -68,7 +68,7 @@ if (!empty($_POST["cid"])) {
             <label for="overdraftlimit">Overdraft limit:</label>
             <!-- the overdraftlimit input box -->
             <input type="number" name="overdraftlimit" id="overdraftlimit" placeholder="Overdraft limit"
-                   title="0 for no limit" min="0" step="0.01" required>
+                   title="0 for no overdraft" min="0" step="0.01" required>
         </div>
 
         <!-- a div which groups the input box and it's label -->

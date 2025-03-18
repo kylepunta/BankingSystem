@@ -43,8 +43,7 @@ $gotCustomerId = !empty($_POST["cid"]);
 
 // now check if the account is to be amended
 if (!empty($_POST["confirmed"]) && $gotCustomerId && $gotAccountNo) {
-    // require("amend-view.php");
-    echo "amend";
+    require("amend-view.php");
 } else if ($gotAccountNo && $gotCustomerId) {
     // user entered both account number and customerId
     require($_SERVER["DOCUMENT_ROOT"] . '/db.inc.php');
@@ -141,15 +140,15 @@ WHERE `accountNumber` = '$_POST[accountno]' AND `customerNo` = '$_POST[cid]'";
         <div class="inputbox">
             <label for="overdraftlimit">Overdraft limit:</label>
             <!-- the overdraftlimit input box -->
-            <input type="text" name="overdraftlimit" id="overdraftlimit"
+            <input type="number" name="overdraftlimit" id="overdraftlimit"
                    value="<?php if (isset($_SESSION["overdraftLimit"])) echo $_SESSION["overdraftLimit"]; ?>"
-                   placeholder="Overdraft limit" disabled>
+                   placeholder="Overdraft limit" title="0 for no overdraft" min="0" step="0.01" required disabled>
         </div>
 
         <!-- a div which groups the buttons -->
         <div class="myButton">
             <!-- the submit button -->
-            <input class="button" type="submit" value="Save current account details" name="submit">
+            <input class="button" type="submit" value="Save current account details">
             <!-- the reset button -->
             <!-- TODO needs to work with amend/view state -->
             <input class="button" type="reset" value="Cancel" onclick="cancel()">
@@ -181,20 +180,37 @@ WHERE `accountNumber` = '$_POST[accountno]' AND `customerNo` = '$_POST[cid]'";
     <!-- table of last 10 transactions -->
     <table id="transactions">
         <?php /* TODO require code for querying the transaction if an account is selected */
+
+        include $_SERVER["DOCUMENT_ROOT"] . '/db.inc.php';
+
+        $sql = "SELECT date, transactionType, amount, `Current Account History`.balance
+FROM `Current Account History`
+INNER JOIN `Current Account` ON `Current Account History`.accountId = `Current Account`.accountId" . (
+            !empty($_POST["accountno"]) ? " WHERE accountNumber = $_POST[accountno] " : " ")
+            . "ORDER BY `Current Account History`.accountId, date DESC, transactionId DESC";
+
+        // checks that the sql query was successful
+        if (!$result = mysqli_query($con, $sql)) {
+            // displays the error that caused the query to fail
+            // exits the script
+            die("An error in the SQL Query: " . mysqli_error($con));
+        }
+
         // string that will be used to store the transactions
         echo "<tr><th>Date</th><th>Type</th><th>Amount</th><th>Balance</th></tr>";
 
         $i = 0;
-        while ($i < 10 && mysqli_next_result($con)) {
+        while ($i < 10 && $row = mysqli_fetch_array($result)) {
             // TODO is this how catherine did it?
-            $row = mysqli_fetch_array($con);
             $date = $row["date"];
-            $type = $row["type"];
+            $type = $row["transactionType"];
             $amount = $row["amount"];
             $balance = $row["balance"];
             echo "<tr><td>$date</td><td>$type</td><td>$amount</td><td>$balance</td></tr>";
             $i++;
-        } ?>
+        }
+
+        mysqli_close($con); ?>
     </table>
 </main>
 </body>
