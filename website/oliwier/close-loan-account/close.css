@@ -36,7 +36,7 @@ Title: close loan account css
   /* slight rounded border */
   border-radius: 8px !important;
   /* horizontal padding */
-  padding: 0 8px !important;
+  padding: 4px 8px !important;
 }
 
 /* inputs of id submit when disabled */
