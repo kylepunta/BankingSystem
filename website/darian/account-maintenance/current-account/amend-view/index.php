@@ -10,7 +10,7 @@ global $validAccount;
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<!-- TODO allow entry by account number which populates the customer details -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,12 +93,6 @@ WHERE `accountNumber` = '$_POST[accountno]' AND `customerNo` = '$_POST[cid]'";
     clearPreviousCustomer();
     clearPreviousAccount();
 }
-
-// // TODO sql for transaction history
-// $sql = "SELECT accountNumber, date, transactionType, amount, `Current Account History`.balance
-// FROM `Current Account History`
-// INNER JOIN `Current Account` ON `Current Account History`.accountId = `Current Account`.accountId
-// ORDER BY `Current Account History`.accountId, date DESC, transactionId DESC";
 ?>
 <main>
     <form action="./" onsubmit="return confirmSubmit()" method="post">
@@ -150,7 +144,6 @@ WHERE `accountNumber` = '$_POST[accountno]' AND `customerNo` = '$_POST[cid]'";
             <!-- the submit button -->
             <input class="button" type="submit" value="Save current account details">
             <!-- the reset button -->
-            <!-- TODO needs to work with amend/view state -->
             <input class="button" type="reset" value="Cancel" onclick="cancel()">
         </div>
 
