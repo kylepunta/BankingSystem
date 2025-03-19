@@ -73,3 +73,44 @@ form {
     /* centres the text */
     text-align: center;
 }
+
+/* styles the heading on the main content of the page */
+main > h2 {
+    /* add some spacing around the heading */
+    margin-top: 2em;
+    margin-bottom: 1em;
+    text-align: center;
+    /* same font size as form */
+    font-size: 1.6em;
+}
+
+/* styles a table */
+table {
+    /* same widths as the form */
+    min-width: 600px;
+    width: 60%;
+    max-width: 1000px;
+    /* centres the table */
+    margin: auto;
+    /* background colour for the table */
+    background-color: #e7caf7;
+    /* border for the table */
+    border: solid #78569F 2px;
+    border-spacing: 0;
+    border-radius: 16px;
+}
+
+/* styles all cells in a table */
+th, td {
+    /* spaces out the cells and aligns them nicely */
+    padding: 4px 24px;
+    text-align: center;
+    /* border in between the cells */
+    border-left: solid black 1px;
+}
+
+/* styles the first cells in a table row */
+th:first-child, td:first-child {
+    /* the first cell doesnt have a neighbor on it's left */
+    border-left: none;
+}

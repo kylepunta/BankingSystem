@@ -179,38 +179,8 @@ WHERE `accountNumber` = '$_POST[accountno]' AND `customerNo` = '$_POST[cid]'";
     <h2>Last 10 transactions</h2>
     <!-- table of last 10 transactions -->
     <table id="transactions">
-        <?php /* TODO require code for querying the transaction if an account is selected */
-
-        include $_SERVER["DOCUMENT_ROOT"] . '/db.inc.php';
-
-        $sql = "SELECT date, transactionType, amount, `Current Account History`.balance
-FROM `Current Account History`
-INNER JOIN `Current Account` ON `Current Account History`.accountId = `Current Account`.accountId
-WHERE deletedFlag = 0 AND accountNumber =" . (!empty($_POST["accountno"]) ? "$_POST[accountno]" : "0") . "
-ORDER BY `Current Account History`.accountId, date DESC, transactionId DESC";
-
-        // checks that the sql query was successful
-        if (!$result = mysqli_query($con, $sql)) {
-            // displays the error that caused the query to fail
-            // exits the script
-            die("An error in the SQL Query: " . mysqli_error($con));
-        }
-
-        // string that will be used to store the transactions
-        echo "<tr><th>Date</th><th>Type</th><th>Amount</th><th>Balance</th></tr>";
-
-        $i = 0;
-        while ($i < 10 && $row = mysqli_fetch_array($result)) {
-            // TODO is this how catherine did it?
-            $date = $row["date"];
-            $type = $row["transactionType"];
-            $amount = $row["amount"];
-            $balance = $row["balance"];
-            echo "<tr><td>$date</td><td>$type</td><td>$amount</td><td>$balance</td></tr>";
-            $i++;
-        }
-
-        mysqli_close($con); ?>
+        <!-- queries the transactions for the current account -->
+        <?php require($_SERVER["DOCUMENT_ROOT"] . '/darian/currentAccountTransactions.php'); ?>
     </table>
 </main>
 </body>

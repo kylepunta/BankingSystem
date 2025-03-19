@@ -17,7 +17,9 @@ $accountNo = $_POST["accountno"];
 $sql = "SELECT `balance` FROM `Current Account` WHERE accountNumber = $accountNo";
 
 if (!$result = mysqli_query($con, $sql)) {
-    die("Error in querying the database " . mysqli_error($con));
+    // displays the error that caused the query to fail
+    // exits the script
+    die("An error in the SQL Query: " . mysqli_error($con));
 }
 // checks that only one account was queried
 if (mysqli_num_rows($result) != 1) {
