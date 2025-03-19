@@ -41,9 +41,11 @@ mysqli_close($con);
 session_destroy();      // destroy the session
 UNSET($_SESSION);       // unset the session
 ?>
-
+<main>
 <!-- form to send you back to the submit page -->
 <form action = "index.php" method = "POST" >
     <br>
     <input type="submit" value = "Return to delete Page"/>
 </form>
+</main>
+

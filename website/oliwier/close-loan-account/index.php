@@ -105,7 +105,7 @@
         <!-- the text changes depending on the value of the session var 'name' -->
         <div class="inputbox">
             <label for="custName">Customer name </label>
-            <select name='listbox' id ='listbox' onclick ="return populate()" value="<?php if (ISSET($_SESSION['name']) ) echo $_SESSION['name']?>">
+            <select name='listbox' id ='listbox' onclick ="return populate()" value="<?php if (ISSET($_SESSION['closeloanname']) ) echo $_SESSION['closeloanname']?>">
                 <?php include "listbox.php" ?>
             </select>
         </div>
@@ -182,7 +182,7 @@
     <!-- php section -->
     <?php
         // if firstname and personid are unset after the query was made print the error message
-        if (!ISSET($_SESSION['name']) and ISSET($_SESSION['customerID'])) {
+        if (!ISSET($_SESSION['closeloanname']) and ISSET($_SESSION['customerID'])) {
         
             echo '<p style="color: red; text-align: center; font-size:20">
             No record found for a customer with id :' . $_SESSION['customerID'] .' and account number : ' . $_SESSION['closeAccountNumber'] . ' <br> Please try again!

@@ -36,7 +36,7 @@ if ($rowcount == 1) {
 
     // set all session variables as the fetched values from the table
     $_SESSION['customerID']=$row['customerNo']; 
-    $_SESSION['name']=$row['firstName'];
+    $_SESSION['closeloanname']=$row['firstName'];
     $_SESSION['address']=$row['address'];
     $_SESSION['eircode']=$row['eircode']; 
     $_SESSION['dob']=$row['dateOfBirth'];
@@ -47,7 +47,7 @@ if ($rowcount == 1) {
     
 }
 else if ($rowcount == 0) {  // if no record found unset all session variables
-    unset ($_SESSION['name']); 
+    unset ($_SESSION['closeloanname']); 
     unset ($_SESSION['dob']);
     unset ($_SESSION['address']);
     unset ($_SESSION['eircode']);

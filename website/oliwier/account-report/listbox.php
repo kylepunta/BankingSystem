@@ -20,7 +20,7 @@ if (!$result = mysqli_query($con, $sql)) {
 }
 
 // if customerId is not null, get the value, otherwise set it to empty string
-$selectedCust = $_SESSION['customerID'] ?? '';
+$selectedCust = $_SESSION['reportcustomerID'] ?? '';
 
 // create dropdown 
 echo "<option value='placeholder'>Select a customer</option>";

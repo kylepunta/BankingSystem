@@ -18,7 +18,9 @@ session_start();        // start session
 </head>
 <?php
 require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
-
+?>
+<main>
+<?php
 include 'db.inc.php';      // include db connection file
 date_default_timezone_set("UTC");       // set default timezone
 echo "The details sent down are: <br>";     
@@ -50,3 +52,4 @@ UNSET($_SESSION);       // unset the session
     <br>
     <input type="submit" value = "Return to amend Page"/>
 </form>
+</main>

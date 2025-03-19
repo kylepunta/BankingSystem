@@ -22,7 +22,7 @@ Purpose : Main page for account report
     <!-- css file -->
     <link rel="stylesheet" href="accountRep.css">
     <!-- javascript file -->
-    <script src="./script.js"></script>
+    <script src="script.js"></script>
 </head>
 
 <!-- body of file -->
@@ -35,10 +35,10 @@ Purpose : Main page for account report
     // this is done beforehand so the the values are set before the table is created
     if (isset($_POST['viewAccounts'])) {
         // set the session variables
-        $_SESSION['customerID'] = $_POST['custID'];
-        $_SESSION['address'] = $_POST['address'];
-        $_SESSION['dob'] = $_POST['dob'];
-        $_SESSION['phone'] = $_POST['phone'];
+        $_SESSION['reportcustomerID'] = $_POST['custID'];
+        $_SESSION['reportaddress'] = $_POST['address'];
+        $_SESSION['reportdob'] = $_POST['dob'];
+        $_SESSION['reportphone'] = $_POST['phone'];
     }
     ?>
 
@@ -47,13 +47,13 @@ Purpose : Main page for account report
         <!-- div for the form -->
         <div class="theForm">
             <h1>Account Report</h1>
-            <form id="mainForm" action="index.php" method="post" onsubmit="return uncheckID()">
+            <form id="mainForm" action="./" method="post" onsubmit="return uncheckID()">
                 <!-- box for customer name -->
                 <!-- the text changes depending on the value of the session var 'name' -->
                 <div class="inputbox">
                     <label for="custName">Customer name </label>
-                    <select name='listbox' id='listbox' onclick="return populate()" value="<?php if (isset($_SESSION['name']))
-                        echo $_SESSION['name'] ?>">
+                    <select name='listbox' id='listbox' onclick="return populate()" value="<?php if (isset($_SESSION['reportname']))
+                        echo $_SESSION['reportname'] ?>">
                         <?php include "listbox.php" ?>
                     </select>
                 </div>
@@ -64,32 +64,32 @@ Purpose : Main page for account report
                 <div class="inputbox">
                     <label for="custID">Customer ID </label>
                     <input type="number" name="custID" id="custID" placeholder="custID" autocomplete=off required
-                        disabled value="<?php if (isset($_SESSION['customerID']))
-                            echo $_SESSION['customerID'] ?>" />
+                        disabled value="<?php if (isset($_SESSION['reportcustomerID']))
+                            echo $_SESSION['reportcustomerID'] ?>" />
                     </div>
 
                     <!-- box for address -->
                     <!-- the text changes depending on the value of the session var 'address' -->
                     <div class="inputbox">
                         <label for="address">Address</label>
-                        <input type="text" name="address" id="address" placeholder="address" disabled value="<?php if (isset($_SESSION['address']))
-                            echo $_SESSION['address'] ?>" />
+                        <input type="text" name="address" id="address" placeholder="address" disabled value="<?php if (isset($_SESSION['reportaddress']))
+                            echo $_SESSION['reportaddress'] ?>" />
                     </div>
 
                     <!-- box for date of birth -->
                     <!-- the text changes depending on the value of the session var 'dob' -->
                     <div class="inputbox">
                         <label for="dob">Date Of Birth</label>
-                        <input type="date" name="dob" id="dob" placeholder="Date of Birth" disabled value="<?php if (isset($_SESSION['dob']))
-                            echo $_SESSION['dob'] ?>" />
+                        <input type="date" name="dob" id="dob" placeholder="Date of Birth" disabled value="<?php if (isset($_SESSION['reportdob']))
+                            echo $_SESSION['reportdob'] ?>" />
                     </div>
 
                     <!-- box for customer phone no. -->
                     <!-- the text changes depending on the value of the session var 'phone' -->
                     <div class="inputbox">
                         <label for="phone">Phone number</label>
-                        <input type="text" name="phone" id="phone" placeholder="phone" disabled value="<?php if (isset($_SESSION['phone']))
-                            echo $_SESSION['phone'] ?>" />
+                        <input type="text" name="phone" id="phone" placeholder="phone" disabled value="<?php if (isset($_SESSION['reportphone']))
+                            echo $_SESSION['reportphone'] ?>" />
                     </div>
 
                     <!-- submit button -->

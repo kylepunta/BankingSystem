@@ -6,12 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank</title>
-    <link rel="stylesheet" href="openLoan.css">
-    <link rel="stylesheet" href="open.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=keyboard_arrow_down" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- important css stuff for the sidemenu -->
+    <?php require('../../head.html') ?>
+    <!-- css file -->
+    <link rel="stylesheet" href="open.css">    
 </head>
 
 <body>
@@ -202,14 +200,14 @@
         <div class="inputbox">
             <label for="accountNumber">Account Number</label>
             <input type="text" name="accountNumber" id="accountNumber" disabled class="myInputs"
-            value="<?php if (ISSET($_SESSION['accountNumber']) ) echo $_SESSION['accountNumber']?>"/>
+            value="<?php if (ISSET($_SESSION['loanaccountNumber']) ) echo $_SESSION['loanaccountNumber']?>"/>
         </div>
 
         <!-- box for loan amount. -->
        <div class="inputbox">
         <label for="loanAmount">Enter the loan amount </label>
             <input type="number" name="loanAmount" id="loanAmount" placeholder="loanAmount" autocomplete=off required form="calcpay"
-            form="mainForm" class="myInputs"
+            form="mainForm" class="myInputs" step="0.01"
             value="<?php if (ISSET($_SESSION['amount']) ) echo $_SESSION['amount']?>"/> 
         </div>
 

@@ -75,7 +75,7 @@ while ($run) {
 
     if ($keepRunning == false) {
         $run = false;
-        $_SESSION['accountNumber'] = $random;
+        $_SESSION['loanaccountNumber'] = $random;
     }
 
 }

@@ -18,14 +18,16 @@ session_start();        // start session
 </head>
 <?php
 require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
-
+?>
+<main>
+<?php
 include 'db.inc.php';      // include db connection file
 date_default_timezone_set("UTC");       // set default timezone
 echo "The details sent down are: <br>";     
 
 // confirm the data being sent to the db
 echo "Customer ID is :" . $_SESSION['customerID'] . "<br>";
-echo "Account Number is :" . $_SESSION['accountNumber'] . "<br>";
+echo "Account Number is :" . $_SESSION['loanaccountNumber'] . "<br>";
 echo "Term is :" . $_SESSION['term'] . "<br>";
 echo "Loan Ammount is :" . $_SESSION['amount'] . "<br>";
 echo "Repayments is :" . $_POST['repayments'] . "<br>";
@@ -42,14 +44,14 @@ $sql = "INSERT INTO `Loan Account` (
     loanStartDate,
     loanTerm,
     loanMonthlyRepayments) 
-VALUES ('$_SESSION[accountNumber]', '$_SESSION[amount]', '$_SESSION[amount]','$date','$_SESSION[term]','$_POST[repayments]')";
+VALUES ('$_SESSION[loanaccountNumber]', '$_SESSION[amount]', '$_SESSION[amount]','$date','$_SESSION[term]','$_POST[repayments]')";
 
 // check if any errors in the sql have occured
 if (!mysqli_query($con,$sql)) {
     die ("An error in the sql query: " . mysqli_error($con));
 }
 
-$sql = "SELECT accountID FROM `Loan Account` WHERE accountNumber = '$_SESSION[accountNumber]'";
+$sql = "SELECT accountID FROM `Loan Account` WHERE accountNumber = '$_SESSION[loanaccountNumber]'";
 
 if (!$result = mysqli_query($con,$sql)) {
     die ('Error in querying the database' . mysqli_error($con));
@@ -81,3 +83,4 @@ UNSET($_SESSION);       // unset the session
     <br>
     <input type="submit" value = "Return to Insert Page"/>
 </form>
+</main>

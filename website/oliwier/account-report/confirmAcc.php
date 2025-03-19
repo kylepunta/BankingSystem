@@ -25,9 +25,7 @@ Purpose : confirm the account and displau the report for the account
 <!-- body -->
 <body>
     <!-- include sidemenu -->
-    <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
-    $_SESSION['accountNumber'] = $_POST['accountNumber'];
-    ?>
+    <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');?>
     <main>
         <?php
         // include db connection
@@ -178,7 +176,7 @@ Purpose : confirm the account and displau the report for the account
         ?>
         
         <!-- back button to send you back to customer and account selection-->
-        <form action="index.php" method="post">
+        <form action="./" method="post">
             <div class="button">
                 <input type="submit" value="Back">
             </div>
