@@ -28,22 +28,23 @@ Title: main page for open loan account
     <main>
         
     <div class="theForm">
-        <!-- create form with action displayview and method post -->
-    <form id="checkCustomer" action="displayView.php" method="post">
-
-        <h1>Open Loan Account</h1>
-        <!-- input for customer ID -->
-        <div class="inputbox">
-            <label for="custID">Customer Number </label> 
-            <input type="number" name="custID" id="custID" placeholder="custID" autocomplete=off required 
-            value="<?php if (ISSET($_SESSION['customerID']) ) echo $_SESSION['customerID']?>"/>    <!-- if the session var 'personid' is set echo that person id -->
-        </div>
-
-    </form>
+    <!-- create form with action displayview and method post
+         this empty form is used for confirming the customer, the fields for it 
+         are later in the form for clarity -->
+    <form id="checkCustomer" action="displayView.php" method="post"></form>
 
     <!-- main form with action insert.php-->
     <form id="mainForm" action="insert.php" method="post" onsubmit="return confirmCheck()">
-        
+
+        <h1>Open Loan Account</h1>
+        <!-- input for customer ID -->
+        <!-- the text changes depending on the value of the session var 'customer ID' -->
+        <div class="inputbox">
+            <label for="custID">Customer Number </label> 
+            <input type="number" name="custID" id="custID" placeholder="custID" autocomplete=off required form="checkCustomer"
+            value="<?php if (ISSET($_SESSION['customerID']) ) echo $_SESSION['customerID']?>"/>    <!-- if the session var 'personid' is set echo that person id -->
+        </div>
+
         <!-- box for customer name -->
         <!-- the text changes depending on the value of the session var 'name' -->
         <div class="inputbox">
@@ -138,7 +139,7 @@ Title: main page for open loan account
         
     </form>
     
-    <form id="calcpay" action="calcRate.php" method="post"></form>
+    <form id="calcpay" action="calcRate.php" method="post" onsubmit="return checkValidRepay()"></form>
     
     </div>
     <!-- php section -->
