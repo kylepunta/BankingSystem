@@ -2,7 +2,6 @@
 Author  : Oliwier Jakubiec
 Date    : Mar 2025
 ID      : C00296807
-Name    : listbox.php
 Purpose : dropdown list of customers  
 -->
 <?php
@@ -20,7 +19,7 @@ if (!$result = mysqli_query($con, $sql)) {
 }
 
 // if customerId is not null, get the value, otherwise set it to empty string
-$selectedCust = $_SESSION['reportcustomerID'] ?? '';
+$selectedCust = $_SESSION['report_customerID'] ?? '';
 
 // create dropdown 
 echo "<option value='placeholder'>Select a customer</option>";

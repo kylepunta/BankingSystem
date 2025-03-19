@@ -2,50 +2,59 @@
 Name: Oliwier Jakubiec
 Date: 30/1/2025
 ID : C00296807
-Title: insert page php
-	-->
+Title: close page php
+    -->
 
 <?php
 session_start();        // start session
 ?>
 <!DOCTYPE html>
+
 <head>
-<link rel="stylesheet" href="/commonStyles.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=keyboard_arrow_down" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- meta data -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank</title>
+    <!-- important css stuff for the sidemenu -->
+    <?php require('../../head.html') ?>
+    <!-- css file -->
+    <link rel="stylesheet" href="close.css">
+    <!-- javascript file -->
+    <script src="script.js"></script>
 </head>
+
 <?php
+// include sidemenu
 require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
-
-include 'db.inc.php';      // include db connection file
-date_default_timezone_set("UTC");       // set default timezone
-echo "The details sent down are: <br>";     
-
-// confirm the data being sent to the db
-echo "Customer ID is :" . $_SESSION['customerID'] . "<br>";
-echo "Account Number is :" . $_SESSION['closeAccountNumber'] . "<br>";
-
-// prepare the sql statement for inserting the values
-$sql = "UPDATE `Loan Account` SET deletedFlag=1 WHERE accountNumber = '$_SESSION[closeAccountNumber]'";
-
-// check if any errors in the sql have occured
-if (!mysqli_query($con,$sql)) {
-    die ("An error in the sql query: " . mysqli_error($con));
-}
-  
-//close connection
-mysqli_close($con);
-
-session_destroy();      // destroy the session
-UNSET($_SESSION);       // unset the session
 ?>
 <main>
-<!-- form to send you back to the submit page -->
-<form action = "index.php" method = "POST" >
-    <br>
-    <input type="submit" value = "Return to delete Page"/>
-</form>
-</main>
+    <?php
+    include 'db.inc.php';      // include db connection file
+    date_default_timezone_set("UTC");       // set default timezone
+    echo "The details sent down are: <br>";
 
+    // confirm the data being sent to the db
+    echo "Customer ID is :" . $_SESSION['close_customerID'] . "<br>";
+    echo "Account Number is :" . $_SESSION['close_AccountNumber'] . "<br>";
+
+    // prepare the sql statement for closing the account
+    $sql = "UPDATE `Loan Account` SET deletedFlag=1 WHERE accountNumber = '$_SESSION[close_AccountNumber]'";
+
+    // check if any errors in the sql have occured
+    if (!mysqli_query($con, $sql)) {
+        die("An error in the sql query: " . mysqli_error($con));
+    }
+
+    //close connection
+    mysqli_close($con);
+
+    session_destroy();      // destroy the session
+    unset($_SESSION);       // unset the session
+    ?>
+
+    <!-- form to send you back to the submit page -->
+    <form action="index.php" method="POST">
+        <br>
+        <input type="submit" value="Return to delete Page" />
+    </form>
+</main>

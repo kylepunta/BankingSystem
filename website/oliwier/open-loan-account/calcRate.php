@@ -1,37 +1,45 @@
+<!--
+Name: Oliwier Jakubiec
+Date: Feb 2025
+ID : C00296807
+Title: calculate the loan repayment amount php file
+	-->
 <?php
+    include 'db.inc.php';      // include DB access file
+    session_start();           // start session
 
-include 'db.inc.php';      // include DB access file
-session_start();
+    // prepare sql statement
+    $sql = "SELECT rate FROM `Rate Table` WHERE rateType = 'Interest'";
 
-// prepare sql statement
-$sql = "SELECT rate FROM `Rate Table` WHERE rateType = 'Interest'";
+    // check if any errors occurred in the query
+    if (!$result = mysqli_query($con, $sql)) {
+        die('Error in querying the database' . mysqli_error($con));
+    }
 
-// check if any errors occurred in the query
-if (!$result = mysqli_query($con,$sql)) {
-    die ('Error in querying the database' . mysqli_error($con));
-}
+    // get the number of rows
+    $rowcount = mysqli_affected_rows($con);
 
-// get the number of rows
-$rowcount = mysqli_affected_rows($con);
+    $row = mysqli_fetch_array($result);
+    // get the rate from the row of the rate table
+    $rate = $row['rate'];
 
-$row = mysqli_fetch_array($result);
-$rate = $row['rate'];
+    // get the term and loan amount from the post
+    $term = $_POST['term'];
+    $loanAmount = $_POST['loanAmount'];
 
+    // calculate the repay amount
+    $repayAmount = $loanAmount / $term;
+    $repayAmount *= 1 + $rate;
 
-$term = $_POST['term'];
-$loanAmount = $_POST['loanAmount'];
+    // set the session variables
+    $_SESSION['amount'] = $loanAmount;
+    $_SESSION['term'] = $term;
+    $_SESSION['repayAmount'] = $repayAmount;
 
-$repayAmount = $loanAmount / $term;
-$repayAmount = $repayAmount * (1 + $rate);
+    //close connection
+    mysqli_close($con);
 
-$_SESSION['amount'] = $loanAmount;
-$_SESSION['term'] = $term;
-$_SESSION['repayAmount'] = $repayAmount;
-
-//close connection
-mysqli_close($con);
-
-//Go back to the calling form with the values that we need to display in session variables, if a record was found 
-header('Location: index.php' );
+    //Go back to the calling form with the values that we need to display in session variables 
+    header('Location: index.php');
 
 ?>
