@@ -7,7 +7,7 @@ Current Account Transactions */
 require($_SERVER["DOCUMENT_ROOT"] . '/db.inc.php');
 global $con;
 // code that displays a balance as debit/credit
-include $_SERVER["DOCUMENT_ROOT"] . '/darian/balance.inc.php'; // I include this rather than require it because it's already been required elsewhere, which causes a Fatal error: Cannot redeclare displayBalance()
+// require($_SERVER["DOCUMENT_ROOT"] . '/darian/balance.inc.php'); // I can't require this because it's already been required elsewhere, which causes a Fatal error: Cannot redeclare displayBalance()
 
 // gets the transactions from a current account, orders them in descending order
 $sql = "SELECT date, transactionType, amount, `Current Account History`.balance
