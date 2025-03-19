@@ -114,7 +114,7 @@ function clearRepayments() {
 function checkValidRepay() {
     // get the element to check
     var term = document.getElementById("term").value;
-    if (term == 0) {
+    if (term < 1) {
         alert("Please enter the term length as a positive number");
         return false;
     }
