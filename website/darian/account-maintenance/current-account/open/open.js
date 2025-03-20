@@ -14,16 +14,3 @@ function confirmSubmit() {
         return false;
     }
 }
-
-// function that handles the cancel
-function cancel() {
-    // gets the form inputs
-    const cid = document.getElementById("cid");
-    // gets the form on the page
-    const form = document.querySelector("form");
-
-    // clears the values on the form
-    cid.value = "";
-    // submits the form so that the screen is fresh
-    form.submit();
-}
