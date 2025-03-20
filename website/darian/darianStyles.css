@@ -17,6 +17,12 @@ form {
     padding: 16px;
 }
 
+/* styles the input labels */
+.inputbox > label {
+    /* slightly larger than the common styles width */
+    width: 210px;
+}
+
 /* styles the inputs */
 .inputbox > input, select {
     /* I'm using !important because the nav menu conflicts with my styles */

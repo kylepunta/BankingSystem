@@ -9,6 +9,7 @@ global $con;
 // code that displays a balance as debit/credit
 // require($_SERVER["DOCUMENT_ROOT"] . '/darian/balance.inc.php'); // I can't require this because it's already been required elsewhere, which causes a Fatal error: Cannot redeclare displayBalance()
 
+// TODO use last 10
 // gets the transactions from a current account, orders them in descending order
 $sql = "SELECT date, transactionType, amount, `Current Account History`.balance
 FROM `Current Account History`
