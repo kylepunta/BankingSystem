@@ -7,6 +7,7 @@ Purpose: Common CSS styles used by the sidemenu and every webpage in the project
 /* CSS constants */
 :root {
     --sidebar-bg-color: #78569F;
+    --content-bg-color: #EED7FB;
 }
 
 /* Style every element */

@@ -4,13 +4,19 @@ Student Id Number: C00296036
 Date 			: 13/02/2025
 Styles */
 
+/* CSS constants */
+:root {
+    --sidebar-bg-color: #78569F;
+    --content-bg-color: #EED7FB;
+}
+
 form {
     /* adds space above the form */
     margin-top: 6em;
     /* sets a light purple background colour */
-    background-color: rgb(233, 194, 255);
+    background-color: var(--content-bg-color);
     /* thin purple border */
-    border: solid #78569F 2px;
+    border: solid var(--sidebar-bg-color) 2px;
     /* rounded borders */
     border-radius: 16px;
     /* space around the form's elements */
@@ -27,7 +33,7 @@ form {
 .inputbox > input, select {
     /* I'm using !important because the nav menu conflicts with my styles */
     /* thin purple border */
-    border: solid #78569F 2px !important;
+    border: solid var(--sidebar-bg-color) 2px !important;
     /* slight rounded border */
     border-radius: 8px !important;
     /* horizontal padding */
@@ -41,7 +47,7 @@ form {
 
 .button {
     /* thin purple border */
-    border: solid #78569F 2px;
+    border: solid var(--sidebar-bg-color) 2px;
     /* slight rounded border */
     border-radius: 8px;
     /* makes the button larger */
@@ -52,7 +58,7 @@ form {
 
 .button:hover {
     /* highlights the button when it is hovered */
-    background-color: #78569F;
+    background-color: var(--sidebar-bg-color);
     color: white;
 }
 
@@ -99,9 +105,9 @@ table {
     /* centres the table */
     margin: auto;
     /* background colour for the table */
-    background-color: #e7caf7;
+    background-color: var(--content-bg-color);
     /* border for the table */
-    border: solid #78569F 2px;
+    border: solid var(--sidebar-bg-color) 2px;
     border-spacing: 0;
     border-radius: 16px;
 }
