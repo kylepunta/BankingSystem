@@ -8,7 +8,7 @@ function populate() {
     // get the value from the dropdown menu and put them into the fields
     const sel = document.getElementById("listbox");
     const result = sel.options[sel.selectedIndex].value;
-    const personDetails = result.split(' ¬'); // ¬ is used as the delimiter
+    const personDetails = result.split(' ¬'); // ¬ has to be used as addresses may contain a , inside them breaking the string
     // populate the fields
 	document.getElementById("custNumber").value = personDetails[0];
     document.getElementById("name").value = personDetails[1];
