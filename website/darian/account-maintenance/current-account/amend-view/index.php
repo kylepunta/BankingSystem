@@ -23,7 +23,7 @@ global $validAccount;
 
 <body>
 <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
-//TODO move into .inc.php
+
 function clearPreviousAccount()
 {
     unset($_POST["accountno"]);

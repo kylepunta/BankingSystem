@@ -23,7 +23,7 @@ global $validAccount;
 
 <body>
 <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
-//TODO move into .inc.php
+
 function clearPreviousAccount()
 {
     unset($_POST["accountno"]);
@@ -93,16 +93,6 @@ WHERE `accountNumber` = '$_POST[accountno]' AND `customerNo` = '$_POST[cid]'";
     clearPreviousCustomer();
     clearPreviousAccount();
 }
-
-//     $sql = "SELECT `Customer`.customerNo, `Current Account`.accountId, accountNumber, balance, overdraftLimit, 'Current' AS 'Type' FROM `Current Account`
-// INNER JOIN `Customer/CurrentAccount` ON `Current Account`.accountId = `Customer/CurrentAccount`.accountId
-// INNER JOIN `Customer` ON `Customer/CurrentAccount`.`customerNo` = `Customer`.`customerNo`
-// WHERE `Customer`.deletedFlag = 0 AND `Current Account`.deletedFlag = 0
-// UNION (SELECT `Customer`.customerNo, `Deposit Account`.accountId, accountNumber, balance, '0' AS 'overdraftLimit', 'Deposit' AS 'Type' FROM `Deposit Account`
-// INNER JOIN `Customer/Deposit Account` ON `Deposit Account`.accountId = `Customer/Deposit Account`.accountId
-// INNER JOIN `Customer` ON `Customer/Deposit Account`.`customerNo` = `Customer`.`customerNo`
-// WHERE `Customer`.deletedFlag = 0 AND `Deposit Account`.deletedFlag = 0)";
-
 ?>
 
 <main>
