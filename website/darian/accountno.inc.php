@@ -4,9 +4,12 @@ Student Name 	: Darian Byrne
 Student Id Number: C00296036
 Date 			: 13/02/2025
 Account Number Generator */
+
+// function that can be called to generate a new unique account number
 function generateAccountNo()
 {
-    include $_SERVER["DOCUMENT_ROOT"] . '/db.inc.php';
+    // we're doing database operations, require that file
+    require($_SERVER["DOCUMENT_ROOT"] . '/db.inc.php');
     // loops until continueLoop is false (a safe account number was generated)
     $continueLoop = true;
     while ($continueLoop) {

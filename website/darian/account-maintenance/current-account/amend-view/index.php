@@ -101,8 +101,11 @@ WHERE `accountNumber` = '$_POST[accountno]' AND `customerNo` = '$_POST[cid]'";
         <!-- smaller text under the main heading -->
         <h4>Please select a current account and then click the amend button if you wish to update</h4>
 
-        <!-- toggle button for viewing/amending account details -->
-        <input class="button" type="button" value="Amend Details" id="amendViewbutton" onclick="toggleLock()">
+        <!-- a div which centres the amend button -->
+        <div class="myButton">
+            <!-- toggle button for viewing/amending account details -->
+            <input class="button" type="button" value="Amend Details" id="amendViewbutton" onclick="toggleLock()">
+        </div>
 
         <!-- contains the labels and inputs for a customer -->
         <?php require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.html.php') ?>
@@ -111,9 +114,10 @@ WHERE `accountNumber` = '$_POST[accountno]' AND `customerNo` = '$_POST[cid]'";
         <div class="inputbox">
             <label for="accountno">Account number:</label>
             <!-- the accountno input box -->
-            <input type="number" name="accountno" id="accountno" list="accounts"
+            <input type="number" name="accountno" id="accountno" list="accounts" placeholder="Account number"
+                   title="An account number is 8 digits, in the range 10000000 - 99999999"
                    value="<?php if (isset($_POST["accountno"])) echo $_POST["accountno"]; ?>"
-                   placeholder="Account number" onchange="inputAccount(this)" min="0" step="1" required>
+                   onchange="inputAccount(this)" min="10000000" max="99999999" step="1" required>
             <!-- this datalist is used to help prompt the user with a list of accounts that the customer has -->
             <datalist id="accounts">
                 <?php require($_SERVER["DOCUMENT_ROOT"] . '/darian/currentAccountList.php'); ?>

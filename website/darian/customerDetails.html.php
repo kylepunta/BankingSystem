@@ -11,14 +11,15 @@ Customer Details -->
     <label for="cid">Customer number:</label>
     <!-- the cid input box -->
     <input type="number" name="cid" id="cid" placeholder="Customer number" onchange="inputCustomer(this)"
-           value="<?php if (isset($_POST["cid"])) echo $_POST["cid"]; ?>" min="0" step="1" required>
+           title="Customer numbers start at 1" min="0" step="1" required
+           value="<?php if (isset($_POST["cid"])) echo $_POST["cid"]; ?>">
 </div>
 
 <!-- a div which groups the input box and it's label -->
 <div class="inputbox">
-    <label for="name">Customer Name:</label>
+    <label for="name">Customer name:</label>
     <!-- the name select box -->
-    <select id="name" onchange="inputCustomer(this)" required>
+    <select id="name" onchange="inputCustomer(this)" title="Choose a customer by name" required>
         <option></option>
         <?php require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerListbox.php'); ?>
     </select>

@@ -6,7 +6,8 @@ Date 			: 06/03/2025
 Amend/View Current Account */
 // start a session
 session_start();
-include $_SERVER["DOCUMENT_ROOT"] . '/db.inc.php';
+// we're doing database operations, require that file
+require($_SERVER["DOCUMENT_ROOT"] . '/db.inc.php');
 global $con;
 date_default_timezone_set("UTC");
 

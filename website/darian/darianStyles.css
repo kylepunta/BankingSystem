@@ -43,6 +43,9 @@ form {
 .myButton {
     /* slightly spaces the row of buttons away from the form's content */
     margin-top: 1em;
+    /* flexbox so that the buttons can be centred and evenly spaced */
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .button {

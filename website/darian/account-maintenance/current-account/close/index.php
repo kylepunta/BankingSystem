@@ -109,9 +109,10 @@ if (isset($_SESSION["balance"]) && $_SESSION["balance"] != 0) $_SESSION["errorMs
         <div class="inputbox">
             <label for="accountno">Account number:</label>
             <!-- the accountno input box -->
-            <input type="number" name="accountno" id="accountno" list="accounts"
+            <input type="number" name="accountno" id="accountno" list="accounts" placeholder="Account number"
+                   title="An account number is 8 digits, in the range 10000000 - 99999999"
                    value="<?php if (isset($_POST["accountno"])) echo $_POST["accountno"]; ?>"
-                   placeholder="Account number" onchange="inputAccount(this)" min="0" step="1" required>
+                   onchange="inputAccount(this)" min="10000000" max="99999999" step="1" required>
             <!-- this datalist is used to help prompt the user with a list of accounts that the customer has -->
             <datalist id="accounts">
                 <?php require($_SERVER["DOCUMENT_ROOT"] . '/darian/currentAccountList.php'); ?>
