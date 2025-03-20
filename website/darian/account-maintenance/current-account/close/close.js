@@ -23,12 +23,7 @@ function inputAccount(input) {
 
     // gets the form on the page
     const form = document.querySelector("form");
-    // temporarily stores the account number
-    // let accno = accountno.value;
-    // resets the inputs in the form
-    // form.reset();
-    // updates the account number on the form
-    // accountno.value = accno;
+    
     // updates the account number on the form
     if (input.value) cid.value = "";
     // submits the form so that the accounts details can be queried
