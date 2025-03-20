@@ -59,12 +59,16 @@ function toggleLock() {
         document.getElementById("overdraftlimit").disabled = false;
         // updates the label on the button
         document.getElementById("amendViewbutton").value = "View Details";
-        // TODO replace overdraft limit with database value limit
     } else {
         // view state, change to amend state
         // enables the text inputs
         document.getElementById("overdraftlimit").disabled = true;
         // updates the label on the button
         document.getElementById("amendViewbutton").value = "Amend Details";
+
+        // gets the form on the page
+        const form = document.querySelector("form");
+        // resets the form back to the details from the database
+        form.reset();
     }
 }

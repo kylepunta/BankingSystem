@@ -3,7 +3,6 @@ Student Name 	: Darian Byrne
 Student Id Number: C00296036
 Date 			: 13/02/2025
 Open Current Account -->
-<!-- TODO BIG BUG cannot open account with od limit of 0 or init deposit of 0 -->
 <?php session_start();
 if (!isset($_SESSION["errorMsg"])) $_SESSION["errorMsg"] = "";
 global $validId;
@@ -25,7 +24,8 @@ global $validId;
 <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
 
 if (!empty($_POST["cid"])) {
-    if (!empty($_POST["confirmed"]) && !empty($_SESSION["accountno"]) && !empty($_POST["overdraftlimit"]) && !empty($_POST["initbal"])) {
+    if (!empty($_POST["confirmed"]) && !empty($_SESSION["accountno"])
+        && isset($_POST["overdraftlimit"]) && isset($_POST["initbal"])) {
 //        continue to open current account
         require("open.php");
     } else {
