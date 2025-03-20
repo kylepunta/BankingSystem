@@ -12,11 +12,11 @@ Title: main page for open loan account
     <!-- meta data -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank</title>
+    <title>Open Loan Account</title>
     <!-- important css stuff for the sidemenu -->
     <?php require('../../head.html') ?>
     <!-- css file -->
-    <link rel="stylesheet" href="open.css">
+    <link rel="stylesheet" href="../oliwierStyles.css">
     <!-- javascript file -->
     <script src="script.js"></script>
 </head>
@@ -37,13 +37,6 @@ Title: main page for open loan account
     <form id="mainForm" action="insert.php" method="post" onsubmit="return confirmCheck()">
 
         <h1>Open Loan Account</h1>
-        <!-- input for customer ID -->
-        <!-- the text changes depending on the value of the session var 'customer ID' -->
-        <div class="inputbox">
-            <label for="custID">Customer Number </label> 
-            <input type="number" name="custID" id="custID" placeholder="custID" autocomplete=off required form="checkCustomer"
-            value="<?php if (ISSET($_SESSION['customerID']) ) echo $_SESSION['customerID']?>"/>    <!-- if the session var 'personid' is set echo that person id -->
-        </div>
 
         <!-- box for customer name -->
         <!-- the text changes depending on the value of the session var 'name' -->
@@ -55,6 +48,15 @@ Title: main page for open loan account
             </select>
         </div>
 
+        <!-- input for customer ID -->
+        <!-- the text changes depending on the value of the session var 'customer ID' -->
+        <div class="inputbox">
+            <label for="custID">Customer Number </label> 
+            <input type="number" name="custID" id="custID" placeholder="custID" autocomplete=off required form="checkCustomer" min="0"
+            title="Enter a customer number"
+            value="<?php if (ISSET($_SESSION['customerID']) ) echo $_SESSION['customerID']?>"/>    <!-- if the session var 'personid' is set echo that person id -->
+        </div>
+        
         <!-- button to submit customer ID -->
         <div class="button">
             <!-- submit button -->
@@ -107,6 +109,7 @@ Title: main page for open loan account
         <label for="loanAmount">Enter the loan amount </label>
             <input type="number" name="loanAmount" id="loanAmount" placeholder="loanAmount" autocomplete=off 
             required form="calcpay" step="0.01" onclick="clearRepayments()"
+            title = "Enter the loan amount as a positive number"
             value="<?php if (ISSET($_SESSION['amount']) ) echo $_SESSION['amount']?>"/> 
         </div>
 
@@ -115,7 +118,7 @@ Title: main page for open loan account
        <div class="inputbox">
         <label for="term">Enter the term of the loan</label>
             <input type="number" name="term" id="term" placeholder="term" autocomplete=off required form="calcpay"
-             onclick="clearRepayments()" 
+             onclick="clearRepayments()" title="Enter the term of the loan in months"
             value="<?php if (ISSET($_SESSION['term']) ) echo $_SESSION['term']?>"/> 
         </div>
 
@@ -124,17 +127,21 @@ Title: main page for open loan account
         <div class="inputbox">
             <label for="repayments">Monthly repayments</label>
             <input type="text" name="repayments" id="repayments" onblur="" placeholder="repayments" disabled 
+            title="Press 'calculate repayments' to fill this field"
             value="<?php if (ISSET($_SESSION['repayAmount']) ) echo $_SESSION['repayAmount']?>"
             />
         </div>
 
-        <!-- calculate repayments button -->
-         <div class="button">
-            <input type="submit" value="Calculate Repayments" form="calcpay" />
-        </div>
-        <!-- submit button -->
-         <div class="button">
-            <input type="submit" value="Open Loan Account" />
+        <!-- div to align both buttons -->
+        <div class="button" style="display: flex; justify-content: space-between;">
+            <!-- calculate repayments button -->
+             <div class="button">
+                <input type="submit" value="Calculate Repayments" form="calcpay" />
+            </div>
+            <!-- submit button -->
+             <div class="button">
+                <input type="submit" value="Open Loan Account" />
+            </div>
         </div>
         
     </form>

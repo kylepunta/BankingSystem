@@ -12,11 +12,11 @@ Title: main page for amend loan account
     <!-- meta data -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank</title>
+    <title>Close Loan Account</title>
     <!-- important css stuff for the sidemenu -->
     <?php require('../../head.html') ?>
     <!-- css file -->
-    <link rel="stylesheet" href="close.css">
+    <link rel="stylesheet" href="../oliwierStyles.css">
     <!-- javascript file -->
     <script src="script.js"></script>
 </head>
@@ -48,7 +48,8 @@ Title: main page for amend loan account
         <!-- on input make sure to disable the submit to confirm which account is being deleted -->
         <div class="inputbox">
             <label for="custID">Customer Number </label>
-            <input type="number" name="custID" id="custID" placeholder="custID" autocomplete=off required form="checkCustomer" oninput="disableSubmit()"
+            <input type="number" name="custID" id="custID" placeholder="custID" autocomplete=off required form="checkCustomer" 
+            oninput="disableSubmit()" title="Enter a customer number" min="0"
             value="<?php if (ISSET($_SESSION['close_customerID']) ) echo $_SESSION['close_customerID']?>"/>    <!-- if the session var 'personid' is set echo that person id -->
         </div>
 
@@ -59,6 +60,7 @@ Title: main page for amend loan account
             <label for="closeAccountNumber">Account Number</label>
             <input type="text" name="closeAccountNumber" id="closeAccountNumber" 
             placeholder="10000000" form="checkCustomer" required oninput="disableSubmit()"
+            title="Enter the account number as an 8 digit long number" pattern="[\d]{8}"
             value="<?php if (ISSET($_SESSION['close_AccountNumber']) ) echo $_SESSION['close_AccountNumber']?>"/>
         </div>
 

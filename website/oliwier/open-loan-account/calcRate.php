@@ -5,7 +5,7 @@ ID : C00296807
 Title: calculate the loan repayment amount php file
 	-->
 <?php
-    include 'db.inc.php';      // include DB access file
+    include '../../db.inc.php';      // include DB access file
     session_start();           // start session
 
     // prepare sql statement

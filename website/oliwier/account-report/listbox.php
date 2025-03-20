@@ -6,7 +6,7 @@ Purpose : dropdown list of customers
 -->
 <?php
 // include db connection and set timezone
-include 'db.inc.php';
+include '../../db.inc.php';
 date_default_timezone_set("UTC");
 
 // create sql query

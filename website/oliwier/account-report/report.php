@@ -13,11 +13,11 @@ Purpose : confirm the account and displau the report for the account
     <!-- meta data -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank</title>
+    <title>Account Report</title>
     <!-- important css stuff for the sidemenu -->
     <?php require('../../head.html') ?>
     <!-- css file -->
-    <link rel="stylesheet" href="accountRep.css">
+    <link rel="stylesheet" href="../oliwierStyles.css">
     <!-- javascript file -->
     <script src="./script.js"></script>
 </head>
@@ -29,7 +29,7 @@ Purpose : confirm the account and displau the report for the account
     <main>
         <?php
         // include db connection
-        include 'db.inc.php';
+        include '../../db.inc.php';
         echo "<h1>Account Report</h1>";
         // split the acount info back into an array
         //customerNo firstName surName accountId accountNum balance
@@ -130,7 +130,7 @@ Purpose : confirm the account and displau the report for the account
                 $timeFrame = "AND transactionDate <= '" . $_POST['startDate'] . "'";
             } // else both dates are selected, set the time frame to the dates selected 
             else {
-                $timeFrame = "AND date BETWEEN '" . $_POST['endDate'] . "' AND '" . $_POST['startDate'] . "'";
+                $timeFrame = "AND transactionDate BETWEEN '" . $_POST['endDate'] . "' AND '" . $_POST['startDate'] . "'";
             }
 
             // create the sql query

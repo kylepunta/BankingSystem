@@ -7,7 +7,7 @@ Title: display view php
 <?php
 // start session
 session_start();
-include 'db.inc.php';      // include DB access file
+include '../../db.inc.php';      // include DB access file
 
 // prepare sql statement
 $sql = "SELECT Customer.customerNo, firstName, surName, address, eircode, dateOfBirth, 

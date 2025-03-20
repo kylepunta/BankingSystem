@@ -12,11 +12,11 @@ Title: main page for amend loan account
     <!-- meta data -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank</title>
+    <title>Amend Loan Account</title>
     <!-- important css stuff for the sidemenu -->
     <?php require('../../head.html') ?>
     <!-- css file -->
-    <link rel="stylesheet" href="amend.css">
+    <link rel="stylesheet" href="../oliwierStyles.css">
     <!-- javascript file -->
     <script src="script.js"></script>
 </head>
@@ -50,7 +50,8 @@ Title: main page for amend loan account
         <!-- on input make sure to unconfirm the account to prevent incorrect changes -->
         <div class="inputbox">
             <label for="custID">Customer Number </label>
-            <input type="number" name="custID" id="custID" placeholder="custID" autocomplete=off required form="checkCustomer" oninput="unconfirmAccount()"
+            <input type="number" name="custID" id="custID" placeholder="custID" autocomplete=off required form="checkCustomer" 
+            oninput="unconfirmAccount()" title="Enter a customer number" min="0"
             value="<?php if (ISSET($_SESSION['amend_customerID']) ) echo $_SESSION['amend_customerID']?>"/>    <!-- if the session var 'personid' is set echo that person id -->
         </div>
 
@@ -61,6 +62,7 @@ Title: main page for amend loan account
             <label for="AccountNumber">Account Number</label>
             <input type="text" name="AccountNumber" id="AccountNumber" 
             placeholder="10000000" form="checkCustomer" required oninput="unconfirmAccount()"
+            title="Enter the account number as an 8 digit long number" pattern="[\d]{8}"
             value="<?php if (ISSET($_SESSION['amend_AccountNumber']) ) echo $_SESSION['amend_AccountNumber']?>"/>
         </div>
 
@@ -122,7 +124,8 @@ Title: main page for amend loan account
        <div class="inputbox">
         <label for="loanAmount">Loan amount </label>
             <input type="number" name="loanAmount" id="loanAmount" placeholder="loanAmount" autocomplete=off required 
-            form="mainForm"  disabled
+            form="mainForm"  disabled min="0"
+            title="Enter the loan amount"
             value="<?php if (ISSET($_SESSION['amend_amount']) ) echo $_SESSION['amend_amount']?>"/> 
         </div>
 
@@ -132,7 +135,8 @@ Title: main page for amend loan account
        <div class="inputbox">
         <label for="term">Term of loan</label>
             <input type="number" name="term" id="term" placeholder="term" autocomplete=off required 
-            form="mainForm" onclick="clearRepayments()"  disabled
+            form="mainForm" onclick="clearRepayments()"  disabled min="0" step="1"
+            title="Enter the term of the loan in months"
             value="<?php if (ISSET($_SESSION['amend_term']) ) echo $_SESSION['amend_term']?>"/> 
         </div>
 

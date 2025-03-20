@@ -16,11 +16,11 @@ Purpose : Main page for account report
     <!-- meta data -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank</title>
+    <title>Account Report</title>
     <!-- important css stuff for the sidemenu -->
     <?php require('../../head.html') ?>
     <!-- css file -->
-    <link rel="stylesheet" href="accountRep.css">
+    <link rel="stylesheet" href="../oliwierStyles.css">
     <!-- javascript file -->
     <script src="script.js"></script>
 </head>
@@ -108,7 +108,7 @@ Purpose : Main page for account report
                 // if the view accounts button has been clicked then display the accounts and rest of the form
                 if (isset($_POST['viewAccounts'])) {
                     // include the database connection
-                    include 'db.inc.php';
+                    include '../../db.inc.php';
                     // create the table
                     echo "<table>
                             <thead><tr><th>Account Type</th>

@@ -13,11 +13,11 @@ session_start();        // start session
     <!-- meta data -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank</title>
+    <title>Open Loan Account</title>
     <!-- important css stuff for the sidemenu -->
     <?php require('../../head.html') ?>
     <!-- css file -->
-    <link rel="stylesheet" href="close.css">
+    <link rel="stylesheet" href="../oliwierStyles.css">
     <!-- javascript file -->
     <script src="script.js"></script>
 </head>
@@ -28,7 +28,7 @@ require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
 ?>
 <main>
     <?php
-    include 'db.inc.php';      // include db connection file
+    include '../../db.inc.php';      // include db connection file
     date_default_timezone_set("UTC");       // set default timezone
     echo "The details sent down are: <br>";
 
