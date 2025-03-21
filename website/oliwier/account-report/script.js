@@ -21,8 +21,7 @@ function populate() {
     }
     // make an array of the customer details by splitting the result by the delimitter '#'
     var personDetails = result.split('#');
-    // display the details in the <p> tag
-    console.log(personDetails);
+   
     // get elements and display the results in the array
 
     document.getElementById("custID").value = personDetails[0];
