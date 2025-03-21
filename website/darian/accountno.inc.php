@@ -16,6 +16,7 @@ function generateAccountNo()
         // generate a random 8 digit account number
         $accountNo = rand(10000000, 99999999);
 
+        // stores the SQL statement to be queried later
         // queries each account type for an account matching the given account number
         $sql = "SELECT accountNumber FROM `Deposit Account` WHERE accountNumber = $accountNo
         UNION SELECT accountNumber FROM `Loan Account` WHERE accountNumber = $accountNo

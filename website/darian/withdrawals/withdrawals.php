@@ -6,15 +6,20 @@ Date 			: 10/03/2025
 Withdrawals */
 // start a session
 session_start();
+// we're doing database operations, require that file
 require($_SERVER["DOCUMENT_ROOT"] . '/db.inc.php');
+// declares that these variables are from another file and globally available
 global $con;
+// set the default timezone
 date_default_timezone_set("UTC");
 
 // gets the accountNo
 $accountNo = $_POST["accountno"];
 
+// converts and stores POSTed values to floats from strings
 $withdrawalamt = floatval($_POST["withdrawalamt"]);
 
+// checks if the withdrawal amount is below 0
 if ($withdrawalamt < 0) {
     // error
     $_SESSION["errorMsg"] .= "Withdrawal amount of $withdrawalamt is less than 0. It must be greater than 0!<br>";

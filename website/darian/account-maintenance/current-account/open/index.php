@@ -3,8 +3,12 @@ Student Name 	: Darian Byrne
 Student Id Number: C00296036
 Date 			: 13/02/2025
 Open Current Account -->
-<?php session_start();
+<?php
+// start a session
+session_start();
+// initialises the error message so it can be concatenated to
 if (!isset($_SESSION["errorMsg"])) $_SESSION["errorMsg"] = "";
+// declares that these variables are from another file and globally available
 global $validId;
 ?>
 <!DOCTYPE html>
@@ -21,25 +25,35 @@ global $validId;
 </head>
 
 <body>
-<?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
+<?php
+// adds the side menu to the page
+require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
 
+// checks that a customerId was POSTed
 if (!empty($_POST["cid"])) {
+    // checks that the user confirmed and an account number was generated
+    // and an overdraft limit and initial balance was entered
     if (!empty($_POST["confirmed"]) && !empty($_SESSION["accountno"])
         && isset($_POST["overdraftlimit"]) && isset($_POST["initbal"])) {
-//        continue to open current account
+        // continue to open current account
         require("open.php");
     } else {
-//        query customer details
+        // query customer details
         require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.inc.php');
 
+        // checks that the id entered was valid
         if ($validId) {
+            // requires code that can generate a random account number
             require($_SERVER["DOCUMENT_ROOT"] . '/darian/accountno.inc.php');
+            // checks if an account number was already generated, generates a new one if not
             if (!isset($_SESSION["accountno"])) $_SESSION["accountno"] = generateAccountNo();
         } else {
+            // clears the random account number so it isn't displayed on the form
             unset($_SESSION["accountno"]);
         }
     }
 } else {
+    // no customerId was POSTed so clear the values so they aren't displayed on the form
     unset($_SESSION["accountno"]);
     unset($_SESSION["address"]);
     unset($_SESSION["eircode"]);

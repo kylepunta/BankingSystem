@@ -8,6 +8,7 @@ Amend/View Current Account */
 function confirmSubmit() {
     // displays a confirmation box to the user, the form will be submitted if they press OK
     if (confirm("Are you sure you want to amend this current account?")) {
+        // sets the hidden confirmed value for the server to read
         document.getElementById("confirmed").value = "1";
         return true;
     } else {

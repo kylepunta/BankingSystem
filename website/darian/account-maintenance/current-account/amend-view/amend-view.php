@@ -8,7 +8,9 @@ Amend/View Current Account */
 session_start();
 // we're doing database operations, require that file
 require($_SERVER["DOCUMENT_ROOT"] . '/db.inc.php');
+// declares that these variables are from another file and globally available
 global $con;
+// set the default timezone
 date_default_timezone_set("UTC");
 
 // gets the accountNo

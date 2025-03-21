@@ -10,6 +10,7 @@ function confirmSubmit() {
     if (confirm("Are you sure you want to make this withdrawal?")) {
         // the account type needs to be POSTed, it must be enabled before submitting the form
         document.getElementById("accounttype").disabled = false;
+        // sets the hidden confirmed value for the server to read
         document.getElementById("confirmed").value = "1";
         return true;
     } else {

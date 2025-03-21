@@ -4,11 +4,14 @@ Student Name 	: Darian Byrne
 Student Id Number: C00296036
 Date 			: 18/03/2025
 Current Account Transactions */
+// we're doing database operations, require that file
 require($_SERVER["DOCUMENT_ROOT"] . '/db.inc.php');
+// declares that these variables are from another file and globally available
 global $con;
 // code that displays a balance as debit/credit
 // require($_SERVER["DOCUMENT_ROOT"] . '/darian/balance.inc.php'); // I can't require this because it's already been required elsewhere, which causes a Fatal error: Cannot redeclare displayBalance()
 
+// stores the SQL statement to be queried later
 // gets the transactions from a current account, orders them in descending order
 $sql = "SELECT date, transactionType, amount, `Current Account History`.balance
 FROM `Current Account History`

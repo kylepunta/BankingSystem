@@ -6,13 +6,17 @@ Date 			: 03/03/2025
 Close Current Account */
 // start a session
 session_start();
+// we're doing database operations, require that file
 require($_SERVER["DOCUMENT_ROOT"] . '/db.inc.php');
+// declares that these variables are from another file and globally available
 global $con;
+// set the default timezone
 date_default_timezone_set("UTC");
 
 // gets the accountNo
 $accountNo = $_POST["accountno"];
 
+// stores the SQL statement to be queried later
 // gets the balance on the account
 $sql = "SELECT `balance` FROM `Current Account` WHERE accountNumber = $accountNo";
 

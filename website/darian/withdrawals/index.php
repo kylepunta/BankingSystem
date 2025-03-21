@@ -3,8 +3,12 @@ Student Name 	: Darian Byrne
 Student Id Number: C00296036
 Date 			: 10/03/2025
 Withdrawals -->
-<?php session_start();
+<?php
+// start a session
+session_start();
+// initialises the error message so it can be concatenated to
 if (!isset($_SESSION["errorMsg"])) $_SESSION["errorMsg"] = "";
+// declares that these variables are from another file and globally available
 global $validId;
 global $validAccount;
 ?>
@@ -22,37 +26,49 @@ global $validAccount;
 </head>
 
 <body>
-<?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
+<?php
+// adds the side menu to the page
+require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');
 
+// function that clears any account values, stopping them from being displayed on the form
 function clearPreviousAccount()
 {
+    // clear the values so they aren't displayed on the form
     unset($_POST["accountno"]);
     unset($_SESSION["balance"]);
     unset($_SESSION["overdraftLimit"]);
 }
 
+// function that clears any customer values, stopping them from being displayed on the form
 function clearPreviousCustomer()
 {
+    // clear the values so they aren't displayed on the form
     unset($_SESSION["address"]);
     unset($_SESSION["eircode"]);
     unset($_SESSION["dob"]);
 }
 
+// stores if we 'got' a value (if it was entered by the user)
 $gotAccountNo = !empty($_POST["accountno"]);
 $gotCustomerId = !empty($_POST["cid"]);
 
-// now check if the account is to be withdrawn
+// checks if the account is to be withdrawn
+// checks that the user confirmed and a customerId and account number were entered
 if (!empty($_POST["confirmed"]) && $gotCustomerId && $gotAccountNo) {
+    // continue to withdraw from account
     require("withdrawals.php");
 } else if ($gotAccountNo && $gotCustomerId) {
     // user entered both account number and customerId
+    // we're doing database operations, require that file
     require($_SERVER["DOCUMENT_ROOT"] . '/db.inc.php');
+    // declares that these variables are from another file and globally available
     global $con;
 
+    // stores the SQL statement to be queried later
     // selects the account, makes sure that the customerId entered belongs to the account number entered
     $sql = "SELECT `accountNumber`, `customerNo` FROM `Current Account`
-INNER JOIN `Customer/CurrentAccount` ON `Current Account`.`accountId` = `Customer/CurrentAccount`.`accountId`
-WHERE `accountNumber` = '$_POST[accountno]' AND `customerNo` = '$_POST[cid]'";
+    INNER JOIN `Customer/CurrentAccount` ON `Current Account`.`accountId` = `Customer/CurrentAccount`.`accountId`
+    WHERE `accountNumber` = '$_POST[accountno]' AND `customerNo` = '$_POST[cid]'";
     // checks that the sql query was successful
     if (!$result = mysqli_query($con, $sql)) {
         // displays the error that caused the query to fail
