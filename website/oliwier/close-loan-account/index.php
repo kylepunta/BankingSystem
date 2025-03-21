@@ -2,7 +2,7 @@
 Name: Oliwier Jakubiec
 Date: Mar 2025
 ID : C00296807
-Title: main page for amend loan account
+Title: main page for close loan account
 	-->
 <?php session_start(); // start the session
 ?>
@@ -50,7 +50,7 @@ Title: main page for amend loan account
             <label for="custID">Customer Number </label>
             <input type="number" name="custID" id="custID" placeholder="custID" autocomplete=off required form="checkCustomer" 
             oninput="disableSubmit()" title="Enter a customer number" min="0"
-            value="<?php if (ISSET($_SESSION['close_customerID']) ) echo $_SESSION['close_customerID']?>"/>    <!-- if the session var 'personid' is set echo that person id -->
+            value="<?php if (ISSET($_SESSION['close_customerID']) ) echo $_SESSION['close_customerID']?>"/>   
         </div>
 
         <!-- box for account number that is generated -->

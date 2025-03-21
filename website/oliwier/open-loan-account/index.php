@@ -54,7 +54,7 @@ Title: main page for open loan account
             <label for="custID">Customer Number </label> 
             <input type="number" name="custID" id="custID" placeholder="custID" autocomplete=off required form="checkCustomer" min="0"
             title="Enter a customer number"
-            value="<?php if (ISSET($_SESSION['customerID']) ) echo $_SESSION['customerID']?>"/>    <!-- if the session var 'personid' is set echo that person id -->
+            value="<?php if (ISSET($_SESSION['customerID']) ) echo $_SESSION['customerID']?>"/>   
         </div>
         
         <!-- button to submit customer ID -->

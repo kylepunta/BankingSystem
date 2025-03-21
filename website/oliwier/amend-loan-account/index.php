@@ -52,7 +52,7 @@ Title: main page for amend loan account
             <label for="custID">Customer Number </label>
             <input type="number" name="custID" id="custID" placeholder="custID" autocomplete=off required form="checkCustomer" 
             oninput="unconfirmAccount()" title="Enter a customer number" min="0"
-            value="<?php if (ISSET($_SESSION['amend_customerID']) ) echo $_SESSION['amend_customerID']?>"/>    <!-- if the session var 'personid' is set echo that person id -->
+            value="<?php if (ISSET($_SESSION['amend_customerID']) ) echo $_SESSION['amend_customerID']?>"/>  
         </div>
 
         <!-- box for account number that is generated -->
