@@ -22,56 +22,54 @@
             <p class="amend-view-button-container">
                 <input type="button" value="Amend Details" id="amend-view-button">
             </p>
-            <div class="customer-info">
-                <p>
-                    <label for="customerID">Customer ID</label>
-                    <input type="text" name="customerID" id="customerID">
-                </p>
-                <p>
-                    <label for="firstName">First Name</label>
-                    <input type="text" id="firstName" name="firstName" required>
-                </p>
-                <p>
-                    <label for="lastName">Last Name</label>
-                    <input type="text" id="lastName" name="lastName" required>
-                </p>
-                <p>
-                    <label for="address">Address</label>
-                    <input type="text" name="address" id="address" required>
-                </p>
-                <p>
-                    <label for="eircode">Eircode</label>
-                    <input type="text" name="eircode" id="eircode" required>
-                </p>
-                <p>
-                    <label for="dateOfBirth">Date of Birth</label>
-                    <input type="date" name="dateOfBirth" id="dateOfBirth" required>
-                </p>
-                <p>
-                    <label for="phoneNumber">Telephone Number</label>
-                    <input type="text" name="phoneNumber" id="phoneNumber" required>
-                </p>
-                <p>
-                    <label for="occupation">Occupation</label>
-                    <input type="text" name="occupation" id="occupation" required>
-                </p>
-                <p>
-                    <label for="salary">Salary</label>
-                    <input type="text" name="salary" id="salary" required>
-                </p>
-                <p>
-                    <label for="email">Email Address</label>
-                    <input type="email" name="email" id="email" required>
-                </p>
-                <p>
-                    <label for="guarantorName">Guarantor's Name (if applicable)</label>
-                    <input type="text" name="guarantorName" id="guarantorName">
-                </p>
-                <p class="form-buttons">
-                    <input type="submit" value="Submit" id="submit">
-                    <input type="reset" value="Clear" id="reset">
-                </p>
-            </div>
+            <p>
+                <label for="customerID">Customer ID</label>
+                <input type="text" name="customerID" id="customerID">
+            </p>
+            <p>
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </p>
+            <p>
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </p>
+            <p>
+                <label for="address">Address</label>
+                <input type="text" name="address" id="address" required>
+            </p>
+            <p>
+                <label for="eircode">Eircode</label>
+                <input type="text" name="eircode" id="eircode" required>
+            </p>
+            <p>
+                <label for="dateOfBirth">Date of Birth</label>
+                <input type="date" name="dateOfBirth" id="dateOfBirth" required>
+            </p>
+            <p>
+                <label for="phoneNumber">Telephone Number</label>
+                <input type="text" name="phoneNumber" id="phoneNumber" required>
+            </p>
+            <p>
+                <label for="occupation">Occupation</label>
+                <input type="text" name="occupation" id="occupation" required>
+            </p>
+            <p>
+                <label for="salary">Salary</label>
+                <input type="text" name="salary" id="salary" required>
+            </p>
+            <p>
+                <label for="email">Email Address</label>
+                <input type="email" name="email" id="email" required>
+            </p>
+            <p>
+                <label for="guarantorName">Guarantor's Name (if applicable)</label>
+                <input type="text" name="guarantorName" id="guarantorName">
+            </p>
+            <p class="form-buttons">
+                <input type="submit" value="Submit" id="submit">
+                <input type="reset" value="Clear" id="reset">
+            </p>
         </form>
 
         <div class="result-container">
