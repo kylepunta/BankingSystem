@@ -1,6 +1,6 @@
 const select = document.querySelector("#select-customer");
 const options = document.querySelectorAll("option");
-const formInputs = document.querySelectorAll(".customer-info > p > input:not(.form-buttons > input)");
+const formInputs = document.querySelectorAll("input:not(.form-buttons > input, #amend-view-button)");
 const customerIDInput = document.querySelector("#customerID");
 const amendViewBtn = document.querySelector("#amend-view-button");
 const form = document.querySelector("form");

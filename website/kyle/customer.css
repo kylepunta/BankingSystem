@@ -34,10 +34,11 @@ form p:not(.address-section, .amend-view-button-container, .form-buttons) {
     justify-content: space-between;
 }
 
-input:not(#submit, #reset),
+input:not(#submit, #reset, #submitBtn),
 #select-customer,
 #confirm-button,
-#account-dropdown {
+#account-dropdown,
+#account-type {
     font-size: 1rem;
     padding: 0.6rem 1rem; 
     border: 2px solid purple;
@@ -47,7 +48,8 @@ input:not(#submit, #reset),
 }
 
 #select-customer,
-#account-dropdown {
+#account-dropdown,
+#account-type {
     padding-right: 1rem;
     min-width: 50%;
 }
