@@ -9,15 +9,18 @@ require($_SERVER["DOCUMENT_ROOT"] . '/db.inc.php');
 // declares that these variables are from another file and globally available
 global $con;
 // code that displays a balance as debit/credit
-// require($_SERVER["DOCUMENT_ROOT"] . '/darian/balance.inc.php'); // I can't require this because it's already been required elsewhere, which causes a Fatal error: Cannot redeclare displayBalance()
+require_once($_SERVER["DOCUMENT_ROOT"] . '/darian/balance.inc.php'); // I use require_once because it's already been required elsewhere, which causes a Fatal error: Cannot redeclare displayBalance()
 
 // stores the SQL statement to be queried later
-// gets the transactions from a current account, orders them in descending order
+// gets the transactions from a current account, joins the customer to ensure an account from a deleted customer isn't selected, and orders them in descending order
+// if no account number is POSTed, the account number 0 is selected which doesn't belong to any account therefore no account is selected
 $sql = "SELECT date, transactionType, amount, `Current Account History`.balance
 FROM `Current Account History`
 INNER JOIN `Current Account` ON `Current Account History`.accountId = `Current Account`.accountId
-WHERE deletedFlag = 0 AND accountNumber =" . (!empty($_POST["accountno"]) ? "$_POST[accountno]" : "0") . "
-ORDER BY `Current Account History`.accountId, date DESC, transactionId DESC
+INNER JOIN `Customer/CurrentAccount` ON `Current Account`.accountId = `Customer/CurrentAccount`.accountId
+INNER JOIN `Customer` ON `Customer/CurrentAccount`.`customerNo` = `Customer`.`customerNo`
+WHERE `Current Account`.deletedFlag = 0 AND `Customer`.deletedFlag = 0 AND accountNumber =" . (!empty($_POST["accountno"]) ? "$_POST[accountno]" : "0") . "
+ORDER BY date DESC, transactionId DESC
 LIMIT 10";
 
 // checks that the sql query was successful
