@@ -108,7 +108,7 @@ Title: main page for open loan account
        <div class="inputbox">
         <label for="loanAmount">Enter the loan amount </label>
             <input type="number" name="loanAmount" id="loanAmount" placeholder="loanAmount" autocomplete=off 
-            required form="calcpay" step="0.01" onclick="clearRepayments()"
+            required form="calcpay" step="0.01" min="0" onclick="clearRepayments()"
             title = "Enter the loan amount as a positive number"
             value="<?php if (ISSET($_SESSION['amount']) ) echo $_SESSION['amount']?>"/> 
         </div>
@@ -118,7 +118,7 @@ Title: main page for open loan account
        <div class="inputbox">
         <label for="term">Enter the term of the loan</label>
             <input type="number" name="term" id="term" placeholder="term" autocomplete=off required form="calcpay"
-             onclick="clearRepayments()" title="Enter the term of the loan in months"
+             onclick="clearRepayments()"  min="1" title="Enter the term of the loan in months"
             value="<?php if (ISSET($_SESSION['term']) ) echo $_SESSION['term']?>"/> 
         </div>
 
