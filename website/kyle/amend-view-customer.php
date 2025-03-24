@@ -17,16 +17,20 @@
 </head>
 
 <body>
-    <?php require('../sideMenu.html'); ?>
+    <?php require('../sideMenu.html'); // includes the side nav element in sideMenu.html 
+    ?>
     <main>
         <form action="amend-view-customer.php" method="post" id="amend-view-customer-form">
+            <!--Amend/View a Customer form-->
             <p>
                 <label for="select-customer">Select a customer</label>
                 <select name="customer-dropdown" id="select-customer">
-                    <?php include('./listbox.php') ?>
+                    <?php include('./listbox.php') // includes the listbox.php file that renders customer list 
+                    ?>
                 </select>
             </p>
             <p class="amend-view-button-container">
+                <!--Button that enables user to toggle between Amend Customer and View Customer mode-->
                 <input type="button" value="Amend Details" id="amend-view-button">
             </p>
             <p>
@@ -79,10 +83,12 @@
             </p>
         </form>
 
-        <div class="result-container">
+        <div class="result-container"> <!--Container that displays the result of the SQL query-->
             <?php
 
-            include "../db.inc.php";
+            include "../db.inc.php"; // connects to the database
+
+            // create a date object from the posted date of birth value to match the database table format
             $dbDate = date("Y-m-d", strtotime($_POST['dateOfBirth']));
 
             $query = "UPDATE Customer SET 
@@ -91,25 +97,29 @@
             occupation='$_POST[occupation]', salary='$_POST[salary]', emailAddress='$_POST[email]', 
             guarantorName='$_POST[guarantorName]' WHERE customerNo='$_POST[customerID]'";
 
-            $result = mysqli_query($con, $query);
+            $result = mysqli_query($con, $query); // executes the SQL query
 
             if (!$result) {
+                // throws an error if the SQL query is unsuccessful
                 die("Error submitting query to the database" . mysqli_error($con));
             }
 
             if (mysqli_affected_rows($con) != 0) {
+                // if at least one row in the table was affected by the SQL query
                 echo "<h2>";
                 echo mysqli_affected_rows($con) . " record(s) updated";
                 echo "</h2>";
             } else {
+                // if no rows in the table were affected by the SQL query
                 echo "<h2>No records were changed</h2>";
             }
 
-            mysqli_close($con);
+            mysqli_close($con); // closes the database connection
 
             ?>
 
             <form action="./amend-view-customer.html.php" method="post" class="close-window">
+                <!--Close window button wrapped in a form element that returns to the previous screen-->
                 <button type="submit" id="return-button">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -122,7 +132,7 @@
         </div>
     </main>
     <script>
-        document.querySelector("nav").classList.add("disabled");
+        document.querySelector("nav").classList.add("disabled"); // adds the disabled class which reduces opacity
         document.querySelector("#amend-view-customer-form").classList.add("disabled");
     </script>
 </body>

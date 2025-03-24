@@ -16,14 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const lodgementAmount = document.querySelector("#lodgementAmount");
 
     accountTypeDropdown.addEventListener("change", () => {
-        console.log(form);
         enableFormInputs();
         form.submit();
     })
     
     function populateFields() {
         const result = customerAccountDropdown.options[customerAccountDropdown.selectedIndex].value;
-        console.log(result);
         const customerDetails = result.split(";");
         formInputs.forEach((input, index) => {
             input.value = customerDetails[index];
@@ -38,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     function selectCustomerByID() {
-        console.log(customerIDInput.value);
         if (customerIDInput.value) {
             let customerID = customerIDInput.value;
             customerAccountDropdown.value = customerOptions[customerID - 1].value;

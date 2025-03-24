@@ -21,16 +21,20 @@
 </head>
 
 <body>
-    <?php require('../sideMenu.html'); ?>
+    <?php require('../sideMenu.html'); // includes the side nav element in sideMenu.html 
+    ?>
     <main>
         <form action="amend-view-customer.php" method="post" id="amend-view-customer-form">
+            <!--Amend/View a Customer form-->
             <p>
                 <label for="select-customer">Select a customer</label>
                 <select name="customer-dropdown" id="select-customer">
-                    <?php include('./listbox.php') ?>
+                    <?php include('./listbox.php') // includes the listbox.php file that renders customer list 
+                    ?>
                 </select>
             </p>
             <p class="amend-view-button-container">
+                <!--Button that enables user to toggle between Amend Customer and View Customer mode-->
                 <input type="button" value="Amend Details" id="amend-view-button">
             </p>
             <p>
@@ -83,7 +87,7 @@
             </p>
         </form>
     </main>
-    <script src="./amendView.js"></script>
+    <script src="./amendView.js"></script> <!--Links the amendView.js file-->
 </body>
 
 </html>

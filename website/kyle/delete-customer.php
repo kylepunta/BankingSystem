@@ -23,24 +23,26 @@
 <body>
     <?php require('../sideMenu.html'); ?>
     <main>
-        <form action="./delete-customer.html.php" method="post" id="delete-customer-form">
+        <form action="./delete-customer.html.php" method="post" id="delete-customer-form"> <!--Delete Customer form-->
             <p>
                 <label for="select-customer">Select a customer</label>
                 <select name="customerDropdown" id="select-customer">
-                    <?php
-                    include "../db.inc.php";
+                    <?php // renders all customers from the Customer table in the database as option elements
+                    include "../db.inc.php"; // connects to the database
 
-                    if (!$con) {
+                    if (!$con) { // throws a connection error if connection fails
                         die("Database connection failed" . mysqli_connect_error());
                     }
 
                     $sql = "SELECT customerNo, firstName, surName FROM Customer WHERE deletedFlag=0";
-                    $result = mysqli_query($con, $sql);
+                    $result = mysqli_query($con, $sql); // executes the SQL query
                     if (!$result) {
+                        // throws an error if the SQL query fails
                         die("Error in querying the database" . mysqli_error($con));
                     }
 
                     if (mysqli_num_rows($result) === 0) {
+                        // throws an error if no rows are selected
                         die("No customers found in the Customer table");
                     }
 
@@ -48,13 +50,14 @@
                     echo "<br>Query executed successfully.";
 
                     while ($row = mysqli_fetch_array($result)) {
+                        // creates an option element for each customer by appending values from each result row
                         $customerID = $row['customerNo'];
                         $firstName = $row['firstName'];
                         $surname = $row['surName'];
                         echo "<option value='{$customerID}'>{$customerID} - {$firstName} {$surname}</option>";
                     }
 
-                    mysqli_close($con);
+                    mysqli_close($con); // closes the database connection
                     ?>
                 </select>
             </p>
@@ -62,13 +65,14 @@
                 <input type="submit" value="Confirm Selection" id="confirm-button">
             </div>
         </form>
-        <div class="result-container">
+        <div class="result-container"> <!--Container that displays the result of the SQL query-->
             <?php
-            include "../db.inc.php";
+            include "../db.inc.php"; // connects to the database
             $query = "UPDATE Customer SET deletedFlag=1 WHERE customerNo='$_POST[customerDropdown]'";
-            $result = mysqli_query($con, $query);
+            $result = mysqli_query($con, $query); // executes the SQL query
 
             if (!$result) {
+                // throws an error if SQL query is unsuccessful
                 die("Error querying the database" . mysqli_error($con));
                 echo "<h2>No records were deleted from the database</h2>";
             }
@@ -76,9 +80,10 @@
             echo "<h2>1 record deleted from the database</h2>";
 
 
-            mysqli_close($con);
+            mysqli_close($con); // closes the database connection
             ?>
             <form action="./delete-customer.html.php" method="post" class="close-window">
+                <!--Close window button wrapped in a form element that returns to the previous screen-->
                 <button type="submit" id="return-button">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -91,7 +96,7 @@
         </div>
     </main>
     <script>
-        document.querySelector("nav").classList.add("disabled");
+        document.querySelector("nav").classList.add("disabled"); // adds the disabled class which reduces opacity
         document.querySelector("#delete-customer-form").classList.add("disabled");
     </script>
 </body>

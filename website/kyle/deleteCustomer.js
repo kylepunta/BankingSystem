@@ -5,9 +5,10 @@
     Description: A JS file that adds functionality to the Delete Customer screen
 */
 
-const form = document.querySelector("#delete-customer-form");
+const form = document.querySelector("#delete-customer-form"); // selects the form element
 
 function confirmDeletion() {
+    // if the users confirms deletion, it submits the form. Otherwise, it returns to the previous screen
     let response = confirm("Are you sure you want to delete this customer?");
     if (response) {
         return true;
@@ -16,5 +17,6 @@ function confirmDeletion() {
     }
 }
 
+// event listener that invokes the confirmDeletion function when the form submits
 form.addEventListener("submit", confirmDeletion);
 

@@ -24,9 +24,10 @@
 </head>
 
 <body>
-    <?php require('../sideMenu.html'); ?>
+    <?php require('../sideMenu.html'); // imports the side nav element from sideMenu.html 
+    ?>
     <main>
-        <form action="" method="post" id="add-customer-form">
+        <form action="./add-customer.html.php" method="post" id="add-customer-form"> <!--Add Customer form-->
             <p>
                 <label for="firstName">First Name</label>
                 <input type="text" id="firstName" name="firstName" required>
@@ -72,10 +73,10 @@
                 <input id="reset" type="reset" value="Clear">
             </div>
         </form>
-        <div class="result-container">
+        <div class="result-container"> <!--Container for displaying query result-->
             <?php
-            include "../db.inc.php";
-            $dbDate = date("Y-m-d", strtotime($_POST['dateOfBirth']));
+            include "../db.inc.php"; // database connection file
+            $dbDate = date("Y-m-d", strtotime($_POST['dateOfBirth'])); // creates a date object to match database format
 
             $query = "INSERT INTO `Customer` 
             (`firstName`, `surName`, `address`, `eircode`, `dateOfBirth`, `telephoneNo`, `occupation`, `salary`, 
@@ -83,18 +84,19 @@
             VALUES ('$_POST[firstName]', '$_POST[lastName]', '$_POST[address]', '$_POST[eircode]', '$dbDate', 
             '$_POST[phoneNumber]', '$_POST[occupation]', '$_POST[salary]', '$_POST[email]', '$_POST[guarantorName]')";
 
-            $result = mysqli_query($con, $query);
+            $result = mysqli_query($con, $query); // executes the query
 
-            if (!$result) {
+            if (!$result) { // throws an error if query was unsuccessful
                 die("Error querying the database" . mysqli_error($con));
                 echo "<h2>No record was added to the database</h2>";
             }
 
             echo "<h2>1 record added to the database</h2>";
 
-            mysqli_close($con);
+            mysqli_close($con); // closes the database connection
             ?>
             <form action="./add-customer.html.php" method="post" class="close-window">
+                <!--Close Window button wrapped in a form element that returns to the Add Customer screen-->
                 <button type="submit" id="return-button">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -107,7 +109,7 @@
         </div>
     </main>
     <script>
-        document.querySelector("nav").classList.add("disabled");
+        document.querySelector("nav").classList.add("disabled"); // adds a disabled class to reduce opacity
         document.querySelector("#add-customer-form").classList.add("disabled");
     </script>
 </body>

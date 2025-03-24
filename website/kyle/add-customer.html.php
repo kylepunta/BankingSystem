@@ -24,9 +24,10 @@
 </head>
 
 <body>
-    <?php require('../sideMenu.html'); ?>
+    <?php require('../sideMenu.html'); // imports the side nav element from sideMenu.html 
+    ?>
     <main>
-        <form action="./add-customer.php" method="post" id="add-customer-form">
+        <form action="./add-customer.php" method="post" id="add-customer-form"> <!--Add Customer form-->
             <p>
                 <label for="firstName">First Name</label>
                 <input type="text" id="firstName" name="firstName" required>
@@ -73,7 +74,7 @@
             </div>
         </form>
     </main>
-    <script src="./addCustomer.js"></script>
+    <script src="./addCustomer.js"></script> <!--Links the addCustomer.js file-->
 </body>
 
 </html>

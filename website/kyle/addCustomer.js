@@ -5,9 +5,10 @@
     Description: A JS file that adds functionality to the Add Customer webpage
 */
 
-const form = document.querySelector("#add-customer-form");
+const form = document.querySelector("#add-customer-form"); // selects the form element
 
 function confirmChanges() {
+    // if the user confirms changes, it submits the form. Otherwise, it returns to the screen
     let response = confirm("Are you sure you want to add a new customer?");
     if (response) {
         return true;
@@ -16,4 +17,4 @@ function confirmChanges() {
     }
 }
 
-form.addEventListener("submit", confirmChanges);
+form.addEventListener("submit", confirmChanges); // event listener that invokes the confirmChanges function when form submits
