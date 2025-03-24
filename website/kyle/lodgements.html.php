@@ -1,3 +1,10 @@
+<!--
+    Name: Kyle Purcell
+    Student Number: C00301808
+    Date: 24/03/2025
+    Description: A HTML/PHP file that presents the user with a form to make a lodgement into an account
+-->
+
 <?php session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountType'], $_POST['account-dropdown'])) {
     $_SESSION['accountType'] = $_POST['accountType'];
@@ -76,11 +83,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountType'], $_POST[
             <p>
                 <label for="lodgementAmount">Lodgement Amount</label>
                 <input type="text" name="lodgementAmount" id="lodgementAmount">
-            </p>
-            <p>
-                <?php var_dump($_POST);
-                var_dump($_SESSION);
-                ?>
             </p>
             <div class="form-buttons">
                 <input type="submit" value="Confirm" id="submitBtn" name="submitBtn">

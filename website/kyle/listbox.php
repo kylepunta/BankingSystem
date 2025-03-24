@@ -1,3 +1,10 @@
+<!--
+    Name: Kyle Purcell
+    Student Number: C00301808
+    Date: 24/03/2025
+    Description: A PHP file that renders a list of option elements that contain values from the Customer table
+-->
+
 <?php
 include "../db.inc.php";
 date_default_timezone_set("UTC");

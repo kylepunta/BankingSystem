@@ -1,3 +1,10 @@
+<!--
+    Name: Kyle Purcell
+    Student Number: C00301808
+    Date: 24/03/2025
+    Description: A HTML/PHP file that displays the result of a lodgement attempt 
+-->
+
 <?php session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountType'])) {
     $_SESSION['accountType'] = $_POST['accountType'];
@@ -115,6 +122,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountType'])) {
             } else {
                 echo "<h2>Lodgement Unsuccessful</h2>";
             }
+
+            $todayDate = date("Y-m-d");
+
+            if ($result && mysqli_affected_rows($con) != 0) {
+                switch ($accountType) {
+                    case "currentAccount":
+                        $sql = "INSERT INTO `Current Account History` (accountId, date, transactionType, amount, balance) VALUES ('$_POST[accountID]', '$todayDate', 'Lodgement', '$_POST[lodgementAmount]', '$newBalance')";
+                        break;
+                    case "depositAccount":
+                        $sql = "INSERT INTO `Deposit Account History` (accountId, date, transactionType, transactionAmount, balance) VALUES ('$_POST[accountID]', '$todayDate', 'Lodgement', '$_POST[lodgementAmount]', '$newBalance')";
+                        break;
+                    case "loanAccount":
+                        $sql = "INSERT INTO `Loan Account History` (accountID, transactionDate, transactionType, repaymentAmount, balance) VALUES ('$_POST[accountID]', '$todayDate', 'Lodgement', '$_POST[lodgementAmount]', '$newBalance')";
+                        break;
+                }
+            }
+            $result = mysqli_query($con, $sql);
+
+            if (!$result) {
+                die("Error querying the database" . mysqli_error($con));
+            }
+
             ?>
             <form action="./lodgements.html.php" method="post" class="close-window">
                 <button type="submit" id="return-button">

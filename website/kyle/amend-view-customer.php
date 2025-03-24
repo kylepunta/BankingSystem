@@ -1,3 +1,10 @@
+<!--
+    Name: Kyle Purcell
+    Student Number: C00301808
+    Date: 24/03/2025
+    Description: A PHP file that presents the user with a form to amend and/or view a customer
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 

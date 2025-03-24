@@ -1,3 +1,10 @@
+/*
+    Name: Kyle Purcell
+    Student Number: C00301808
+    Date: 24/03/2025
+    Description: A JS file that adds functionality to the Amend/View a Customer screen
+*/
+
 const select = document.querySelector("#select-customer");
 const options = document.querySelectorAll("option");
 const formInputs = document.querySelectorAll("input:not(.form-buttons > input, #amend-view-button)");

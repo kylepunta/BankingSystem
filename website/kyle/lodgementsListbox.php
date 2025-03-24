@@ -1,3 +1,10 @@
+<!--
+    Name: Kyle Purcell
+    Student Number: C00301808
+    Date: 24/03/2025
+    Description: A PHP file that renders a list of all current, deposit and loan accounts
+-->
+
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -32,7 +39,6 @@ switch ($accountType) {
 // todo delete
 
 $result = mysqli_query($con, $sql);
-var_dump($accountType);
 
 if (!$result) {
     die("Error querying the database" . mysqli_error($con));

@@ -1,3 +1,10 @@
+<!--
+    Name: Kyle Purcell
+    Student Number: C00301808
+    Date: 24/03/2025
+    Description: A HTML/PHP file that presents the user with a form to delete a customer
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
