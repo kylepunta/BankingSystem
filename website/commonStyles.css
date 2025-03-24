@@ -53,8 +53,7 @@ body {
 }
 
 /* Style all h2 in sidenav */
-.sidenav h2, .sidenav h2 a{
-    font-size: 32px;
+.sidenav h2{
     text-align: center;
     padding: 30px 0px 10px 0px;
 }

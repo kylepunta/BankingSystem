@@ -1,5 +1,7 @@
 /.idea
 /.vscode
 .DS_Store
-Bank System Documentation.docx
 ~$*
+*.docx
+!/documentation/C2P Bank.docx
+!/documentation/Project Full Guidelines 2025.docx
