@@ -40,7 +40,7 @@ Title: main page for amend loan account
         <!-- these three next inputs are for the "checkCustomer" form -->
         <div class="inputbox">
             <label for="custName">Customer name </label>
-            <select name='listbox' id ='listbox' onclick ="return populate()" 
+            <select name='listbox' id ='listbox' onchange ="return populate()" 
             value="<?php if (ISSET($_SESSION['amend_name']) ) echo $_SESSION['amend_name']?>">
                 <?php include "listbox.php" ?>
             </select>

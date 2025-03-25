@@ -52,7 +52,7 @@ Purpose : Main page for account report
                 <!-- the text changes depending on the value of the session var 'name' -->
                 <div class="inputbox">
                     <label for="custName">Customer name </label>
-                    <select name='listbox' id='listbox' onclick="return populate()" value="<?php if (isset($_SESSION['report_name']))
+                    <select name='listbox' id='listbox' onchange="return populate()" value="<?php if (isset($_SESSION['report_name']))
                         echo $_SESSION['report_name'] ?>">
                         <?php include "listbox.php" ?>
                     </select>

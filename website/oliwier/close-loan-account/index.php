@@ -39,7 +39,7 @@ Title: main page for close loan account
         <!-- the text changes depending on the value of the session var 'name' -->
         <div class="inputbox">
             <label for="custName">Customer name </label>
-            <select name='listbox' id ='listbox' onclick ="return populate()" value="<?php if (ISSET($_SESSION['close_loanname']) ) echo $_SESSION['close_loanname']?>">
+            <select name='listbox' id ='listbox' onchange ="return populate()" value="<?php if (ISSET($_SESSION['close_loanname']) ) echo $_SESSION['close_loanname']?>">
                 <?php include "listbox.php" ?>
             </select>
         </div>
