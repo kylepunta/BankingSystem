@@ -6,8 +6,9 @@
 -->
 
 <?php session_start();
+// when user submits the form and values are posted
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountType'], $_POST['account-dropdown'])) {
-    $_SESSION['accountType'] = $_POST['accountType'];
+    $_SESSION['accountType'] = $_POST['accountType']; // creates PHP session variables
     $_SESSION['selectedAccount'] = $_POST['account-dropdown'];
 }
 ?>
@@ -18,17 +19,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountType'], $_POST[
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lodgements</title>
-    <?php require("../head.html") ?>
+    <?php require("../head.html") // links the head.html file 
+    ?>
     <link rel="stylesheet" href="./customer.css" />
 </head>
 
 <body>
-    <?php require("../sideMenu.html") ?>
+    <?php require("../sideMenu.html") // includes the side nav element in sideMenu.html 
+    ?>
     <main>
         <form action="./lodgements.php" method="post" name="lodgementsForm" id="lodgements-form">
             <p>
                 <label for="account-type">Select an account type</label>
                 <select name="accountType" id="account-type">
+                    <!--If the session variable accountType is equal to the account type, it selects the option element-->
                     <option value="currentAccount" <?php echo (isset($_SESSION['accountType']) && $_SESSION['accountType'] == 'currentAccount') ? 'selected' : '' ?>>Current Account</option>
                     <option value="depositAccount" <?php echo (isset($_SESSION['accountType']) && $_SESSION['accountType'] == 'depositAccount') ? 'selected' : '' ?>>Deposit Account</option>
                     <option value="loanAccount" <?php echo (isset($_SESSION['accountType']) && $_SESSION['accountType'] == 'loanAccount') ? 'selected' : '' ?>>Loan Account</option>
@@ -37,7 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountType'], $_POST[
             <p>
                 <label for="account-dropdown">Select an account</label>
                 <select name="account-dropdown" id="account-dropdown">
-                    <?php require("./lodgementsListbox.php") ?>
+                    <?php require("./lodgementsListbox.php") // renders the customer accounts 
+                    ?>
                 </select>
             </p>
             <p>
@@ -90,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountType'], $_POST[
         </form>
     </main>
 
-    <script src="./lodgement.js"></script>
+    <script src="./lodgement.js"></script> <!--Links the lodgement.js file-->
 </body>
 
 </html>

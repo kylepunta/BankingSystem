@@ -6,9 +6,9 @@
 */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0; /*Removes the default margin for all elements*/
+    padding: 0; /*Removes the default padding for all elements*/
+    box-sizing: border-box; /*Ensures that padding and border width/length are not included in element width/height*/
 }
 
 #add-customer-form,
@@ -26,7 +26,7 @@
 }
 
 #add-customer-form {
-    gap: 0.4rem!important;
+    gap: 0.4rem!important; /*Sets the CSS specificity to the highest so that the style rules will always be applied*/
 }
 
 label {
@@ -36,9 +36,9 @@ label {
 }
 
 form p:not(.address-section, .amend-view-button-container, .form-buttons) {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; /*Flex container that can expand and grow*/
+    align-items: center; /*Centers elements within the flex container along the y-axis*/
+    justify-content: space-between; /*Sets elements within the flex container to have an even space between them along the x-axis*/
 }
 
 input:not(#submit, #reset, #submitBtn),
@@ -49,7 +49,7 @@ input:not(#submit, #reset, #submitBtn),
     font-size: 1rem;
     padding: 0.6rem 1rem; 
     border: 2px solid purple;
-    border-radius: 6px;
+    border-radius: 6px; /*Rounds the border to make it appear more curved*/
     background-color: #fffcff;
     min-width: 50%;
 }
@@ -69,7 +69,7 @@ input:not(#submit, #reset, #submitBtn),
 .form-buttons {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-evenly; /*Evenly distributes the space between each element and the edge of the flex container along the x-axis*/
     margin-top: 1rem;
 }
 
@@ -79,15 +79,15 @@ input:not(#submit, #reset, #submitBtn),
     border: 2px solid #56007a;
     border-radius: 8px;
     padding: 0.6rem 3rem;
-    box-shadow: 0px 1px 0px #56007a;
+    box-shadow: 0px 1px 0px #56007a; /*Adds a shadow underneath the element*/
 }
 
 .form-buttons>input:hover,
 #amend-view-button:hover,
 #return-button:hover,
 .close-window button:hover {
-    cursor: pointer;
-    opacity: 0.8;
+    cursor: pointer; /*Styles the cursor to be a pointer for clicking on elements*/
+    opacity: 0.8; /*Reduces the tone and visibility of the element*/
     background-color: #774491!important;
     color: white;
     border: 2px solid #56007a!important;
@@ -97,15 +97,15 @@ input:not(#submit, #reset, #submitBtn),
 #amend-view-button:active,
 #return-button:active,
 .close-window button:active {
-    transform: translateY(5px);
-    box-shadow: 0px 0px 0px;
+    transform: translateY(5px); /*Places the element across its y-axis by 5px when it is active*/
+    box-shadow: 0px 0px 0px; /*Removes the box shadow when element is active*/
 }
 
 main {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column; /*Sets direction from default row (horizontal) to column (vertical)*/
+    align-items: center; /*Centers flex items along the flex container's y-axis*/
+    justify-content: center; /*Centers flex items along the flex container's x-axis*/
 }
 
 .customer-info {
@@ -125,12 +125,12 @@ main {
 }
 
 .result-container {
-    position: absolute;
+    position: absolute; /*Positions the element relative to the nearest parent element and removes it from the normal document flow*/
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3rem;
+    gap: 3rem; /*Sets a gap between flex items of 3rem*/
     background-color: #fffcff;
     border: 2px solid purple;
     border-radius: 16px;
@@ -166,7 +166,7 @@ main {
 .close-window svg {
     width: 40px;
     height: 40px;
-    fill: white;
+    fill: white; /*Fill property is used to style the background colour of an SVG element*/
 }
 
 .close-window button {
@@ -177,5 +177,5 @@ main {
 
 .disabled {
     opacity: 0.4;
-    pointer-events: none;
+    pointer-events: none; /*Disables all cursor activity over an element, disabling clicking on the element*/
 }
