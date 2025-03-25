@@ -168,7 +168,7 @@ if (!empty($_POST["confirmed"]) && $gotCustomerId && $gotAccountNo) {
             <!-- the withdrawalamt input box -->
             <input type="number" name="withdrawalamt" id="withdrawalamt"
                    value="<?php if (isset($_SESSION["withdrawalamt"])) echo $_SESSION["withdrawalamt"]; ?>"
-                   placeholder="Withdrawal amount" title="Must be above 0" min="0" step="0.01" required>
+                   placeholder="Withdrawal amount" title="Must be above 0" min="0.01" step="0.01" required>
         </div>
 
         <!-- a div which groups the buttons -->

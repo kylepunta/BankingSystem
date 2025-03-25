@@ -19,10 +19,10 @@ $accountNo = $_POST["accountno"];
 // converts and stores POSTed values to floats from strings
 $withdrawalamt = floatval($_POST["withdrawalamt"]);
 
-// checks if the withdrawal amount is below 0
-if ($withdrawalamt < 0) {
+// checks if the withdrawal amount is below 0.01
+if ($withdrawalamt < 0.01) {
     // error
-    $_SESSION["errorMsg"] .= "Withdrawal amount of $withdrawalamt is less than 0. It must be greater than 0!<br>";
+    $_SESSION["errorMsg"] .= "Withdrawal amount of $withdrawalamt is too small, it must be greater than 0!<br>";
 }
 
 // stores the SQL statement to be queried later
