@@ -31,7 +31,7 @@ Title: loan Account and account report Css file
   padding: 16px;
   max-width: 50%;
   min-width: fit-content;
-  margin: 50px auto;
+  margin: 50px auto 10px;
 }
 
 /* styles the inputs */
@@ -154,4 +154,11 @@ tr:nth-child(even) {
 /* make lables a little larger */
 .inputbox > label {
   width: 275px;
+}
+
+/* style for error messages */
+.errorStyle {
+  color: red; 
+  text-align: center; 
+  font-size: 30px;
 }

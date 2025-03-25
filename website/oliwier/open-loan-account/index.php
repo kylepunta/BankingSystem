@@ -154,8 +154,8 @@ Title: main page for open loan account
         // if the name is unset and the id is, after the query was made print the error message
         if (!ISSET($_SESSION['name']) and ISSET($_SESSION['customerID'])) {
         
-            echo '<p style="color: red; text-align: center; font-size:20">
-            No record found for a customer with id..' . $_SESSION['customerID'] . ' <br> Please try again!
+            echo '<p class="errorStyle">
+            No record found for a customer with id : ' . $_SESSION['customerID'] . ' <br> Please try again!
             </p>';
             // unset the customerID to clear the variable
             unset ($_SESSION['customerID']); 

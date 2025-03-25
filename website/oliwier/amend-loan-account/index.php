@@ -50,7 +50,7 @@ Title: main page for amend loan account
         <!-- on input make sure to unconfirm the account to prevent incorrect changes -->
         <div class="inputbox">
             <label for="custID">Customer Number </label>
-            <input type="number" name="custID" id="custID" placeholder="custID" autocomplete=off required form="checkCustomer" 
+            <input type="number" name="custID" id="custID" placeholder="custID" autocomplete=off form="checkCustomer" 
             oninput="unconfirmAccount()" title="Enter a customer number" min="0"
             value="<?php if (ISSET($_SESSION['amend_customerID']) ) echo $_SESSION['amend_customerID']?>"/>  
         </div>
@@ -160,14 +160,14 @@ Title: main page for amend loan account
     <!-- php section -->
     <?php
         // if the name is unset and the id is, after the query was made print the error message
-        if (!ISSET($_SESSION['amend_name']) and ISSET($_SESSION['amend_customerID'])) {
-        
-            echo '<p style="color: red; text-align: center; font-size:20">
-            No record found for a customer with id :' . $_SESSION['amend_customerID'] .' and 
-            account number : ' . $_SESSION['amend_AccountNumber'] . ' <br> Please try again!
+        if (!ISSET($_SESSION['amend_name']) and ISSET($_SESSION['amend_AccountNumber'])) {
+    
+            echo '<p class="errorStyle">
+            No record found for account number : ' . $_SESSION['amend_AccountNumber'] . ' <br> 
+            Please try again!
             </p>';
-            // unset the customer id to clear the variable
-            unset ($_SESSION['amend_customerID']); 
+            // unset the customerID to clear the variable
+            unset ($_SESSION['amend_AccountNumber']); 
         }
     ?>
     </main>

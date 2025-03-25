@@ -13,7 +13,7 @@ include '../../db.inc.php';      // include DB access file
 $sql = "SELECT Customer.customerNo, firstName, surName, address, eircode, dateOfBirth, telephoneNo, 
         `Loan Account`.`accountNumber`, `Loan Account`.accountID, `Loan Account`.balance FROM (`Customer` INNER JOIN `Customer/LoanAccount` 
         ON Customer.customerNo = `Customer/LoanAccount`.`customerNo`) INNER JOIN `Loan Account` ON `Loan Account`.`accountID` = 
-        `Customer/LoanAccount`.`accountID` WHERE Customer.customerNo = " . $_POST['custID'] . " AND `Loan Account`.`accountNumber` = " . $_POST['closeAccountNumber'] . ";";
+        `Customer/LoanAccount`.`accountID` WHERE `Loan Account`.`accountNumber` = " . $_POST['closeAccountNumber'] . ";";
 
 // check if any errors occurred in the query
 if (!$result = mysqli_query($con, $sql)) {
@@ -22,9 +22,6 @@ if (!$result = mysqli_query($con, $sql)) {
 
 // get the number of rows
 $rowcount = mysqli_affected_rows($con);
-
-// set session 'personid' as personid from the Post
-$_SESSION['close_customerID'] = $_POST['custID'];
 
 // set session 'personid' as personid from the Post
 $_SESSION['close_AccountNumber'] = $_POST['closeAccountNumber'];
@@ -46,6 +43,7 @@ if ($rowcount == 1) {
     $_SESSION['close_accountConfirmed'] = true;
 
 } else if ($rowcount == 0) {  // if no record found unset all session variables
+    unset($_SESSION['close_customerID']);
     unset($_SESSION['close_loanname']);
     unset($_SESSION['close_dob']);
     unset($_SESSION['close_address']);

@@ -15,7 +15,7 @@ $sql = "SELECT Customer.customerNo, firstName, surName, address, eircode, dateOf
         `Loan Account`.`loanMonthlyRepayments`, `Loan Account`.`loanTerm`, `Loan Account`.`loanAmount` FROM 
         (`Customer` INNER JOIN `Customer/LoanAccount` ON Customer.customerNo = `Customer/LoanAccount`.`customerNo`) 
         INNER JOIN `Loan Account` ON `Loan Account`.`accountID` = `Customer/LoanAccount`.`accountID` 
-        WHERE Customer.customerNo = " . $_POST['custID'] . " AND `Loan Account`.`accountNumber` = " . $_POST['AccountNumber'] . ";";
+        WHERE `Loan Account`.`accountNumber` = " . $_POST['AccountNumber'] . ";";
 
 // check if any errors occurred in the query
 if (!$result = mysqli_query($con, $sql)) {
@@ -24,9 +24,6 @@ if (!$result = mysqli_query($con, $sql)) {
 
 // get the number of rows
 $rowcount = mysqli_affected_rows($con);
-
-// set session 'personid' as personid from the Post
-$_SESSION['amend_customerID'] = $_POST['custID'];
 
 // set session 'personid' as personid from the Post
 $_SESSION['amend_AccountNumber'] = $_POST['AccountNumber'];
@@ -51,6 +48,7 @@ if ($rowcount == 1) {
     $_SESSION['amend_accountConfirmed'] = true;
 
 } else if ($rowcount == 0) {  // if no record found unset all session variables
+    unset($_SESSION['amend_customerID']);
     unset($_SESSION['amend_name']);
     unset($_SESSION['amend_dob']);
     unset($_SESSION['amend_address']);

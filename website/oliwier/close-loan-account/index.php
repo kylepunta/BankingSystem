@@ -48,7 +48,7 @@ Title: main page for close loan account
         <!-- on input make sure to disable the submit to confirm which account is being deleted -->
         <div class="inputbox">
             <label for="custID">Customer Number </label>
-            <input type="number" name="custID" id="custID" placeholder="custID" autocomplete=off required form="checkCustomer" 
+            <input type="number" name="custID" id="custID" placeholder="custID" autocomplete=off form="checkCustomer" 
             oninput="disableSubmit()" title="Enter a customer number" min="0"
             value="<?php if (ISSET($_SESSION['close_customerID']) ) echo $_SESSION['close_customerID']?>"/>   
         </div>
@@ -123,14 +123,14 @@ Title: main page for close loan account
     <!-- php section -->
     <?php
         // if the name is unset and the id is, after the query was made print the error message
-        if (!ISSET($_SESSION['close_loanname']) and ISSET($_SESSION['close_customerID'])) {
+        if (!ISSET($_SESSION['close_loanname']) and ISSET($_SESSION['close_AccountNumber'])) {
         
-            echo '<p style="color: red; text-align: center; font-size:20">
-            No record found for a customer with id :' . $_SESSION['close_customerID'] .' and 
-            account number : ' . $_SESSION['close_AccountNumber'] . ' <br> Please try again!
+            echo '<p class="errorStyle">
+            No record found for account number : ' . $_SESSION['close_AccountNumber'] . ' <br> 
+            Please try again!
             </p>';
             // unset the customerID to clear the variable
-            unset ($_SESSION['close_customerID']); 
+            unset ($_SESSION['close_AccountNumber']); 
         }
     ?>
     </main>
