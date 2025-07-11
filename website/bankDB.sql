@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `Current Account`
 --
-
+DROP TABLE IF EXISTS `Current Account`;
 CREATE TABLE `Current Account` (
   `accountId` int(11) NOT NULL,
   `accountNumber` int(8) NOT NULL,
@@ -58,7 +58,7 @@ INSERT INTO `Current Account` (`accountId`, `accountNumber`, `balance`, `overdra
 --
 -- Table structure for table `Current Account History`
 --
-
+DROP TABLE IF EXISTS `Current Account History`;
 CREATE TABLE `Current Account History` (
   `transactionId` int(11) NOT NULL,
   `accountId` int(11) NOT NULL,
@@ -107,7 +107,7 @@ INSERT INTO `Current Account History` (`transactionId`, `accountId`, `date`, `tr
 --
 -- Table structure for table `Customer`
 --
-
+DROP TABLE IF EXISTS `Customer`;
 CREATE TABLE `Customer` (
   `customerNo` int(11) NOT NULL,
   `firstName` varchar(20) NOT NULL,
@@ -145,7 +145,7 @@ INSERT INTO `Customer` (`customerNo`, `firstName`, `surName`, `address`, `eircod
 --
 -- Table structure for table `Customer/CurrentAccount`
 --
-
+DROP TABLE IF EXISTS `Customer/CurrentAccount`;
 CREATE TABLE `Customer/CurrentAccount` (
   `customerNo` int(11) NOT NULL,
   `accountId` int(11) NOT NULL
@@ -174,7 +174,7 @@ INSERT INTO `Customer/CurrentAccount` (`customerNo`, `accountId`) VALUES
 --
 -- Table structure for table `Customer/Deposit Account`
 --
-
+DROP TABLE IF EXISTS `Customer/Deposit Account`;
 CREATE TABLE `Customer/Deposit Account` (
   `customerNo` int(11) NOT NULL,
   `accountID` int(11) NOT NULL
@@ -205,7 +205,7 @@ INSERT INTO `Customer/Deposit Account` (`customerNo`, `accountID`) VALUES
 --
 -- Table structure for table `Customer/LoanAccount`
 --
-
+DROP TABLE IF EXISTS `Customer/LoanAccount`;
 CREATE TABLE `Customer/LoanAccount` (
   `customerNo` int(8) NOT NULL,
   `accountID` int(11) NOT NULL
@@ -234,7 +234,7 @@ INSERT INTO `Customer/LoanAccount` (`customerNo`, `accountID`) VALUES
 --
 -- Table structure for table `Deposit Account`
 --
-
+DROP TABLE IF EXISTS `Deposit Account`;
 CREATE TABLE `Deposit Account` (
   `accountID` int(11) NOT NULL,
   `accountNumber` int(11) NOT NULL,
@@ -266,7 +266,7 @@ INSERT INTO `Deposit Account` (`accountID`, `accountNumber`, `balance`, `deleted
 --
 -- Table structure for table `Deposit Account History`
 --
-
+DROP TABLE IF EXISTS `Deposit Account History`;
 CREATE TABLE `Deposit Account History` (
   `transactionId` int(10) NOT NULL,
   `accountId` int(11) NOT NULL,
@@ -316,7 +316,7 @@ INSERT INTO `Deposit Account History` (`transactionId`, `accountId`, `date`, `tr
 --
 -- Table structure for table `Loan Account`
 --
-
+DROP TABLE IF EXISTS `Loan Account`;
 CREATE TABLE `Loan Account` (
   `accountID` int(11) NOT NULL,
   `accountNumber` int(8) NOT NULL,
@@ -350,7 +350,7 @@ INSERT INTO `Loan Account` (`accountID`, `accountNumber`, `balance`, `loanAmount
 --
 -- Table structure for table `Loan Account History`
 --
-
+DROP TABLE IF EXISTS `Loan Account History`;
 CREATE TABLE `Loan Account History` (
   `transactionID` int(11) NOT NULL,
   `accountID` int(11) NOT NULL,
@@ -384,7 +384,7 @@ INSERT INTO `Loan Account History` (`transactionID`, `accountID`, `transactionDa
 --
 -- Table structure for table `Rate Table`
 --
-
+DROP TABLE IF EXISTS `Rate Table`;
 CREATE TABLE `Rate Table` (
   `rateType` varchar(20) NOT NULL,
   `rate` double NOT NULL

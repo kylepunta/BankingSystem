@@ -28,6 +28,13 @@
                 <li>Darian Byrne</li>
                 <li>Kyle Purcell</li>
             </ul>
+            <br>
+            <form action="resetDB.php" method="post" onsubmit="return confirm('Are you sure you wish to reset the database? All changes made will be lost!')">
+            <div class="buttons">
+                <!-- Submit button to confirm customer details to continue -->
+                <input type="submit" value="Reset Database" id="confirmCustomerButton" name="confirmDetails">
+            </div>
+            </form>
         </div>
     </main>
 </body>
