@@ -16,7 +16,7 @@ Purpose: Common CSS styles used by the sidemenu and every webpage in the project
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'inter', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1rem;
 }
 
@@ -43,8 +43,8 @@ body {
     width: 330px;
     display: flex;
     flex-direction: column;
-    background-color: var(--sidebar-bg-color);
     padding-bottom: 20px;
+    background: linear-gradient(to bottom, #5b3ec8, #6a48d7);
 }
 
 /* Style all elements in sidenav */
@@ -60,7 +60,7 @@ body {
 
 /* Style all buttons in sidenav */
 .sidenav button {
-    background-color: var(--sidebar-bg-color);
+    background-color: inherit;
     border: none;
     font-weight: bold;
     display: flex;
@@ -87,6 +87,7 @@ body {
 /* Style all links in sidenav */
 .sidenav > ul > li > a {
     font-weight: bold;
+    width: 100%;
 }
 
 /* Style all li with class dropdown */
@@ -163,7 +164,6 @@ form:not(.close-window) {
 /* Style all inputs and selects in the inputbox class */
 .inputbox > input, select {
     flex-grow: 1;
-    margin-left: 20px;
     border: 1px solid gray;
     border-radius: 4px;
     padding: 0px 10px;
