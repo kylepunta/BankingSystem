@@ -22,7 +22,7 @@
     <main>
         <form action="amend-view-customer.php" method="post" id="amend-view-customer-form">
             <!--Amend/View a Customer form-->
-            <p>
+            <p class="select-customer">
                 <label for="select-customer">Select a customer</label>
                 <select name="customer-dropdown" id="select-customer">
                     <?php include('./listbox.php') // includes the listbox.php file that renders customer list 

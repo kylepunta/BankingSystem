@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountType'], $_POST[
     ?>
     <main>
         <form action="./lodgements.html.php" method="post" name="lodgementsForm" id="lodgements-form">
-            <p>
+            <p class="select-account-type">
                 <label for="account-type">Select an account type</label>
                 <select name="accountType" id="account-type">
                     <!--If the session variable accountType is equal to the account type, it selects the option element-->
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountType'], $_POST[
                     <option value="loanAccount" <?php echo (isset($_SESSION['accountType']) && $_SESSION['accountType'] == 'loanAccount') ? 'selected' : '' ?>>Loan Account</option>
                 </select>
             </p>
-            <p>
+            <p class="select-account">
                 <label for="account-dropdown">Select an account</label>
                 <select name="account-dropdown" id="account-dropdown">
                     <?php require("./lodgementsListbox.php") // renders the customer accounts 
