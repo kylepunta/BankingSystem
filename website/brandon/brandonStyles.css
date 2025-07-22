@@ -107,7 +107,10 @@ thead tr * {
 /* Style p elements with id message */
 p#message {
     text-align: center;
-    padding: 0 100px;
+    padding: 0.8rem 3.5rem;
+    border: 1px solid red;
+    color: red;
+    border-radius: 6px;
 }
 
 /* Style p elements with id error message */
