@@ -24,7 +24,7 @@
     <main>
         <!-- Form 1/2 for customer details -->
         <!-- Fields with ISSET are set using php from data gathered from session variables -->
-        <form action="processForm.php" method="post" onsubmit="return confirmSubmit()" class="upperForm">
+        <form id="open-deposit-form" action="processForm.php" method="post" onsubmit="return confirmSubmit()" class="upperForm">
             <h1>Open a deposit account</h1>
             <div class="inputbox">
                 <label>Choose a customer:</label>
@@ -37,7 +37,7 @@
                 <input type="text" name="number" id="number" required pattern="[0-9]+" title="Must enter a whole number" value="<?php if (isset($_SESSION['number'])) echo $_SESSION['number'] ?>" />
             </div>
             <!-- Submit button for manually checking customer numbers -->
-            <div class="buttons">
+            <div class="buttons check-customer-details">
                 <input type="submit" value="Check customer details" id="chooseCustomerButton" name="checkDetails">
             </div>
             <!-- Form fields to be automatically filled in with PHP or javascript -->
@@ -63,7 +63,7 @@
             </div>
         </form>
         <!-- Form 2/2 for creating a deposit account -->
-        <form action="addCustomer.php" method="post" onsubmit="return finalCheck()" class="lowerForm" id="lowerForm">
+        <form id="open-deposit-form-two" action="addCustomer.php" method="post" onsubmit="return finalCheck()" class="lowerForm" id="lowerForm">
             <div class="inputbox">
                 <label for="accNo">Generated account no:</label>
                 <input type="text" name="accNo" id="accNo" readonly required value="<?php if (isset($_SESSION['accNo'])) echo $_SESSION['accNo'] ?>" title="Please confirm customer details to generate an account no" />
