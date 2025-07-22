@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountType'])) {
     <title>Lodgements</title>
     <?php require("../head.html") // links the head.html file 
     ?>
-    <link rel="stylesheet" href="./customer.css" />
+    <!-- <link rel="stylesheet" href="./customer.css" /> -->
 </head>
 
 <body>
