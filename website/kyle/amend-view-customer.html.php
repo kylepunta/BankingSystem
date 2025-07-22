@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/commonStyles.css">
-    <link rel="stylesheet" href="./customer.css">
+    <!-- <link rel="stylesheet" href="./customer.css"> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=keyboard_arrow_down" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +26,8 @@
     <main>
         <form action="amend-view-customer.php" method="post" id="amend-view-customer-form">
             <!--Amend/View a Customer form-->
+            <h1>Amend/View a Customer</h1>
+            <h4>Click on Amend Details and select a customer from the database. Edit the customer's details, then click confirm to confirm any changes made.</h4>
             <p class="select-customer">
                 <label for="select-customer">Select a customer</label>
                 <select name="customer-dropdown" id="select-customer">

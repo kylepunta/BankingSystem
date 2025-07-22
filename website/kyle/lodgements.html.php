@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountType'], $_POST[
     <title>Lodgements</title>
     <?php require("../head.html") // links the head.html file 
     ?>
-    <link rel="stylesheet" href="./customer.css" />
+    <!-- <link rel="stylesheet" href="./customer.css" /> -->
 </head>
 
 <body>
@@ -29,6 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountType'], $_POST[
     ?>
     <main>
         <form action="./lodgements.php" method="post" name="lodgementsForm" id="lodgements-form">
+            <h1>Lodgements</h1>
+            <h4>Select an account type and account, enter the lodgement amount, then click the lodge button to make a lodgement.</h4>
             <p class="select-account-type">
                 <label for="account-type">Select an account type</label>
                 <select name="accountType" id="account-type">
@@ -90,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountType'], $_POST[
                 <input type="text" name="lodgementAmount" id="lodgementAmount">
             </p>
             <div class="form-buttons">
-                <input type="submit" value="Confirm" id="submitBtn" name="submitBtn">
+                <input type="submit" value="Lodge" id="submitBtn" name="submitBtn">
             </div>
         </form>
     </main>

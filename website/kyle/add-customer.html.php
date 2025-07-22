@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank</title>
     <link rel="stylesheet" href="/commonStyles.css">
-    <link rel="stylesheet" href="./customer.css">
+    <!-- <link rel="stylesheet" href="./customer.css"> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=keyboard_arrow_down" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,6 +28,8 @@
     ?>
     <main>
         <form action="./add-customer.php" method="post" id="add-customer-form"> <!--Add Customer form-->
+            <h1>Add a Customer</h1>
+            <h4>Enter the customer's personal details, then click the add button to add the customer.</h4>
             <p>
                 <label for="firstName">First Name</label>
                 <input type="text" id="firstName" name="firstName" required>

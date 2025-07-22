@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/commonStyles.css">
-    <link rel="stylesheet" href="./customer.css">
+    <!-- <link rel="stylesheet" href="./customer.css"> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=keyboard_arrow_down" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +25,8 @@
     ?>
     <main>
         <form action="./delete-customer.php" method="post" id="delete-customer-form"> <!--Delete Customer form-->
-
+            <h1>Delete a Customer</h1>
+            <h4>Select a customer from the database, then click delete to delete the customer.</h4>
             <p>
                 <label for="select-customer">Select a customer</label>
                 <select name="customerDropdown" id="select-customer">
