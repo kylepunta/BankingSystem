@@ -23,10 +23,12 @@ function populate() {
 
     // If balance is === 0 then display no message and unlock the "Delete account" button
     if (value === 0) {
+        document.getElementById("message").style.display = "none";
         document.getElementById("message").innerHTML = "";
         document.getElementById("deleteCustomer").disabled = false;
     } else {
         // If balance is anything other than 0 then display a message and lock the "Delete account" button
+        document.getElementById("message").style.display = "flex";
         document.getElementById("message").innerHTML = "Account cannot be closed as its balance is not 0!<br>Please withdraw any remaining funds and try again."
         document.getElementById("deleteCustomer").disabled = true;
     }
