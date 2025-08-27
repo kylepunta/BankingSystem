@@ -7,6 +7,8 @@
 
 <?php
 session_start(); // starts the PHP session
+
+
 require "../db.inc.php"; // connects to the database
 date_default_timezone_set("UTC"); // sets the default timezone to UTC
 

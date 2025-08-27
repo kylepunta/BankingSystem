@@ -1,10 +1,3 @@
-<!--
-    Name: Kyle Purcell
-    Student Number: C00301808
-    Date: 24/03/2025
-    Description: A HTML/PHP file that presents the user with a form to make a lodgement into an account
--->
-
 <?php session_start();
 // when user submits the form and values are posted
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountType'], $_POST['account-dropdown'])) {
@@ -12,6 +5,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountType'], $_POST[
     $_SESSION['selectedAccount'] = $_POST['account-dropdown'];
 }
 ?>
+
+<!--
+    Name: Kyle Purcell
+    Student Number: C00301808
+    Date: 24/03/2025
+    Description: A HTML/PHP file that presents the user with a form to make a lodgement into an account
+-->
+
+
 <!DOCTYPE html>
 <html lang="en">
 
