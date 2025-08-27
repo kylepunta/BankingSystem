@@ -21,7 +21,7 @@ This was a team project. My main contributions included:
 - Collaborated with teammates on GitHub using branches and pull requests.
 - Built and designed the lodgements and add, delete, and amend/view a customer screens.
 
-## Screenshots / Demo
+## Screenshots
 
 - ![Lodgements page screenshot before redesign](images/Lodgements-Before.png)
 - ![Lodgements page screenshot after redesign](images/Lodgements-After.png)
