@@ -24,9 +24,8 @@ This was a team project. My main contributions included:
 ## Screenshots / Demo
 *(Add a few screenshots or a short GIF/video showcasing the updated UI.)*
 
-- ![Login page screenshot](<img width="1920" height="1078" alt="Screenshot from 2025-08-27 13-37-05" src="https://github.com/user-attachments/assets/bd70522d-fa99-4e26-8f0a-45220345c560" />
-)
-- ![Dashboard screenshot](screenshot-dashboard.png)
+- ![Lodgements page screenshot before redesign](images/Lodgements-Before.png)
+- ![Lodgements page screenshot after redesign](images/Lodgements-After.png)
 
 *(If you have a live preview link or Replit/Render demo, add it here)*  
 [Live Demo](https://your-live-demo-link.com) *(UI-only preview; backend may not be fully functional)*
