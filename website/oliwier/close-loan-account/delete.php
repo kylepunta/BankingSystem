@@ -1,13 +1,12 @@
+<?php
+session_start();
+?>
 <!--
 Name: Oliwier Jakubiec
 Date: 30/1/2025
 ID : C00296807
 Title: close page php
     -->
-
-<?php
-session_start();        // start session
-?>
 <!DOCTYPE html>
 
 <head>

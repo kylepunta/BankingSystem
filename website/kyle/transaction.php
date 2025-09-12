@@ -1,11 +1,11 @@
-<!--
+<?php session_start();
+/*
     Name: Kyle Purcell
     Student Number: C00301808
     Date: 24/03/2025
     Description: A HTML/PHP file that displays the result of a lodgement attempt 
--->
+*/
 
-<?php session_start();
 // when user submits the form and values are posted
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountType'])) {
     $_SESSION['accountType'] = $_POST['accountType']; // creates PHP session variables

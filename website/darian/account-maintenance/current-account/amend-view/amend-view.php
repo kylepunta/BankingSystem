@@ -1,11 +1,12 @@
 <?php
+session_start();
+
 /*
 Student Name 	: Darian Byrne
 Student Id Number: C00296036
 Date 			: 06/03/2025
 Amend/View Current Account */
-// start a session
-session_start();
+
 // we're doing database operations, require that file
 require($_SERVER["DOCUMENT_ROOT"] . '/db.inc.php');
 // declares that these variables are from another file and globally available

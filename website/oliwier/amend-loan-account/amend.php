@@ -1,3 +1,7 @@
+<?php
+session_start();        // start session
+?>
+
 <!--
 Name: Oliwier Jakubiec
 Date: 30/1/2025
@@ -5,9 +9,6 @@ ID : C00296807
 Title: amend page php
     -->
 
-<?php
-session_start();        // start session
-?>
 <!DOCTYPE html>
 
 <head>

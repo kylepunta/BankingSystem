@@ -1,12 +1,11 @@
-<!--
+<?php
+session_start();
+/*
 Name: Oliwier Jakubiec
 Date: 13/2/2025
 ID : C00296807
 Title: display view php
-    -->
-<?php
-// start session
-session_start();
+*/
 include '../../db.inc.php';      // include DB access file
 
 // prepare sql statement
@@ -41,7 +40,6 @@ if ($rowcount == 1) {
     $_SESSION['close_AccountNumber'] = $row['accountNumber'];
     $_SESSION['close_balance'] = $row['balance'];
     $_SESSION['close_accountConfirmed'] = true;
-
 } else if ($rowcount == 0) {  // if no record found unset all session variables
     unset($_SESSION['close_customerID']);
     unset($_SESSION['close_loanname']);
@@ -52,7 +50,6 @@ if ($rowcount == 1) {
     unset($_SESSION['close_phone']);
     unset($_SESSION['close_balance']);
     unset($_SESSION['close_accountConfirmed']);
-
 }
 
 
@@ -60,5 +57,3 @@ if ($rowcount == 1) {
 mysqli_close($con);
 //Go back to the calling form with the values that we need to display in session variables, if a record was found 
 header('Location: index.php');
-
-?>

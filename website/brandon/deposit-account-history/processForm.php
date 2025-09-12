@@ -1,12 +1,11 @@
-<!-- Name: Brandon Jaroszczak -->
-<!-- Student ID: C00296052 -->
-<!-- Month: March 2025 -->
-<!-- Purpose: PHP script when form is submitted in deposit account history -->
- <?php 
-	// Load in session and DB connectivity
+ <?php
 	session_start();
-    require '../../db.inc.php';
-    date_default_timezone_set("UTC");
+	// Name: Brandon Jaroszczak //
+	// Student ID: C00296052 //
+	// Month: March 2025 //
+	// Purpose: PHP script when form is submitted in deposit account history //
+	require '../../db.inc.php';
+	date_default_timezone_set("UTC");
 
 	// Select all customers and their deposit accounts where neither are deleted and the customerNo and accountNumber match the entered details
 	$sql = "SELECT firstName, surName
@@ -24,12 +23,12 @@
 
 	// store inputs in session variables
 	$_SESSION['historycustNumber'] = $_POST['custNumber'];
-	$_SESSION['historyaccNumber'] = $_POST['accNumber']; 
+	$_SESSION['historyaccNumber'] = $_POST['accNumber'];
 
 	// if customer and account found populate session variables
 	if ($rowcount == 1) {
 		$row = mysqli_fetch_array($result);
-        $_SESSION['historyname'] = $row['firstName'] . " " . $row['surName'];
+		$_SESSION['historyname'] = $row['firstName'] . " " . $row['surName'];
 		// if startDate had a value create a date object and store in session
 		if ($_POST['startDate'] != "") {
 			$startDate = date_create($_POST['startDate']);
@@ -43,9 +42,9 @@
 	} else if ($rowcount == 0) {
 		// if customer and account not found unset session variables
 		unset($_SESSION['historyname']);
-	} 
+	}
 
 	// close connection and redirect to main page
 	mysqli_close($con);
 	header('Location: ./');
-?>
+	?>

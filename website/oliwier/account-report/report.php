@@ -1,11 +1,13 @@
+<?php session_start(); // start the session
+?>
+
 <!--
 Author  : Oliwier Jakubiec
 Date    : Mar 2025
 Name    : confirmAcc.php
 Purpose : confirm the account and displau the report for the account  
 -->
-<?php session_start(); // start the session
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,9 +25,10 @@ Purpose : confirm the account and displau the report for the account
 </head>
 
 <!-- body -->
+
 <body>
     <!-- include sidemenu -->
-    <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html');?>
+    <?php require($_SERVER["DOCUMENT_ROOT"] . '/sideMenu.html'); ?>
     <main>
         <?php
         // include db connection
@@ -34,7 +37,7 @@ Purpose : confirm the account and displau the report for the account
         // split the acount info back into an array
         //customerNo firstName surName accountId accountNum balance
         $accountInfo = explode("#", $_POST['accountNumber']);
-        
+
         // get the values from the array
         $customerNo = $accountInfo[0];
         $name = $accountInfo[1] . " " . $accountInfo[2];
@@ -96,28 +99,27 @@ Purpose : confirm the account and displau the report for the account
                 while ($row = mysqli_fetch_array($result)) {
                     // format the date to dd-mm-yyyy
                     $date = date_create($row['date']);
-                    $date = date_format($date,"d-m-Y");
+                    $date = date_format($date, "d-m-Y");
                     // display the data in the table
                     echo "<tr>
-                            <td>". $date . "</td>
-                            <td>". $row['transactionType'] . "</td>
-                            <td>". $row['amount'] . "</td>
-                            <td>". $row['balance'] . "</td>
+                            <td>" . $date . "</td>
+                            <td>" . $row['transactionType'] . "</td>
+                            <td>" . $row['amount'] . "</td>
+                            <td>" . $row['balance'] . "</td>
                           </tr>";
                 }
                 // close the table
                 echo "</tbody></table>";
             }
-
         } // else the account is a loan account 
-        else { 
+        else {
             // print account info
             echo "<u>Loan Account</u><br><br>";
             echo "<div style='display: flex; justify-content: space-between;'>
                     <p>Account Number: $accountNum</p>
                     <p>Customer Name: $name</p>
                     </div>";
-                    
+
             // check to see what time frame the user has selected
             // if no dates are selected, set the time frame to the last 6 months
             if ($_POST['startDate'] == "" && $_POST['endDate'] == "") {
@@ -140,7 +142,7 @@ Purpose : confirm the account and displau the report for the account
             if (!$result = mysqli_query($con, $sql)) {
                 die("Error in querying the database " . mysqli_error($con));
             }
-            
+
             // create table
             echo "<table>
                     <thead><tr>
@@ -155,14 +157,14 @@ Purpose : confirm the account and displau the report for the account
             while ($row = mysqli_fetch_array($result)) {
                 // format the date to dd-mm-yyyy
                 $date = date_create($row['transactionDate']);
-                $date = date_format($date,"d-m-Y");
-                
+                $date = date_format($date, "d-m-Y");
+
                 // display the data in the table
                 echo "<tr>
-                        <td>".$date."</td>
-                        <td>".$row['transactionType']."</td>
-                        <td>".$row['repaymentAmount']."</td>
-                        <td>".$row['balance']."</td>
+                        <td>" . $date . "</td>
+                        <td>" . $row['transactionType'] . "</td>
+                        <td>" . $row['repaymentAmount'] . "</td>
+                        <td>" . $row['balance'] . "</td>
                     </tr>";
             }
             // close the table
@@ -174,7 +176,7 @@ Purpose : confirm the account and displau the report for the account
         mysqli_close($con);
 
         ?>
-        
+
         <!-- back button to send you back to customer and account selection-->
         <form action="./" method="post">
             <div class="button">
@@ -184,4 +186,5 @@ Purpose : confirm the account and displau the report for the account
 
     </main>
 </body>
+
 </html>

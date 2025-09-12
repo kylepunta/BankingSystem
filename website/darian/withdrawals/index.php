@@ -1,10 +1,4 @@
-<!--
-Student Name 	: Darian Byrne
-Student Id Number: C00296036
-Date 			: 10/03/2025
-Withdrawals -->
 <?php
-// start a session
 session_start();
 // initialises the error message so it can be concatenated to
 if (!isset($_SESSION["errorMsg"])) $_SESSION["errorMsg"] = "";
@@ -12,6 +6,13 @@ if (!isset($_SESSION["errorMsg"])) $_SESSION["errorMsg"] = "";
 global $validId;
 global $validAccount;
 ?>
+
+<!--
+Student Name 	: Darian Byrne
+Student Id Number: C00296036
+Date 			: 10/03/2025
+Withdrawals -->
+
 <!DOCTYPE html>
 <html lang="en">
 

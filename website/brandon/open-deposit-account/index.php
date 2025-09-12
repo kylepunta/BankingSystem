@@ -1,8 +1,8 @@
+<?php session_start(); ?>
 <!-- Name: Brandon Jaroszczak -->
 <!-- Student ID: C00296052 -->
 <!-- Month: February 2025 -->
 <!-- Purpose: main HTML page for add deposit account -->
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 

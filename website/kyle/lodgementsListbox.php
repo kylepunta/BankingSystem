@@ -1,12 +1,12 @@
-<!--
+<?php
+session_start(); // starts the PHP session
+
+/*
     Name: Kyle Purcell
     Student Number: C00301808
     Date: 24/03/2025
     Description: A PHP file that renders a list of all current, deposit and loan accounts
--->
-
-<?php
-session_start(); // starts the PHP session
+*/
 
 
 require "../db.inc.php"; // connects to the database
