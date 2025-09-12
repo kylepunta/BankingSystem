@@ -17,9 +17,9 @@ This was a team project. My main contributions included:
 
 ## Screenshots
 
-- ![Lodgements page screenshot before redesign](images/Lodgements-Before.png)
-- ![Lodgements page screenshot after redesign](images/Lodgements-After.png)
-- ![Add a customer page screenshot before redesign](images/Add-Customer-Before.png)
-- ![Add a customer page screenshot after redesign](images/Add-Customer-After.png)
+![Lodgements page screenshot before redesign](images/Lodgements-Before.png)
+![Lodgements page screenshot after redesign](images/Lodgements-After.png)
+![Add a customer page screenshot before redesign](images/Add-Customer-Before.png)
+![Add a customer page screenshot after redesign](images/Add-Customer-After.png)
 
 [Live Demo](https://bankingsystem-production-6046.up.railway.app/) *(UI-only preview; backend may not be fully functional)*
