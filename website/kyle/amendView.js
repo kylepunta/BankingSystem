@@ -76,17 +76,16 @@ function enableFormInputs() {
 }
 
 // function that prompts the user to confirm their changes
-function confirmDetails() {
+function confirmDetails(event) {
     let response = confirm("Are you sure you want to amend this customer's details?");
 
     if (response) {
         // if the user confirms, invokes the enableFormInputs function before submitting the form
         enableFormInputs();
-        return true;
     } else {
         // if the user cancels, invokes the populateFields function to repopulate the input fields
         populateFields();
-        return false;
+        event.preventDefault();
     }
 }
 

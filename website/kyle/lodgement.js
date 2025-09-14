@@ -95,17 +95,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     // function that prompts the user to confirm their changes
-    function confirmLodgement() {
+    function confirmLodgement(event) {
         let lodgementAmount = document.querySelector("#lodgementAmount");
         let response = confirm(`Are you sure you want to lodge the following amount: ${lodgementAmount.value}?`);
     
         if (response) { // user clicks confirm
             form.action = "./transaction.php"; // sets the action of the form element
             enableFormInputs();
-            return true;
         } else { // user clicks cancel
             populateFields();
-            return false;
+            event.preventDefault();
         }
     }
 

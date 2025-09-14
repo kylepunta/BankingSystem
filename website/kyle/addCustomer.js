@@ -7,14 +7,12 @@
 
 const form = document.querySelector("#add-customer-form"); // selects the form element
 
-function confirmChanges() {
+function confirmChanges(event) {
     // if the user confirms changes, it submits the form. Otherwise, it returns to the screen
     let response = confirm("Are you sure you want to add a new customer?");
-    if (response) {
-        return true;
-    } else {
-        return false;
-    }
+    if (!response) {
+        event.preventDefault();
+    } 
 }
 
 form.addEventListener("submit", confirmChanges); // event listener that invokes the confirmChanges function when form submits

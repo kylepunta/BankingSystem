@@ -7,13 +7,11 @@
 
 const form = document.querySelector("#delete-customer-form"); // selects the form element
 
-function confirmDeletion() {
+function confirmDeletion(event) {
     // if the users confirms deletion, it submits the form. Otherwise, it returns to the previous screen
     let response = confirm("Are you sure you want to delete this customer?");
-    if (response) {
-        return true;
-    } else {
-        return false;
+    if (!response) {
+        event.preventDefault();
     }
 }
 
