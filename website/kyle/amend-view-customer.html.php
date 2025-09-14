@@ -37,7 +37,7 @@
             </p>
             <p class="amend-view-button-container">
                 <!--Button that enables user to toggle between Amend Customer and View Customer mode-->
-                <input type="button" value="Amend Details" id="amend-view-button">
+                <input class="amend-view-button" type="button" value="Amend Details" id="amend-view-button">
             </p>
             <p>
                 <label for="customerID">Customer ID</label>
