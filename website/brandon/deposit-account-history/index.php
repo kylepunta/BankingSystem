@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php require_once '../../config.php'; ?>
 <!-- Name: Brandon Jaroszczak 
 Student ID: C00296052 
 Month: March 2025 

@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once '../../../../config.php';
 
 /* 
 Student Name 	: Darian Byrne
@@ -21,7 +21,7 @@ global $validAccount;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank - Amend/View Current Account</title>
     <?php require($_SERVER["DOCUMENT_ROOT"] . '/head.html'); ?>
-    <link rel="stylesheet" href="/darian/darianStyles.css">
+    <!-- <link rel="stylesheet" href="/darian/darianStyles.css"> -->
     <script src="/darian/darianScript.js"></script>
     <script src="amend-view.js"></script>
 </head>
@@ -112,17 +112,17 @@ global $validAccount;
     }
     ?>
     <main>
-        <form action="./" onsubmit="return confirmSubmit()" method="post">
+        <form class="amend-current-form" action="./" onsubmit="return confirmSubmit()" method="post">
             <!-- the heading of the form -->
-            <h2>Amend/View Current Account</h2>
+            <h1>Amend/View Current Account</h1>
             <!-- smaller text under the main heading -->
             <h4>Please select a current account and then click the amend button if you wish to update</h4>
 
             <!-- a div which centres the amend button -->
-            <div class="myButton">
-                <!-- toggle button for viewing/amending account details -->
-                <input class="button" type="button" value="Amend Details" id="amendViewbutton" onclick="toggleLock()">
-            </div>
+
+            <!-- toggle button for viewing/amending account details -->
+            <input class="amend-view-button" type="button" value="Amend Details" id="amendViewbutton" onclick="toggleLock()">
+
 
             <!-- contains the labels and inputs for a customer -->
             <?php require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.html.php') ?>

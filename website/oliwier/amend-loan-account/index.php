@@ -1,4 +1,4 @@
-<?php session_start(); // start the session
+<?php require_once '../../config.php'; // start the session
 ?>
 <!--
 Name: Oliwier Jakubiec
@@ -17,7 +17,7 @@ Title: main page for amend loan account
     <!-- important css stuff for the sidemenu -->
     <?php require('../../head.html') ?>
     <!-- css file -->
-    <link rel="stylesheet" href="../oliwierStyles.css">
+    <!-- <link rel="stylesheet" href="../oliwierStyles.css"> -->
     <!-- javascript file -->
     <script src="script.js"></script>
 </head>
@@ -34,8 +34,13 @@ Title: main page for amend loan account
 
         <!-- main section -->
         <div class="theForm">
-            <h1>Amend/View Loan Account</h1>
-            <form id="mainForm" action="amend.php" method="post" onsubmit="return confirmCheck()">
+            <form class="amend-loan-form" action="amend.php" method="post" onsubmit="return confirmCheck()">
+                <h1>Amend/View Loan Account</h1>
+                <input class="amend-view-button" type="button" id="toggle" value="Amend Details" onclick="toggleForm()" form=""
+                    <?php echo isset($_SESSION['amend_accountConfirmed']) ? '' : 'disabled'
+                    // ternary statement here to check if the button should be disabled onload based on if
+                    // account has been confirmed already 
+                    ?> />
                 <!-- dropdown with customer name -->
                 <!-- the text changes depending on the value of the session var 'amend_name' -->
                 <!-- these three next inputs are for the "checkCustomer" form -->
@@ -67,18 +72,7 @@ Title: main page for amend loan account
                         value="<?php if (isset($_SESSION['amend_AccountNumber'])) echo $_SESSION['amend_AccountNumber'] ?>" />
                 </div>
 
-                <!-- buttons to confirm the customer and toggle view  -->
-                <div class="button" style="display: flex; justify-content: space-between;">
-                    <!-- submit button -->
-                    <input type="submit" value="Confirm customer" form="checkCustomer" />
-                    <!-- toggle button -->
-                    <!-- set the form as null to make it not submit to anything -->
-                    <input type="button" id="toggle" value="Amend Details" onclick="toggleForm()" form=""
-                        <?php echo isset($_SESSION['amend_accountConfirmed']) ? '' : 'disabled'
-                        // ternary statement here to check if the button should be disabled onload based on if
-                        // account has been confirmed already 
-                        ?> />
-                </div>
+
                 <!-- box for address -->
                 <!-- the text changes depending on the value of the session var 'address' -->
                 <div class="inputbox">
@@ -150,8 +144,11 @@ Title: main page for amend loan account
                         value="<?php if (isset($_SESSION['amend_repayments'])) echo $_SESSION['amend_repayments'] ?>" />
                 </div>
 
-                <!-- submit button -->
-                <div class="button">
+                <div class="buttons">
+                    <!-- submit button -->
+                    <input id="confirmCustomer" type="submit" value="Confirm customer" form="checkCustomer" />
+                    <!-- toggle button -->
+                    <!-- set the form as null to make it not submit to anything -->
                     <input type="submit" id="submit" value="Update Account" disabled />
                 </div>
             </form>

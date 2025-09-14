@@ -1,4 +1,4 @@
-<?php session_start();
+<?php require_once '../../config.php';
 ?>
 <!--
 Name: Oliwier Jakubiec

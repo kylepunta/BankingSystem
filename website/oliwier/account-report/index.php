@@ -1,4 +1,4 @@
-<?php session_start(); // start the session
+<?php require_once '../../config.php'; // start the session
 ?>
 
 <!--

@@ -1,4 +1,4 @@
-<?php session_start();
+<?php require_once '../config.php';
 /*
     Name: Kyle Purcell
     Student Number: C00301808

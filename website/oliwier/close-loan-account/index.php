@@ -1,4 +1,4 @@
-<?php session_start();
+<?php require_once '../../config.php';
 ?>
 <!--
 Name: Oliwier Jakubiec
@@ -17,7 +17,7 @@ Title: main page for close loan account
     <!-- important css stuff for the sidemenu -->
     <?php require('../../head.html') ?>
     <!-- css file -->
-    <link rel="stylesheet" href="../oliwierStyles.css">
+    <!-- <link rel="stylesheet" href="../oliwierStyles.css"> -->
     <!-- javascript file -->
     <script src="script.js"></script>
 </head>
@@ -34,8 +34,8 @@ Title: main page for close loan account
 
         <!-- main section -->
         <div class="theForm">
-            <h1>Close Loan Account</h1>
-            <form id="mainForm" action="delete.php" method="post" onsubmit="return confirmCheck()">
+            <form class="close-loan-form" action="delete.php" method="post" onsubmit="return confirmCheck()">
+                <h1>Close Loan Account</h1>
                 <!-- box for customer name -->
                 <!-- the text changes depending on the value of the session var 'name' -->
                 <div class="inputbox">
@@ -65,10 +65,7 @@ Title: main page for close loan account
                         value="<?php if (isset($_SESSION['close_AccountNumber'])) echo $_SESSION['close_AccountNumber'] ?>" />
                 </div>
 
-                <div class="button">
-                    <!-- submit button -->
-                    <input type="submit" value="Confirm customer" form="checkCustomer" />
-                </div>
+
                 <!-- box for address -->
                 <!-- the text changes depending on the value of the session var 'address' -->
                 <div class="inputbox">
@@ -110,15 +107,16 @@ Title: main page for close loan account
                         value="<?php if (isset($_SESSION['close_balance'])) echo $_SESSION['close_balance'] ?>" />
                 </div>
 
-                <!-- submit button -->
-                <div class="button">
+                <div class="buttons">
+                    <!-- submit button -->
+                    <input id="confirmCustomer" type="submit" value="Confirm customer" form="checkCustomer" />
                     <input type="submit" id="submit" value="Close Loan Account"
                         <?php echo isset($_SESSION['close_accountConfirmed']) ? '' : 'disabled'
                         // Ternary statement here to check if the button should be disabled onload based on if 
                         // account has been confirmed already 
                         ?> />
                 </div>
-
+                <!-- submit button -->
             </form>
         </div>
         <!-- php section -->

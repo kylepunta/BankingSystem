@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once '../../../../config.php';
 
 /*
 Student Name 	: Darian Byrne
@@ -20,7 +20,7 @@ global $validId;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank - Open Current Account</title>
     <?php require($_SERVER["DOCUMENT_ROOT"] . '/head.html'); ?>
-    <link rel="stylesheet" href="/darian/darianStyles.css">
+    <!-- <link rel="stylesheet" href="/darian/darianStyles.css"> -->
     <script src="/darian/darianScript.js"></script>
     <script src="open.js"></script>
 </head>
@@ -64,9 +64,9 @@ global $validId;
     }
     ?>
     <main>
-        <form action="./" onsubmit="return confirmSubmit()" method="post">
+        <form class="open-current-form" action="./" onsubmit="return confirmSubmit()" method="post">
             <!-- the heading of the form -->
-            <h2>Open Current Account</h2>
+            <h1>Open Current Account</h1>
 
             <!-- contains the labels and inputs for a customer -->
             <?php require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.html.php') ?>

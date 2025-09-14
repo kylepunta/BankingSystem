@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once '../../config.php';
 // initialises the error message so it can be concatenated to
 if (!isset($_SESSION["errorMsg"])) $_SESSION["errorMsg"] = "";
 // declares that these variables are from another file and globally available

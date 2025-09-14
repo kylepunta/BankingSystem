@@ -1,5 +1,5 @@
 <?php
-session_start(); // starts the PHP session
+require_once '../config.php'; // starts the PHP session
 
 /*
     Name: Kyle Purcell

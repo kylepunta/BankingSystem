@@ -1,4 +1,4 @@
-<?php session_start();
+<?php require_once '../config.php';
 // when user submits the form and values are posted
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accountType'], $_POST['account-dropdown'])) {
     $_SESSION['accountType'] = $_POST['accountType']; // creates PHP session variables

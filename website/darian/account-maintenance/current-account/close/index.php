@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once '../../../../config.php';
 
 /*
 Student Name 	: Darian Byrne
@@ -21,7 +21,7 @@ global $validAccount;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank - Close Current Account</title>
     <?php require($_SERVER["DOCUMENT_ROOT"] . '/head.html'); ?>
-    <link rel="stylesheet" href="/darian/darianStyles.css">
+    <!-- <link rel="stylesheet" href="/darian/darianStyles.css"> -->
     <script src="/darian/darianScript.js"></script>
     <script src="close.js"></script>
 </head>
@@ -115,9 +115,9 @@ global $validAccount;
     if (isset($_SESSION["balance"]) && $_SESSION["balance"] != 0) $_SESSION["errorMsg"] .= "Balance for account number: $_POST[accountno] is: $_SESSION[balance].<br>It must be 0 before the account can be closed.<br>";
     ?>
     <main>
-        <form action="./" onsubmit="return confirmSubmit()" method="post">
+        <form class="close-current-form" action="./" onsubmit="return confirmSubmit()" method="post">
             <!-- the heading of the form -->
-            <h2>Close Current Account</h2>
+            <h1>Close Current Account</h1>
 
             <!-- contains the labels and inputs for a customer -->
             <?php require($_SERVER["DOCUMENT_ROOT"] . '/darian/customerDetails.html.php') ?>
