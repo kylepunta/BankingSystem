@@ -1,11 +1,9 @@
-<!-- Name: Group work -->
-<!-- Purpose: DB inc file to connect to database used by all php pages -->
 <?php
 $hostname = "localhost";
-$username = "bankDB";
-$password = "BankSecure1*";
+$username = "bankapp";
+$password = "#New_Strong_Password_123";
 
-$dbname = "bankDB";
+$dbname = "bank_system";
 
 $con = mysqli_connect($hostname, $username, $password, $dbname);
 
