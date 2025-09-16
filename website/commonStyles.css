@@ -174,7 +174,7 @@ h1 {
 }
 
 /* Style all forms that are not class close-window */
-form:not(.close-window) {
+form:not(.close-window, .open-loan-form) {
     margin-left: auto;
     margin-right: auto;
     min-width: 600px;
@@ -229,7 +229,8 @@ form > h2 {
 #open-deposit-form,
 #open-deposit-form-two,
 #close-deposit-form,
-.view-deposit-form {
+.view-deposit-form,
+.open-loan-form {
     background-color: #fff;
     border: 2px solid #fff;
     padding: 2rem;
@@ -270,7 +271,7 @@ form p:not(.address-section, .amend-view-button-container, .form-buttons),
     gap: 0.4rem;
 }
 
-input:not(#deleteCustomer, #submit, #reset, #submitBtn, #confirm-button, #amend-view-button, .myButton > input, .buttons.check-details-delete-form > input, .view-deposit-form input[type="submit"]),
+input:not(#open-loan-account-button, #calculate-repayments-button, #deleteCustomer, #submit, #reset, #submitBtn, #confirm-button, #amend-view-button, .myButton > input, .buttons.check-details-delete-form > input, .view-deposit-form input[type="submit"], .open-loan-form .button.confirm input),
 #select-customer,
 #account-dropdown,
 #account-type,
@@ -309,7 +310,8 @@ select {
 .myButton > input[type="submit"],
 #open-deposit-form-two .buttons input[type="submit"],
 #deleteCustomer,
-.view-deposit-form .buttons > input {
+.view-deposit-form .buttons > input,
+#open-loan-account-button {
     font-size: 1rem;
     color: #fff;
     background-color: #6242cf;
@@ -502,7 +504,9 @@ h4 {
 }
 
 #open-deposit-form .buttons input,
-.myButton > input[type="reset"] {
+.myButton > input[type="reset"],
+.open-loan-form .button.confirm input,
+#calculate-repayments-button {
     border: 1px solid #6242cf;
     color: #6242cf;
     font-weight: 600;
@@ -582,4 +586,42 @@ p#message {
     grid-template-columns: repeat(4, 1fr);
     gap: 6rem;
     text-align: center;
+}
+
+.open-loan-form {
+    width: 100%;
+}
+
+.open-loan-form h1 {
+    grid-column: 1 / 3;
+}
+
+.open-loan-form .button.confirm {
+    grid-column: 1 / 3;
+    display: flex;
+    justify-content: center;
+}
+
+
+.open-loan-buttons {
+    grid-column: 1 / 3;
+    gap: 1.6rem;
+}
+
+.open-loan-buttons > .button {
+    flex: 1;
+    display: flex;
+}
+
+.open-loan-buttons > .button > input {
+    flex: 1;
+}
+
+.theForm {
+    min-width: 80%;
+}
+
+input[type='submit'],
+input[type='reset'] {
+    cursor: pointer;
 }

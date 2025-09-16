@@ -1,0 +1,818 @@
+/* 
+Refactored commonStyles.css
+Authors (original): Kyle Purcell, Brandon Jaroszczak, Darian Byrne
+Maintainer (refactor): ChatGPT
+Date: 2025-09-13
+Notes:
+- Non-breaking refactor: selectors preserved where possible.
+- Duplicates removed, specificity reduced, variables added, sections organized.
+- Inline comments explain rationale for future maintenance.
+*/
+
+/* =====================================
+   0) CSS VARIABLES / THEME TOKENS
+   ===================================== */
+:root {
+  /* Sidebar */
+  --sidebar-bg-start: #5b3ec8;
+  --sidebar-bg-end:   #6a48d7;
+  --sidebar-text:     #ffffff;
+
+  /* Content */
+  --content-bg:       #ffffff;
+  --content-shadow:   #d1d1d1;
+  --content-border:   #ffffff;
+  --panel-bg:         #fffcff;
+  --panel-border:     #800080;
+
+  /* Brand / Accent */
+  --brand:            #6242cf;
+  --brand-800:        #4f0b9d;
+  --brand-100:        #f9f2ff;
+
+  /* Text */
+  --text-900:         #1a1a1a;
+  --text-700:         #555555;
+  --link-active:      #ffffff;
+
+  /* Layout */
+  --sidebar-width:    330px;
+  --radius-md:        8px;
+  --radius-lg:        16px;
+  --radius-xl:        20px;
+
+  /* Sizing */
+  --container-min:    600px;
+  --container-max:    1000px;
+
+  /* Motion */
+  --transition-fast:  0.2s ease;
+  --transition-med:   0.5s ease;
+}
+
+/* =====================================
+   1) RESET / BASE
+   - Remove duplicate universal blocks
+   - Keep fonts consistent
+   ===================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+}
+
+html, body { height: 100%; }
+
+/* =====================================
+   2) LAYOUT (BODY / MAIN)
+   ===================================== */
+body {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  background-color: #f9f9f9;
+}
+
+main {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;    /* vertical stacking */
+}
+
+main:not(#dashboard) {
+  align-items: center;       /* center on cross-axis */
+  justify-content: center;   /* center on main axis when needed */
+}
+
+#dashboard {
+  margin-inline: 2rem;
+  margin-top: 1rem;
+  gap: 2rem;
+}
+
+.dashboard.top-row {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 2rem;
+}
+
+.card {
+  background-color: var(--content-bg);
+  box-shadow: 0 0 8px var(--content-shadow);
+  border-radius: var(--radius-md);
+  display: flex;
+  justify-content: space-between;
+}
+
+.card.customers {
+  border-left: 4px solid var(--brand)
+}
+
+.card.deposit-accounts {
+  border-left: 4px solid #10b981;
+}
+
+.card.current-accounts {
+  border-left: 4px solid #f59e0b;
+}
+
+.card.loan-accounts {
+  border-left: 4px solid #3b82f6;
+}
+
+.card-icon {
+  flex: 1;
+  display: grid;
+  place-items: center;
+}
+
+.card-icon > svg {
+  height: auto;
+  width: 100%;
+  max-width: 80%;
+  fill: var(--content-shadow);
+}
+
+.card-content {
+  flex: 3;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.card.customers h4 {
+  color: var(--brand);
+}
+
+.card.deposit-accounts h4 {
+  color: #10b981;
+}
+
+.card.current-accounts h4 {
+  color: #f59e0b;
+}
+
+.card.loan-accounts h4 {
+  color: #3b82f6;
+}
+
+.count {
+  color: var(--text-900);
+  font-weight: 600;
+}
+
+.middle-row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+.card.panel {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.06), 0 2px 8px rgba(0,0,0,.04);
+  flex-direction: column;
+  gap: 1rem;
+}
+.panel-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 16px;
+  background-color: #f9f9f9;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+.panel-head h3 { margin: 0; font-size: 16px; font-weight: 800; color: var(--brand); }
+.muted { color: #6b7280; font-size: 12px; }
+
+.span-8 { grid-column: span 8; }
+.span-4 { grid-column: span 4; }
+
+@media (max-width: 900px) {
+  .span-8, .span-4 { grid-column: 1 / -1; } /* stack on mobile */
+}
+
+canvas {
+  min-height: 300px;
+}
+
+.canvas-container {
+  padding: 24px;
+}
+
+.transactions-table {
+  background-color: var(--content-bg);
+  box-shadow: 0 0 8px var(--content-shadow);
+  border-radius: var(--radius-md);
+  grid-column: span 8;
+}
+
+.transactions-header {
+  background-color: #f9f9f9;
+  padding: 16px;
+}
+
+.transactions-header h4 {
+  color: var(--brand);
+}
+
+.dashboard.bottom-row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  grid-column: span 4;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th,
+td {
+  padding: 10px 12px;
+  text-align: left;
+}
+
+th {
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 600;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+table .positive { color: #10b981; font-weight: 600; }
+table .negative { color: #ef4444; font-weight: 600; }
+
+.action-button.add {
+background-color: var(--brand);
+}
+
+.action-button.lodge {
+background-color: #36a2eb;
+}
+
+.action-button.withdraw {
+background-color: #ff6384;
+}
+
+.action-button:hover {
+  cursor: pointer;
+  filter: brightness(0.95);
+}
+
+.action-button:active {
+  transform: translateY(1px);
+}
+
+.action-buttons {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .1s ease, filter .2s ease;
+  color: #fff;
+  min-height: 205px;
+  justify-content: space-evenly;
+}
+
+.action-button {
+  padding: 0.4rem;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 4px;
+  border: 2px solid #d2d2d2;
+}
+
+/* =====================================
+   3) SIDENAV
+   ===================================== */
+.sidenav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: var(--sidebar-width);
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  background: linear-gradient(to bottom, var(--sidebar-bg-start), var(--sidebar-bg-end));
+}
+
+.sidenav * {
+  font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--sidebar-text);
+  text-decoration: none;
+}
+
+.sidenav h2 {
+  text-align: center;
+  padding: 30px 0 10px;
+}
+
+.sidenav a,
+.sidenav button {
+  padding-block: 10px;
+  padding-inline: 20px;
+  border-left: 4px solid transparent;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  transition: opacity var(--transition-fast);
+}
+
+.sidenav > ul a {
+  border-left: 4px solid transparent;
+}
+
+.sidenav li {
+    padding-top: 20px;
+    display: flex;
+}
+
+.sidenav button > div { font-weight: bold; }
+
+.sidenav button:hover { cursor: pointer; opacity: 0.8; }
+
+.sidenav > ul > li { padding-top: 20px; display: flex; }
+
+.sidenav > ul > li > a { width: 100%; }
+
+/* Active link */
+.sidenav > ul a.active {
+  border-left: 4px solid #fff;
+  font-weight: 700;
+}
+
+/* Dropdown structure */
+li.dropdown { flex-direction: column; }
+
+.dropdown > button { padding-inline: 24px; }
+
+.dropdown a {
+  padding-inline: 40px;
+  width: 100%;
+}
+
+.dropdown:not(.account-maintenance) > ul > li.dropdown { padding-inline: 20px; }
+
+.account-maintenance > ul > li > button { padding-inline: 40px; }
+
+.account-maintenance > ul > li > ul a { padding-inline: 60px; }
+
+/* Expand/collapse animations (consolidated) */
+.dropdown ul.hidden {
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+    transition-behavior: allow-discrete;
+}
+
+/* Icons */
+.arrow { transform: rotate(180deg); }
+
+.material-symbols-outlined {
+  transition: transform var(--transition-med);
+}
+
+.material-symbols-outlined:hover { cursor: pointer; }
+
+/* Generic link hover */
+a:hover { opacity: 0.8; }
+
+/* =====================================
+   4) TYPOGRAPHY
+   ===================================== */
+h1:not(#dashboard-heading) {
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 20px 0;
+  color: var(--text-900);
+}
+
+#dashboard-heading {
+color: var(--text-700);
+font-size: 2rem;
+margin: 20px 0;
+}
+
+h4 { color: var(--text-700); grid-column: 1 / 3; }
+
+/* =====================================
+   5) FORMS - CONTAINERS & HEADINGS
+   - Grouped identical form IDs to keep HTML intact.
+   - Converted repeated panel styles to shared block.
+   ===================================== */
+#add-customer-form,
+#delete-customer-form,
+#amend-view-customer-form,
+#lodgements-form,
+#withdrawals-form,
+#open-deposit-form,
+#open-deposit-form-two,
+#close-deposit-form,
+.view-deposit-form,
+.open-loan-form,
+.transactions-container,
+.close-loan-form,
+.amend-loan-form,
+.open-current-form,
+.close-current-form,
+.amend-current-form {
+  background-color: var(--content-bg);
+  border: 2px solid var(--content-border);
+  box-shadow: 0 0 8px var(--content-shadow);
+  border-radius: var(--radius-xl);
+}
+
+/* Form grid defaults */
+#add-customer-form,
+#delete-customer-form,
+#amend-view-customer-form,
+#lodgements-form,
+#withdrawals-form,
+#open-deposit-form,
+#open-deposit-form-two,
+#close-deposit-form,
+.view-deposit-form,
+.open-loan-form,
+.close-loan-form,
+.amend-loan-form,
+.open-current-form,
+.close-current-form,
+.amend-current-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6rem;
+  padding: 2rem;
+  margin: 2rem 0;
+  min-width: 80%;
+}
+
+/* Page-level headings inside forms */
+#add-customer-form h1,
+#delete-customer-form h1,
+#amend-view-customer-form h1,
+#open-deposit-form h1,
+#close-deposit-form h1,
+.view-deposit-form h1,
+#lodgements-form > h1,
+#amend-view-customer-form > h1,
+#withdrawals-form > h1,
+.close-loan-form > h1,
+.amend-loan-form > h1,
+.open-current-form > h1,
+.close-current-form > h1,
+.amend-current-form > h1 {
+  grid-column: 1 / 3;
+  font-size: 2rem;
+  color: var(--text-900);
+}
+
+#add-customer-form h4,
+#withdrawals-form h4,
+#delete-customer-form h4,
+#amend-view-customer-form h4,
+.amend-current-form h4 {
+  grid-column: 1 / 3;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--text-700);
+}
+
+/* Specific tweaks */
+#add-customer-form { gap: 2rem; } /* (Avoid !important if possible) */
+
+#delete-customer-form > p { grid-column: 1 / 3; }
+#delete-customer-form { min-width: 0; }
+
+#withdrawals-form > h4,
+#withdrawals-form > h1 { grid-column: 1 / 3; }
+
+/* =====================================
+   6) FORM ELEMENTS
+   ===================================== */
+label {
+  font-size: 0.85rem;
+  color: var(--text-700);
+  font-weight: 500;
+  flex: 1;
+}
+
+form p:not(.address-section, .amend-view-button-container, .form-buttons),
+.inputbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+
+.inputbox > input:focus,
+select:focus {
+  outline: 1px solid #000;
+}
+
+/* Inputs & selects */
+input:not(.amend-view-button, #open-loan-account-button, #calculate-repayments-button, #deleteCustomer, #submit, #reset, #submitBtn, #confirm-button, #amend-view-button, .myButton > input, .buttons.check-details-delete-form > input, .view-deposit-form input[type="submit"], .open-loan-form .button.confirm input),
+#select-customer,
+#account-dropdown,
+#account-type,
+select {
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid #d6d6d6;
+  border-radius: 6px;
+  background-color: #fff;
+  min-width: 50%;
+}
+
+#select-customer,
+#account-dropdown,
+#account-type {
+  padding-right: 1rem;
+}
+
+/* Address */
+.address-heading {
+  font-size: 1.4rem;
+  padding: 0.5rem 0;
+}
+
+/* =====================================
+   7) FORM BUTTON GROUPS
+   ===================================== */
+.form-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+  grid-column: 1 / 3;
+  gap: 1.6rem;
+}
+
+.form-buttons > input,
+#confirm-button,
+.myButton > input[type="submit"],
+#open-deposit-form-two .buttons input[type="submit"],
+#deleteCustomer,
+.view-deposit-form .buttons > input,
+#open-loan-account-button,
+.close-loan-form input[type='submit'],
+.amend-loan-form input[type='submit'] {
+  font-size: 1rem;
+  color: #fff;
+  background-color: var(--brand);
+  border: 1px solid var(--brand);
+  border-radius: var(--radius-md);
+  padding: 0.8rem 3rem;
+  flex: 1;
+  font-weight: 600;
+  transition: background-color var(--transition-fast);
+}
+
+.form-buttons > #reset {
+  background: none;
+  color: var(--brand);
+  border-color: var(--brand);
+}
+
+.form-buttons > #submit:hover { cursor: pointer; background-color: var(--brand-800); }
+.form-buttons > #reset:hover { cursor: pointer; background-color: var(--brand-100); }
+#amend-view-button:hover { cursor: pointer; background-color: var(--brand-100); }
+input[type='submit'],
+input[type='reset'] {
+  cursor: pointer;
+}
+
+/* Secondary buttons */
+#open-deposit-form .buttons input,
+.myButton > input[type="reset"],
+.open-loan-form .button.confirm input,
+#calculate-repayments-button,
+.buttons.check-details-delete-form > input,
+.close-loan-form #confirmCustomer,
+.amend-view-button,
+.amend-loan-form #confirmCustomer {
+  border: 1px solid var(--brand);
+  color: var(--brand);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  background-color: #fff;
+  min-width: 50%;
+}
+
+/* Button grids */
+.myButton,
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  grid-column: 1 / 3;
+  margin-top: 1rem;
+}
+
+.buttons.check-customer-details { grid-area: 5 / 1 / 6 / 2; }
+.buttons.check-details-delete-form { grid-area: 6 / 1 / 7 / 2; }
+.buttons.delete-customer { grid-area: 6 / 2 / 7 / 3; }
+
+/* Lodgements / Amend-View specific placement */
+#amend-view-customer-form > .select-customer,
+#lodgements-form > .select-account { grid-area: 4 / 1 / 5 / 3; }
+
+#amend-view-customer-form > .amend-view-button-container,
+#lodgements-form > .select-account-type { grid-area: 3 / 1 / 4 / 3; }
+
+.amend-loan-form .amend-view-button { grid-area: 2 / 1 / 3 / 3; width: fit-content; justify-self: center;}
+.amend-current-form .amend-view-button { grid-area: 3 / 1 / 4 / 3; width: fit-content; justify-self: center;}
+
+/* .amend-current-form h4,
+.amend-current-form .myButton {
+  margin: 0;
+} */
+
+/* =====================================
+   8) RESULT / MODAL-LIKE CONTAINER
+   ===================================== */
+.result-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  background-color: var(--panel-bg);
+  border: 2px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  padding: 4rem 0;
+}
+
+.result-container form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-container > h2,
+.result-container > form > input {
+  font-size: 1.4rem !important;
+  padding: 3rem 6rem;
+  color: #2c004d;
+}
+
+/* Close */
+.close-window {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-window button { border: 2px solid #000; border-radius: var(--radius-md); background-color: #2c004d; }
+.close-window button:hover { cursor: pointer; }
+.close-window svg { width: 40px; height: 40px; fill: #fff; }
+
+/* Disabled state */
+.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* =====================================
+   9) TRANSACTIONS TABLE
+   ===================================== */
+.transactions-container {
+  align-items: center;
+  padding: 2rem 0;
+  display: grid;
+  gap: 1.6rem;
+  margin: 2rem 0;
+  min-width: 80%;
+}
+
+.transactions-container h2 {
+  grid-column: 1 / 3;
+  text-align: center;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.transactions-container table {
+  display: grid;
+  gap: 1rem;
+  grid-column: 1 / 3;
+}
+
+.transactions-container thead tr,
+.transactions-container tbody tr {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6rem;
+  text-align: center;
+}
+
+/* =====================================
+   10) OPEN LOAN
+   ===================================== */
+.open-loan-form { width: 100%; }
+.open-loan-form h1 { grid-column: 1 / 3; }
+
+.open-loan-form .button.confirm {
+  grid-column: 1 / 3;
+  display: flex;
+  justify-content: center;
+}
+
+.open-loan-buttons {
+  grid-column: 1 / 3;
+  gap: 1.6rem;
+}
+
+.open-loan-buttons > .button {
+  flex: 1;
+  display: flex;
+}
+
+.open-loan-buttons > .button > input { flex: 1; }
+
+.theForm { min-width: 80%; }
+
+/* =====================================
+   11) UTILITIES
+   ===================================== */
+p#message {
+  display: none;
+  text-align: center;
+  padding: 0.8rem 3.5rem;
+  border: 1px solid red;
+  color: red;
+  border-radius: 6px;
+}
+
+/* =====================================
+   12) RESPONSIVE
+   - Make forms fluid below 768px; stack columns.
+   ===================================== */
+@media (max-width: 768px) {
+  body {
+    grid-template-columns: 1fr;     /* stack sidebar above content */
+  }
+
+  .sidenav {
+    position: static;               /* allow it to flow above content */
+    width: 100%;
+    height: auto;
+  }
+
+  main:not(#dashboard) {
+    grid-column: 1;
+    padding: 0 1rem 2rem;
+  }
+
+  #add-customer-form,
+  #delete-customer-form,
+  #amend-view-customer-form,
+  #lodgements-form,
+  #withdrawals-form,
+  #open-deposit-form,
+  #open-deposit-form-two,
+  #close-deposit-form,
+  .view-deposit-form,
+  .open-loan-form,
+  .transactions-container,
+  .theForm {
+    min-width: 100%;
+    grid-template-columns: 1fr; /* single column on mobile */
+  }
+
+  .form-buttons,
+  #open-deposit-form-two .buttons,
+  .myButton,
+  .open-loan-buttons {
+    grid-column: 1;
+  }
+}
