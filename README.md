@@ -17,6 +17,8 @@ This was a team project. My main contributions included:
 
 ## Screenshots
 
+![Dashboard page screenshot before redesign](images/dashboard-old.png)
+![Dashboard page screenshot after redesign](images/dashboard-new.png)
 ![Lodgements page screenshot before redesign](images/Lodgements-Before.png)
 ![Lodgements page screenshot after redesign](images/Lodgements-After.png)
 ![Add a customer page screenshot before redesign](images/Add-Customer-Before.png)
